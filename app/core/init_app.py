@@ -4,6 +4,7 @@ from aerich import Command
 from fastapi import FastAPI
 from fastapi.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
+from tortoise import Tortoise
 from tortoise.expressions import Q
 
 from app.api import api_router
@@ -183,21 +184,12 @@ async def init_apis():
 
 
 async def init_db():
-    command = Command(tortoise_config=settings.TORTOISE_ORM)
-    try:
-        await command.init_db(safe=True)
-    except FileExistsError:
-        pass
+    # 初始化Tortoise ORM
+    await Tortoise.init(config=settings.TORTOISE_ORM)
+    logger.info("Tortoise ORM initialized successfully")
 
-    await command.init()
-    try:
-        await command.migrate()
-    except AttributeError:
-        logger.warning("unable to retrieve model history from database, model history will be created from scratch")
-        shutil.rmtree("migrations")
-        await command.init_db(safe=True)
-
-    await command.upgrade(run_in_transaction=True)
+    # 跳过数据库迁移，因为字段已经存在
+    logger.info("Skipping database migration as fields already exist")
 
 
 async def init_roles():

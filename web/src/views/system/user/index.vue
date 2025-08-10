@@ -12,10 +12,8 @@ import {
   NSwitch,
   NTag,
   NPopconfirm,
-  NLayout,
-  NLayoutSider,
-  NLayoutContent,
-  NTreeSelect,
+  NTable,
+  NDropdown,
 } from 'naive-ui'
 
 import CommonPage from '@/components/page/CommonPage.vue'
@@ -57,12 +55,44 @@ const {
 })
 
 const roleOption = ref([])
-const deptOption = ref([])
+const userStore = useUserStore()
+
+// 积分管理相关
+const pointsModalVisible = ref(false)
+const pointsForm = ref({
+  user_id: null,
+  username: '',
+  current_points: 0,
+  points: 0,
+  operation: 'add' // 'add' 或 'deduct'
+})
+
+// 下级用户相关
+const subordinatesModalVisible = ref(false)
+const subordinatesData = ref([])
+const subordinatesLoading = ref(false)
+
+// 加载可创建的角色列表
+const loadCreatableRoles = async () => {
+  try {
+    // 如果是超级管理员，获取所有角色
+    if (userStore.isSuperUser) {
+      const res = await api.getRoleList({ page: 1, page_size: 9999 })
+      roleOption.value = res.data
+    } else {
+      // 普通用户只能获取可创建的角色
+      const res = await api.getCreatableRoles()
+      roleOption.value = res.data
+    }
+  } catch (error) {
+    console.error('加载角色列表失败:', error)
+    roleOption.value = []
+  }
+}
 
 onMounted(() => {
   $table.value?.handleSearch()
-  api.getRoleList({ page: 1, page_size: 9999 }).then((res) => (roleOption.value = res.data))
-  api.getDepts().then((res) => (deptOption.value = res.data))
+  loadCreatableRoles()
 })
 
 const columns = [
@@ -81,6 +111,53 @@ const columns = [
     ellipsis: { tooltip: true },
   },
   {
+    title: '学校',
+    key: 'school',
+    width: 50,
+    align: 'center',
+    ellipsis: { tooltip: true },
+    render(row) {
+      return row.school || '-'
+    },
+  },
+  {
+    title: '专业',
+    key: 'major',
+    width: 50,
+    align: 'center',
+    ellipsis: { tooltip: true },
+    render(row) {
+      return row.major || '-'
+    },
+  },
+  {
+    title: '积分余额',
+    key: 'points_balance',
+    width: 40,
+    align: 'center',
+    render(row) {
+      return h(
+        NTag,
+        { type: 'success', style: { margin: '2px 3px' } },
+        { default: () => row.points_balance || 0 }
+      )
+    },
+  },
+  {
+    title: '邀请码',
+    key: 'invitation_code',
+    width: 120,
+    align: 'center',
+    ellipsis: { tooltip: true },
+    render(row) {
+      return h(
+        NTag,
+        { type: 'warning', style: { margin: '2px 3px' } },
+        { default: () => row.invitation_code || '-' }
+      )
+    },
+  },
+  {
     title: '用户角色',
     key: 'role',
     width: 60,
@@ -95,13 +172,7 @@ const columns = [
       return h('span', group)
     },
   },
-  {
-    title: '部门',
-    key: 'dept.name',
-    align: 'center',
-    width: 40,
-    ellipsis: { tooltip: true },
-  },
+
   {
     title: '超级用户',
     key: 'is_superuser',
@@ -156,89 +227,112 @@ const columns = [
     align: 'center',
     fixed: 'right',
     render(row) {
-      return [
-        withDirectives(
-          h(
+      // 构建下拉菜单选项
+      const dropdownOptions = []
+
+      // 编辑选项
+      dropdownOptions.push({
+        label: '编辑',
+        key: 'edit',
+        icon: renderIcon('material-symbols:edit', { size: 16 }),
+      })
+
+      // 删除选项
+      dropdownOptions.push({
+        label: '删除',
+        key: 'delete',
+        icon: renderIcon('material-symbols:delete-outline', { size: 16 }),
+      })
+
+      // 重置密码选项（非超级用户才显示）
+      if (!row.is_superuser) {
+        dropdownOptions.push({
+          label: '重置密码',
+          key: 'reset-password',
+          icon: renderIcon('material-symbols:lock-reset', { size: 16 }),
+        })
+      }
+
+      // 积分管理选项
+      dropdownOptions.push({
+        label: '积分管理',
+        key: 'points',
+        icon: renderIcon('material-symbols:monetization-on', { size: 16 }),
+      })
+
+      // 下级用户选项
+      dropdownOptions.push({
+        label: '下级用户',
+        key: 'subordinates',
+        icon: renderIcon('material-symbols:group', { size: 16 }),
+      })
+
+      // 处理下拉菜单选择
+      const handleDropdownSelect = (key) => {
+        switch (key) {
+          case 'edit':
+            handleEdit(row)
+            modalForm.value.role_ids = row.roles.map((e) => (e = e.id))
+            break
+          case 'delete':
+            $dialog.warning({
+              title: '确认删除',
+              content: '确定删除该用户吗？',
+              positiveText: '确定',
+              negativeText: '取消',
+              onPositiveClick: () => {
+                handleDelete({ user_id: row.id }, false)
+              }
+            })
+            break
+          case 'reset-password':
+            $dialog.warning({
+              title: '确认重置密码',
+              content: '确定重置用户密码为123456吗？',
+              positiveText: '确定',
+              negativeText: '取消',
+              onPositiveClick: async () => {
+                try {
+                  await api.resetPassword({ user_id: row.id });
+                  $message.success('密码已成功重置为123456');
+                  await $table.value?.handleSearch();
+                } catch (error) {
+                  $message.error('重置密码失败: ' + error.message);
+                }
+              }
+            })
+            break
+          case 'points':
+            handlePointsManagement(row)
+            break
+          case 'subordinates':
+            handleViewSubordinates(row)
+            break
+        }
+      }
+
+      return h(
+        NDropdown,
+        {
+          trigger: 'hover',
+          options: dropdownOptions,
+          onSelect: handleDropdownSelect
+        },
+        {
+          default: () => h(
             NButton,
             {
               size: 'small',
               type: 'primary',
-              style: 'margin-right: 8px;',
-              onClick: () => {
-                handleEdit(row)
-                modalForm.value.dept_id = row.dept?.id
-                modalForm.value.role_ids = row.roles.map((e) => (e = e.id))
-                delete modalForm.value.dept
-              },
+              quaternary: true,
             },
             {
-              default: () => '编辑',
-              icon: renderIcon('material-symbols:edit', { size: 16 }),
+              default: () => '操作',
+              icon: renderIcon('material-symbols:more-vert', { size: 16 }),
             }
-          ),
-          [[vPermission, 'post/api/v1/user/update']]
-        ),
-        h(
-          NPopconfirm,
-          {
-            onPositiveClick: () => handleDelete({ user_id: row.id }, false),
-            onNegativeClick: () => {},
-          },
-          {
-            trigger: () =>
-              withDirectives(
-                h(
-                  NButton,
-                  {
-                    size: 'small',
-                    type: 'error',
-                    style: 'margin-right: 8px;',
-                  },
-                  {
-                    default: () => '删除',
-                    icon: renderIcon('material-symbols:delete-outline', { size: 16 }),
-                  }
-                ),
-                [[vPermission, 'delete/api/v1/user/delete']]
-              ),
-            default: () => h('div', {}, '确定删除该用户吗?'),
-          }
-        ),
-        !row.is_superuser && h(
-          NPopconfirm,
-          {
-            onPositiveClick: async () => {
-              try {
-                await api.resetPassword({ user_id: row.id });
-                $message.success('密码已成功重置为123456');
-                await $table.value?.handleSearch();
-              } catch (error) {
-                $message.error('重置密码失败: ' + error.message);
-              }
-            },
-            onNegativeClick: () => {},
-          },
-          {
-            trigger: () =>
-              withDirectives(
-                h(
-                  NButton,
-                  {
-                    size: 'small',
-                    type: 'warning',
-                    style: 'margin-right: 8px;',
-                  },
-                  {
-                    default: () => '重置密码',
-                    icon: renderIcon('material-symbols:lock-reset', { size: 16 }),
-                  }
-                ),
-                [[vPermission, 'post/api/v1/user/reset_password']]
-              ),
-            default: () => h('div', {}, '确定重置用户密码为123456吗?'),
-          }
-        ),
-      ]
+          )
+        }
+      )
     },
   },
 ]
@@ -259,7 +353,6 @@ async function handleUpdateDisable(row) {
     role_ids.push(e.id)
   })
   row.role_ids = role_ids
-  row.dept_id = row.dept?.id
   try {
     await api.updateUser(row)
     $message?.success(row.is_active ? '已取消禁用该用户' : '已禁用该用户')
@@ -272,21 +365,57 @@ async function handleUpdateDisable(row) {
   }
 }
 
-let lastClickedNodeId = null
 
-const nodeProps = ({ option }) => {
-  return {
-    onClick() {
-      if (lastClickedNodeId === option.id) {
-        $table.value?.handleSearch()
-        lastClickedNodeId = null
-      } else {
-        api.getUserList({ dept_id: option.id }).then((res) => {
-          $table.value.tableData = res.data
-          lastClickedNodeId = option.id
-        })
-      }
-    },
+
+// 积分管理处理函数
+const handlePointsManagement = (row) => {
+  pointsForm.value = {
+    user_id: row.id,
+    username: row.username,
+    current_points: row.points_balance || 0,
+    points: 0,
+    operation: 'add'
+  }
+  pointsModalVisible.value = true
+}
+
+// 积分操作提交
+const handlePointsSubmit = async () => {
+  try {
+    const { user_id, points, operation } = pointsForm.value
+    if (!points || points <= 0) {
+      $message.error('请输入有效的积分数量')
+      return
+    }
+
+    if (operation === 'add') {
+      await api.addUserPoints({ user_id, points })
+      $message.success('积分增加成功')
+    } else {
+      await api.deductUserPoints({ user_id, points })
+      $message.success('积分扣除成功')
+    }
+
+    pointsModalVisible.value = false
+    $table.value?.handleSearch()
+  } catch (error) {
+    $message.error('操作失败: ' + (error.response?.data?.msg || error.message))
+  }
+}
+
+// 查看下级用户处理函数
+const handleViewSubordinates = async (row) => {
+  subordinatesLoading.value = true
+  subordinatesModalVisible.value = true
+
+  try {
+    const res = await api.getSubordinateUsers({ page: 1, page_size: 100 })
+    subordinatesData.value = res.data || []
+  } catch (error) {
+    $message.error('获取下级用户失败: ' + (error.response?.data?.msg || error.message))
+    subordinatesData.value = []
+  } finally {
+    subordinatesLoading.value = false
   }
 }
 
@@ -340,7 +469,7 @@ const validateAddUser = {
       },
     },
   ],
-  roles: [
+  role_ids: [
     {
       type: 'array',
       required: true,
@@ -352,27 +481,7 @@ const validateAddUser = {
 </script>
 
 <template>
-  <NLayout has-sider wh-full>
-    <NLayoutSider
-      bordered
-      content-style="padding: 24px;"
-      :collapsed-width="0"
-      :width="240"
-      show-trigger="arrow-circle"
-    >
-      <h1>部门列表</h1>
-      <br />
-      <NTree
-        block-line
-        :data="deptOption"
-        key-field="id"
-        label-field="name"
-        default-expand-all
-        :node-props="nodeProps"
-      >
-      </NTree>
-    </NLayoutSider>
-    <NLayoutContent>
+  <div>
       <CommonPage show-footer title="用户列表">
         <template #action>
           <NButton v-permission="'post/api/v1/user/create'" type="primary" @click="handleAdd">
@@ -413,7 +522,7 @@ const validateAddUser = {
           v-model:visible="modalVisible"
           :title="modalTitle"
           :loading="modalLoading"
-          @save="handleSave"
+          @onSave="handleSave"
         >
           <NForm
             ref="modalFormRef"
@@ -428,6 +537,15 @@ const validateAddUser = {
             </NFormItem>
             <NFormItem label="邮箱" path="email">
               <NInput v-model:value="modalForm.email" clearable placeholder="请输入邮箱" />
+            </NFormItem>
+            <NFormItem v-if="modalAction === 'add'" label="邀请码" path="invitation_code">
+              <NInput v-model:value="modalForm.invitation_code" clearable placeholder="请输入邀请码（可选）" />
+            </NFormItem>
+            <NFormItem label="学校" path="school">
+              <NInput v-model:value="modalForm.school" clearable placeholder="请输入学校" />
+            </NFormItem>
+            <NFormItem label="专业" path="major">
+              <NInput v-model:value="modalForm.major" clearable placeholder="请输入专业" />
             </NFormItem>
             <NFormItem v-if="modalAction === 'add'" label="密码" path="password">
               <NInput
@@ -459,7 +577,7 @@ const validateAddUser = {
                 </NSpace>
               </NCheckboxGroup>
             </NFormItem>
-            <NFormItem label="超级用户" path="is_superuser">
+            <NFormItem v-if="userStore.isSuperUser" label="超级用户" path="is_superuser">
               <NSwitch
                 v-model:value="modalForm.is_superuser"
                 size="small"
@@ -475,21 +593,90 @@ const validateAddUser = {
                 :default-value="true"
               />
             </NFormItem>
-            <NFormItem label="部门" path="dept_id">
-              <NTreeSelect
-                v-model:value="modalForm.dept_id"
-                :options="deptOption"
-                key-field="id"
-                label-field="name"
-                placeholder="请选择部门"
+          </NForm>
+        </CrudModal>
+
+        <!-- 积分管理弹窗 -->
+        <CrudModal
+          v-model:visible="pointsModalVisible"
+          title="积分管理"
+          @onSave="handlePointsSubmit"
+        >
+          <NForm
+            label-placement="left"
+            label-align="left"
+            :label-width="100"
+            :model="pointsForm"
+          >
+            <NFormItem label="用户名称">
+              <NInput :value="pointsForm.username" readonly />
+            </NFormItem>
+            <NFormItem label="当前积分">
+              <NInput :value="pointsForm.current_points.toString()" readonly />
+            </NFormItem>
+            <NFormItem label="操作类型">
+              <NSpace>
+                <NButton
+                  :type="pointsForm.operation === 'add' ? 'primary' : 'default'"
+                  @click="pointsForm.operation = 'add'"
+                >
+                  增加积分
+                </NButton>
+                <NButton
+                  :type="pointsForm.operation === 'deduct' ? 'primary' : 'default'"
+                  @click="pointsForm.operation = 'deduct'"
+                >
+                  扣除积分
+                </NButton>
+              </NSpace>
+            </NFormItem>
+            <NFormItem label="积分数量">
+              <NInput
+                v-model:value="pointsForm.points"
+                type="number"
+                placeholder="请输入积分数量"
                 clearable
-                default-expand-all
-              ></NTreeSelect>
+              />
             </NFormItem>
           </NForm>
         </CrudModal>
+
+        <!-- 下级用户弹窗 -->
+        <CrudModal
+          v-model:visible="subordinatesModalVisible"
+          title="下级用户列表"
+          :show-footer="false"
+          width="800px"
+        >
+          <NTable :loading="subordinatesLoading">
+            <thead>
+              <tr>
+                <th>用户名</th>
+                <th>邮箱</th>
+                <th>学校</th>
+                <th>专业</th>
+                <th>积分余额</th>
+                <th>邀请码</th>
+                <th>创建时间</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="user in subordinatesData" :key="user.id">
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.school || '-' }}</td>
+                <td>{{ user.major || '-' }}</td>
+                <td>{{ user.points_balance || 0 }}</td>
+                <td>{{ user.invitation_code || '-' }}</td>
+                <td>{{ formatDate(user.created_at) }}</td>
+              </tr>
+              <tr v-if="subordinatesData.length === 0 && !subordinatesLoading">
+                <td colspan="7" style="text-align: center; color: #999;">暂无下级用户</td>
+              </tr>
+            </tbody>
+          </NTable>
+        </CrudModal>
       </CommonPage>
-    </NLayoutContent>
-  </NLayout>
+  </div>
   <!-- 业务页面 -->
 </template>

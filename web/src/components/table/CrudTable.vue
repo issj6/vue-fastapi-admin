@@ -1,5 +1,5 @@
 <template>
-  <div v-bind="$attrs">
+  <div class="crud-table-container" v-bind="$attrs">
     <QueryBar v-if="$slots.queryBar" mb-30 @search="handleSearch" @reset="handleReset">
       <slot name="queryBar" />
     </QueryBar>
@@ -149,3 +149,26 @@ defineExpose({
   tableData,
 })
 </script>
+
+<style scoped>
+.crud-table-container {
+  /* 移除固定高度，让表格自然扩展 */
+  width: 100%;
+  margin-bottom: 16px; /* 添加底部外边距 */
+}
+
+/* 确保表格可以自然扩展，不设置固定高度 */
+.crud-table-container :deep(.n-data-table) {
+  width: 100%;
+}
+
+/* 移除表格内部滚动，让页面级滚动处理 */
+.crud-table-container :deep(.n-data-table .n-data-table-wrapper) {
+  overflow: visible;
+}
+
+/* 确保表格行有足够的空间显示 */
+.crud-table-container :deep(.n-data-table .n-data-table-tbody .n-data-table-tr:last-child) {
+  margin-bottom: 8px;
+}
+</style>

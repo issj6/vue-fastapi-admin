@@ -2,10 +2,15 @@
 import { h, onMounted, ref, resolveDirective, withDirectives } from 'vue'
 import {
   NButton,
+  NCheckbox,
+  NCheckboxGroup,
   NForm,
   NFormItem,
   NInput,
   NPopconfirm,
+  NSelect,
+  NSpace,
+  NSwitch,
   NTag,
   NTree,
   NDrawer,
@@ -25,12 +30,14 @@ import { formatDate, renderIcon } from '@/utils'
 import { useCRUD } from '@/composables'
 import api from '@/api'
 import TheIcon from '@/components/icon/TheIcon.vue'
+import { useUserStore } from '@/store'
 
 defineOptions({ name: '角色管理' })
 
 const $table = ref(null)
 const queryItems = ref({})
 const vPermission = resolveDirective('permission')
+const userStore = useUserStore()
 
 const {
   modalVisible,
@@ -59,7 +66,21 @@ const menu_ids = ref([])
 const role_id = ref(0)
 const apiOption = ref([])
 const api_ids = ref([])
-const apiTree = ref([])
+
+// 代理权限相关
+const agentPermissionsConfig = ref({
+  permissions: {},
+  all_permissions: []
+})
+const selectedAgentPermissions = ref([])
+const isAgentRole = ref(false)
+
+// 权限与菜单映射关系
+const permissionMenuMapping = ref({
+  permission_menu_map: {},
+  super_admin_only_menus: [],
+  permission_descriptions: {}
+})
 
 function buildApiTree(data) {
   const processedData = []
@@ -87,9 +108,31 @@ function buildApiTree(data) {
   return processedData
 }
 
-onMounted(() => {
+onMounted(async () => {
   $table.value?.handleSearch()
+  await loadAgentPermissionsConfig()
+  await loadPermissionMenuMapping()
 })
+
+// 加载代理权限配置
+async function loadAgentPermissionsConfig() {
+  try {
+    const response = await api.getAgentPermissionsConfig()
+    agentPermissionsConfig.value = response.data
+  } catch (error) {
+    console.error('加载代理权限配置失败:', error)
+  }
+}
+
+// 加载权限与菜单映射关系
+async function loadPermissionMenuMapping() {
+  try {
+    const response = await api.getPermissionMenuMapping()
+    permissionMenuMapping.value = response.data
+  } catch (error) {
+    console.error('加载权限菜单映射失败:', error)
+  }
+}
 
 const columns = [
   {
@@ -124,128 +167,164 @@ const columns = [
     align: 'center',
     fixed: 'right',
     render(row) {
-      return [
-        withDirectives(
-          h(
-            NButton,
-            {
-              size: 'small',
-              type: 'primary',
-              style: 'margin-right: 8px;',
-              onClick: () => {
-                handleEdit(row)
+      const buttons = []
+
+      // 只有超级管理员才能看到编辑按钮
+      if (userStore.isSuperUser) {
+        buttons.push(
+          withDirectives(
+            h(
+              NButton,
+              {
+                size: 'small',
+                type: 'primary',
+                style: 'margin-right: 8px;',
+                onClick: () => {
+                  handleEdit(row)
+                },
               },
-            },
-            {
-              default: () => '编辑',
-              icon: renderIcon('material-symbols:edit-outline', { size: 16 }),
-            }
-          ),
-          [[vPermission, 'post/api/v1/role/update']]
-        ),
-        h(
-          NPopconfirm,
-          {
-            onPositiveClick: () => handleDelete({ role_id: row.id }, false),
-            onNegativeClick: () => {},
-          },
-          {
-            trigger: () =>
-              withDirectives(
-                h(
-                  NButton,
-                  {
-                    size: 'small',
-                    type: 'error',
-                    style: 'margin-right: 8px;',
+              {
+                default: () => '编辑',
+                icon: renderIcon('material-symbols:edit-outline', { size: 16 }),
+              }
+            ),
+            [[vPermission, 'post/api/v1/role/update']]
+          )
+        )
+        // 只有超级管理员才能看到删除按钮
+        if (userStore.isSuperUser) {
+          buttons.push(
+            h(
+              NPopconfirm,
+              {
+                onPositiveClick: () => handleDelete({ role_id: row.id }, false),
+                onNegativeClick: () => {},
+              },
+              {
+                trigger: () =>
+                  withDirectives(
+                    h(
+                      NButton,
+                      {
+                        size: 'small',
+                        type: 'error',
+                        style: 'margin-right: 8px;',
+                      },
+                      {
+                        default: () => '删除',
+                        icon: renderIcon('material-symbols:delete-outline', { size: 16 }),
+                      }
+                    ),
+                    [[vPermission, 'delete/api/v1/role/delete']]
+                  ),
+                default: () => h('div', {}, '确定删除该角色吗?'),
+              }
+            )
+          )
+        }
+        // 只有超级管理员才能看到权限设置按钮
+        if (userStore.isSuperUser) {
+          buttons.push(
+            withDirectives(
+              h(
+                NButton,
+                {
+                  size: 'small',
+                  type: 'primary',
+                  onClick: async () => {
+                    try {
+                      // 使用 Promise.all 来同时发送所有请求
+                      const [menusResponse, apisResponse, roleAuthorizedResponse] = await Promise.all([
+                        api.getMenus({ page: 1, page_size: 9999 }),
+                        api.getApis({ page: 1, page_size: 9999 }),
+                        api.getRoleAuthorized({ id: row.id }),
+                      ])
+
+                      // 处理每个请求的响应
+                      menuOption.value = menusResponse.data
+                      apiOption.value = buildApiTree(apisResponse.data)
+                      menu_ids.value = roleAuthorizedResponse.data.menus.map((v) => v.id)
+                      api_ids.value = roleAuthorizedResponse.data.apis.map(
+                        (v) => v.method.toLowerCase() + v.path
+                      )
+
+                      // 加载代理权限配置
+                      selectedAgentPermissions.value = roleAuthorizedResponse.data.agent_permissions || []
+                      isAgentRole.value = roleAuthorizedResponse.data.is_agent_role || false
+
+                      active.value = true
+                      role_id.value = row.id
+                    } catch (error) {
+                      // 错误处理
+                      console.error('Error loading data:', error)
+                    }
                   },
-                  {
-                    default: () => '删除',
-                    icon: renderIcon('material-symbols:delete-outline', { size: 16 }),
-                  }
-                ),
-                [[vPermission, 'delete/api/v1/role/delete']]
-              ),
-            default: () => h('div', {}, '确定删除该角色吗?'),
-          }
-        ),
-        withDirectives(
-          h(
-            NButton,
-            {
-              size: 'small',
-              type: 'primary',
-              onClick: async () => {
-                try {
-                  // 使用 Promise.all 来同时发送所有请求
-                  const [menusResponse, apisResponse, roleAuthorizedResponse] = await Promise.all([
-                    api.getMenus({ page: 1, page_size: 9999 }),
-                    api.getApis({ page: 1, page_size: 9999 }),
-                    api.getRoleAuthorized({ id: row.id }),
-                  ])
-
-                  // 处理每个请求的响应
-                  menuOption.value = menusResponse.data
-                  apiOption.value = buildApiTree(apisResponse.data)
-                  menu_ids.value = roleAuthorizedResponse.data.menus.map((v) => v.id)
-                  api_ids.value = roleAuthorizedResponse.data.apis.map(
-                    (v) => v.method.toLowerCase() + v.path
-                  )
-
-                  active.value = true
-                  role_id.value = row.id
-                } catch (error) {
-                  // 错误处理
-                  console.error('Error loading data:', error)
+                },
+                {
+                  default: () => '设置权限',
+                  icon: renderIcon('material-symbols:edit-outline', { size: 16 }),
                 }
-              },
-            },
-            {
-              default: () => '设置权限',
-              icon: renderIcon('material-symbols:edit-outline', { size: 16 }),
-            }
-          ),
-          [[vPermission, 'get/api/v1/role/authorized']]
-        ),
-      ]
+              ),
+              [[vPermission, 'get/api/v1/role/authorized']]
+            )
+          )
+        }
+
+        return buttons
+      }
     },
   },
 ]
 
 async function updateRoleAuthorized() {
-  const checkData = apiTree.value.getCheckedData()
-  const apiInfos = []
-  checkData &&
-    checkData.options.forEach((item) => {
-      if (!item.children) {
-        apiInfos.push({
-          path: item.path,
-          method: item.method,
-        })
-      }
+  try {
+    // 只更新菜单权限，API权限暂时不处理
+    const { code, msg } = await api.updateRoleAuthorized({
+      id: role_id.value,
+      menu_ids: menu_ids.value,
+      api_infos: [], // 暂时传空数组，保持API兼容性
     })
-  const { code, msg } = await api.updateRoleAuthorized({
-    id: role_id.value,
-    menu_ids: menu_ids.value,
-    api_infos: apiInfos,
-  })
-  if (code === 200) {
-    $message?.success('设置成功')
-  } else {
-    $message?.error(msg)
-  }
 
-  const result = await api.getRoleAuthorized({ id: role_id.value })
-  menu_ids.value = result.data.menus.map((v) => {
-    return v.id
-  })
+    if (code === 200) {
+      $message?.success('菜单权限设置成功')
+      active.value = false // 关闭抽屉
+      $table.value?.handleSearch() // 刷新表格
+    } else {
+      $message?.error(msg || '设置失败')
+    }
+  } catch (error) {
+    console.error('更新角色权限失败:', error)
+    $message?.error('设置失败，请重试')
+  }
+}
+
+// 更新代理权限
+async function updateAgentPermissions() {
+  try {
+    await api.updateRoleAgentPermissions({
+      id: role_id.value,
+      agent_permissions: selectedAgentPermissions.value,
+      is_agent_role: isAgentRole.value,
+    })
+    $message.success('代理权限更新成功')
+    active.value = false
+    $table.value?.handleSearch()
+  } catch (error) {
+    console.error('代理权限更新失败:', error)
+    $message.error('代理权限更新失败')
+  }
 }
 </script>
 
 <template>
   <CommonPage show-footer title="角色列表">
     <template #action>
-      <NButton v-permission="'post/api/v1/role/create'" type="primary" @click="handleAdd">
+      <NButton
+        v-if="userStore.isSuperUser"
+        v-permission="'post/api/v1/role/create'"
+        type="primary"
+        @click="handleAdd"
+      >
         <TheIcon icon="material-symbols:add" :size="18" class="mr-5" />新建角色
       </NButton>
     </template>
@@ -273,7 +352,7 @@ async function updateRoleAuthorized() {
       v-model:visible="modalVisible"
       :title="modalTitle"
       :loading="modalLoading"
-      @save="handleSave"
+      @onSave="handleSave"
     >
       <NForm
         ref="modalFormRef"
@@ -321,6 +400,55 @@ async function updateRoleAuthorized() {
           </NGi>
         </NGrid>
         <NTabs>
+          <NTabPane name="agent" tab="代理权限" display-directive="show">
+            <NSpace vertical>
+              <NFormItem label="角色类型">
+                <NSwitch
+                  v-model:value="isAgentRole"
+                  :checked-value="true"
+                  :unchecked-value="false"
+                >
+                  <template #checked>代理角色</template>
+                  <template #unchecked>普通角色</template>
+                </NSwitch>
+              </NFormItem>
+
+
+
+              <NFormItem v-if="isAgentRole" label="代理权限">
+                <NCheckboxGroup v-model:value="selectedAgentPermissions">
+                  <NSpace vertical>
+                    <div
+                      v-for="(desc, permission) in agentPermissionsConfig.permissions"
+                      :key="permission"
+                      class="permission-item"
+                    >
+                      <NCheckbox
+                        :value="permission"
+                        :label="desc"
+                      />
+                      <div v-if="permissionMenuMapping.permission_descriptions[permission]" class="permission-menu-info">
+                        <NTag size="small" type="info">
+                          {{ permissionMenuMapping.permission_descriptions[permission] }}
+                        </NTag>
+                      </div>
+                    </div>
+                  </NSpace>
+                </NCheckboxGroup>
+              </NFormItem>
+
+              <NSpace>
+                <NButton
+                  v-permission="'post/api/v1/role/agent_permissions'"
+                  type="primary"
+                  @click="updateAgentPermissions"
+                >
+                  更新代理权限
+                </NButton>
+              </NSpace>
+            </NSpace>
+          </NTabPane>
+
           <NTabPane name="menu" tab="菜单权限" display-directive="show">
             <!-- TODO：级联 -->
             <NTree
@@ -337,26 +465,24 @@ async function updateRoleAuthorized() {
               @update:checked-keys="(v) => (menu_ids = v)"
             />
           </NTabPane>
-          <NTabPane name="resource" tab="接口权限" display-directive="show">
-            <NTree
-              ref="apiTree"
-              :data="apiOption"
-              :checked-keys="api_ids"
-              :pattern="pattern"
-              :show-irrelevant-nodes="false"
-              key-field="unique_id"
-              label-field="summary"
-              checkable
-              :default-expand-all="true"
-              :block-line="true"
-              :selectable="false"
-              cascade
-              @update:checked-keys="(v) => (api_ids = v)"
-            />
-          </NTabPane>
+
+
         </NTabs>
         <template #header> 设置权限 </template>
       </NDrawerContent>
     </NDrawer>
   </CommonPage>
 </template>
+
+<style scoped>
+.permission-item {
+  margin-bottom: 8px;
+}
+
+.permission-menu-info {
+  margin-top: 4px;
+  margin-left: 24px;
+  font-size: 12px;
+  color: #666;
+}
+</style>

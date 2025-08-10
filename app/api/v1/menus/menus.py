@@ -40,8 +40,17 @@ async def get_menu(
 async def create_menu(
     menu_in: MenuCreate,
 ):
+    # 验证一级菜单路径格式（parent_id=0的菜单必须以'/'开头）
+    if menu_in.parent_id == 0 and menu_in.path and not menu_in.path.startswith('/'):
+        return Fail(code=400, msg=f"一级菜单路径必须以'/'开头，当前路径: '{menu_in.path}'")
+
+    # 检查路径是否已存在
+    existing_menu = await menu_controller.get_by_menu_path(menu_in.path)
+    if existing_menu:
+        return Fail(code=400, msg=f"菜单路径 '{menu_in.path}' 已存在")
+
     await menu_controller.create(obj_in=menu_in)
-    return Success(msg="Created Success")
+    return Success(msg="菜单创建成功")
 
 
 @router.post("/update", summary="更新菜单")

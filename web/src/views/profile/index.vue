@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-import { NButton, NForm, NFormItem, NInput, NTabPane, NTabs, NImage } from 'naive-ui'
+import { ref, onMounted } from 'vue'
+import { NButton, NForm, NFormItem, NInput, NTabPane, NTabs, NImage, NCard, NStatistic, NSpace, NTag } from 'naive-ui'
 import { useI18n } from 'vue-i18n'
 import CommonPage from '@/components/page/CommonPage.vue'
 import { useUserStore } from '@/store'
@@ -10,6 +10,27 @@ import { is } from '~/src/utils'
 const { t } = useI18n()
 const userStore = useUserStore()
 const isLoading = ref(false)
+
+// 邀请信息
+const invitationInfo = ref({
+  invitation_code: '',
+  invited_count: 0,
+  points_balance: 0
+})
+
+// 获取邀请信息
+async function getInvitationInfo() {
+  try {
+    const res = await api.getInvitationInfo()
+    invitationInfo.value = res.data
+  } catch (error) {
+    console.error('获取邀请信息失败:', error)
+  }
+}
+
+onMounted(() => {
+  getInvitationInfo()
+})
 
 // 用户信息的表单
 const infoFormRef = ref(null)
@@ -196,6 +217,37 @@ function validatePasswordSame(rule, value) {
             {{ $t('common.buttons.update') }}
           </NButton>
         </NForm>
+      </NTabPane>
+      <NTabPane name="invitation" tab="邀请信息">
+        <div class="m-30">
+          <NSpace vertical size="large">
+            <!-- 邀请统计卡片 -->
+            <NCard title="邀请统计" size="small">
+              <NSpace size="large">
+                <NStatistic label="我的邀请码" :value="invitationInfo.invitation_code">
+                  <template #suffix>
+                    <NTag type="warning" size="small">点击复制</NTag>
+                  </template>
+                </NStatistic>
+                <NStatistic label="已邀请人数" :value="invitationInfo.invited_count" />
+                <NStatistic label="积分余额" :value="invitationInfo.points_balance">
+                  <template #suffix>
+                    <NTag type="success" size="small">积分</NTag>
+                  </template>
+                </NStatistic>
+              </NSpace>
+            </NCard>
+
+            <!-- 邀请说明 -->
+            <NCard title="邀请说明" size="small">
+              <div class="text-gray-600">
+                <p>• 分享您的邀请码给朋友，朋友注册时填入您的邀请码即可建立邀请关系</p>
+                <p>• 您可以查看和管理您邀请的用户</p>
+                <p>• 邀请码是唯一的，请妥善保管</p>
+              </div>
+            </NCard>
+          </NSpace>
+        </div>
       </NTabPane>
     </NTabs>
   </CommonPage>

@@ -40,13 +40,48 @@ class PermissionControl:
         path = request.url.path
         roles: list[Role] = await current_user.roles
         if not roles:
-            raise HTTPException(status_code=403, detail="The user is not bound to a role")
+            raise HTTPException(status_code=403, detail="用户未分配角色，无法访问系统功能")
+
+        # 获取传统API权限
         apis = [await role.apis for role in roles]
         permission_apis = list(set((api.method, api.path) for api in sum(apis, [])))
-        # path = "/api/v1/auth/userinfo"
-        # method = "GET"
-        if (method, path) not in permission_apis:
-            raise HTTPException(status_code=403, detail=f"Permission denied method:{method} path:{path}")
+
+        # 检查传统API权限
+        if (method, path) in permission_apis:
+            return
+
+        # 检查代理权限映射的API
+        from app.core.menu_permissions import MenuPermissionMapping
+
+        # 获取用户的代理权限
+        agent_permissions = set()
+        for role in roles:
+            if role.is_agent_role and role.agent_permissions:
+                agent_permissions.update(role.agent_permissions)
+
+        # 检查代理权限是否允许访问此API
+        for permission in agent_permissions:
+            if permission in MenuPermissionMapping.PERMISSION_API_MAP:
+                allowed_apis = MenuPermissionMapping.PERMISSION_API_MAP[permission]
+                if (method, path) in allowed_apis:
+                    return
+
+        # 如果都没有权限，则拒绝访问
+        # 根据路径提供友好的错误提示
+        friendly_messages = {
+            "/api/v1/user/list": "权限不足，无法查看用户列表",
+            "/api/v1/user/create": "权限不足，无法创建用户",
+            "/api/v1/user/update": "权限不足，无法修改用户信息",
+            "/api/v1/user/delete": "权限不足，无法删除用户",
+            "/api/v1/role/list": "权限不足，无法查看角色列表",
+            "/api/v1/role/creatable": "权限不足，无法查看可创建角色",
+            "/api/v1/role/create": "权限不足，无法创建角色",
+            "/api/v1/menu/list": "权限不足，无法查看菜单列表",
+            "/api/v1/api/list": "权限不足，无法查看API列表",
+        }
+
+        error_message = friendly_messages.get(path, "权限不足，无法访问此功能")
+        raise HTTPException(status_code=403, detail=error_message)
 
 
 DependAuth = Depends(AuthControl.is_authed)

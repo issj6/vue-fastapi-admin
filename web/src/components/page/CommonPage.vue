@@ -8,7 +8,7 @@
       </template>
     </header>
 
-    <n-card flex-1 rounded-10>
+    <n-card class="common-page-card" rounded-10>
       <slot />
     </n-card>
   </AppPage>
@@ -31,3 +31,21 @@ defineProps({
 })
 const route = useRoute()
 </script>
+
+<style scoped>
+.common-page-card {
+  /* 让卡片自然扩展，根据内容自动调整高度 */
+  width: 100%;
+  min-height: 200px; /* 设置最小高度确保卡片可见 */
+  height: auto; /* 自动高度 */
+  margin-bottom: 100px; /* 为白色背景框底部添加margin */
+}
+
+.common-page-card :deep(.n-card__content) {
+  /* 移除高度限制和内部滚动，让内容自然扩展 */
+  padding: 16px;
+  padding-bottom: 24px; /* 增加底部内边距 */
+  overflow: visible;
+  min-height: 0;
+}
+</style>

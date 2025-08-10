@@ -280,7 +280,7 @@ async function getTreeSelect() {
       v-model:visible="modalVisible"
       :title="modalTitle"
       :loading="modalLoading"
-      @save="handleSave(getTreeSelect)"
+      @onSave="handleSave(getTreeSelect)"
     >
       <!-- 表单 -->
       <NForm

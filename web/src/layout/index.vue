@@ -22,7 +22,7 @@
       <section v-if="tags.visible" hidden border-b bc-eee sm:block dark:border-0>
         <AppTags :style="{ height: `${tags.height}px` }" />
       </section>
-      <section flex-1 overflow-hidden bg-hex-f5f6fb dark:bg-hex-101014>
+      <section flex-1 bg-hex-f5f6fb dark:bg-hex-101014>
         <AppMain />
       </section>
     </article>

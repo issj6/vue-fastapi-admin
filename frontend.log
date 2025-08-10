@@ -6,7 +6,7 @@
  WARN  [unocss] exclude option is deprecated, use content.pipeline.exclude instead.
 
 
-  VITE v4.5.14  ready in 954 ms
+  VITE v4.5.14  ready in 891 ms
 
   ➜  Local:   http://localhost:3100/
   ➜  Network: http://192.168.31.233:3100/
@@ -22,3 +22,128 @@ DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be
 
 More info: https://sass-lang.com/d/legacy-js-api
 
+
+ ERROR  18:17:53 [vite] Internal server error: [vue/compiler-sfc] Unexpected token (260:5)
+
+/Users/yang/PycharmProjects/vue-fastapi-admin/web/src/views/system/role/index.vue
+258|  
+259|          return buttons
+260|      },
+   |       ^
+261|    },
+262|  ]
+  Plugin: vite:vue
+  File: /Users/yang/PycharmProjects/vue-fastapi-admin/web/src/views/system/role/index.vue:260:5
+  257|          }
+  258|  
+  259|          return buttons
+     |                ^
+  260|      },
+  261|    },
+      at constructor (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:367:19)
+      at Parser.raise (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:6627:19)
+      at Parser.unexpected (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:6647:16)
+      at Parser.parseExprAtom (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11442:16)
+      at Parser.parseExprSubscripts (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11076:23)
+      at Parser.parseUpdate (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11061:21)
+      at Parser.parseMaybeUnary (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11041:23)
+      at Parser.parseMaybeUnaryOrPrivate (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10894:61)
+      at Parser.parseExprOps (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10899:23)
+      at Parser.parseMaybeConditional (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10876:23)
+      at Parser.parseMaybeAssign (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10826:21)
+      at Parser.parseExpressionBase (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10779:23)
+      at /Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10775:39
+      at Parser.allowInAnd (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:12422:16)
+      at Parser.parseExpression (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10775:17)
+      at Parser.parseStatementContent (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:12895:23)
+      at Parser.parseStatementLike (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:12767:17)
+      at Parser.parseStatementListItem (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:12747:17)
+      at Parser.parseBlockOrModuleBlockBody (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:13316:61)
+      at Parser.parseBlockBody (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:13309:10)
+      at Parser.parseBlock (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:13297:10)
+      at Parser.parseFunctionBody (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:12101:24)
+      at Parser.parseFunctionBodyAndFinish (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:12087:10)
+      at Parser.parseMethod (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:12045:31)
+      at Parser.parseObjectMethod (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11945:19)
+      at Parser.parseObjPropValue (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11979:23)
+      at Parser.parsePropertyDefinition (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11916:17)
+      at Parser.parseObjectLike (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11831:21)
+      at Parser.parseExprAtom (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11334:23)
+      at Parser.parseExprSubscripts (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11076:23)
+      at Parser.parseUpdate (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11061:21)
+      at Parser.parseMaybeUnary (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11041:23)
+      at Parser.parseMaybeUnaryOrPrivate (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10894:61)
+      at Parser.parseExprOps (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10899:23)
+      at Parser.parseMaybeConditional (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10876:23)
+      at Parser.parseMaybeAssign (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10826:21)
+      at /Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10795:39
+      at Parser.allowInAnd (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:12427:12)
+      at Parser.parseMaybeAssignAllowIn (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10795:17)
+      at Parser.parseMaybeAssignAllowInOrVoidPattern (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:12494:17)
+      at Parser.parseExprListItem (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:12176:18)
+      at Parser.parseExprList (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:12151:22)
+      at Parser.parseArrayLike (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:12058:26)
+      at Parser.parseExprAtom (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11330:23)
+      at Parser.parseExprSubscripts (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11076:23)
+      at Parser.parseUpdate (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11061:21)
+      at Parser.parseMaybeUnary (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:11041:23)
+      at Parser.parseMaybeUnaryOrPrivate (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10894:61)
+      at Parser.parseExprOps (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10899:23)
+      at Parser.parseMaybeConditional (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@babel/parser/lib/index.js:10876:23)
+
+18:20:01 [vite] page reload src/store/modules/permission/index.js
+18:27:26 [vite] hmr update /src/components/page/AppPage.vue
+18:27:40 [vite] hmr update /src/components/page/AppPage.vue
+18:27:53 [vite] hmr update /src/components/page/CommonPage.vue
+18:28:07 [vite] hmr update /src/components/page/CommonPage.vue
+18:28:23 [vite] hmr update /src/components/table/CrudTable.vue
+18:28:45 [vite] hmr update /src/components/table/CrudTable.vue
+18:29:00 [vite] hmr update /src/components/table/CrudTable.vue
+18:32:22 [vite] hmr update /src/components/table/CrudTable.vue
+18:32:37 [vite] hmr update /src/components/table/CrudTable.vue?vue&type=style&index=0&scoped=b9976b56&lang.css
+18:32:52 [vite] hmr update /src/components/page/CommonPage.vue?vue&type=style&index=0&scoped=54b34529&lang.css
+18:33:20 [vite] hmr update /src/layout/index.vue
+18:36:04 [vite] hmr update /src/components/page/AppPage.vue
+18:36:18 [vite] hmr update /src/components/page/AppPage.vue?vue&type=style&index=0&scoped=8045c11c&lang.css
+18:36:30 [vite] hmr update /src/components/page/CommonPage.vue
+18:36:45 [vite] hmr update /src/components/page/CommonPage.vue?vue&type=style&index=0&scoped=54b34529&lang.css
+18:37:07 [vite] hmr update /src/components/table/CrudTable.vue?vue&type=style&index=0&scoped=b9976b56&lang.css
+18:38:25 [vite] hmr update /src/components/page/CommonPage.vue
+18:39:18 [vite] hmr update /src/components/page/CommonPage.vue
+18:40:14 [vite] hmr update /src/components/page/CommonPage.vue?vue&type=style&index=0&scoped=54b34529&lang.css
+18:40:26 [vite] hmr update /src/components/page/CommonPage.vue
+18:42:31 [vite] hmr update /src/components/page/CommonPage.vue?vue&type=style&index=0&scoped=54b34529&lang.css
+18:43:17 [vite] hmr update /src/views/system/user/index.vue
+18:45:08 [vite] hmr update /src/views/system/user/index.vue
+18:45:43 [vite] hmr update /src/views/system/user/index.vue
+18:46:45 [vite] hmr update /src/views/system/user/index.vue
+18:53:16 [vite] hmr update /src/views/system/role/index.vue
+18:54:36 [vite] hmr update /src/views/system/role/index.vue
+18:54:49 [vite] hmr update /src/views/system/role/index.vue
+18:55:03 [vite] hmr update /src/views/system/role/index.vue
+18:55:30 [vite] page reload src/api/index.js
+18:55:47 [vite] hmr update /src/views/system/role/index.vue
+18:56:00 [vite] hmr update /src/views/system/role/index.vue
+19:04:47 [vite] hmr update /src/components/table/CrudModal.vue
+19:05:31 [vite] hmr update /src/views/system/menu/index.vue
+19:05:44 [vite] hmr update /src/views/system/role/index.vue
+19:05:56 [vite] hmr update /src/views/system/user/index.vue
+19:06:09 [vite] hmr update /src/views/system/user/index.vue
+19:06:32 [vite] page reload src/main.js
+19:06:47 [vite] page reload src/main.js
+19:07:12 [vite] page reload src/main.js
+19:14:30 [vite] hmr update /src/views/system/role/index.vue
+19:14:43 [vite] hmr update /src/views/system/role/index.vue
+19:14:56 [vite] hmr update /src/views/system/role/index.vue
+19:15:09 [vite] hmr update /src/views/system/role/index.vue
+19:32:32 [vite] hmr update /src/views/login/index.vue
+19:33:03 [vite] hmr update /src/views/login/index.vue
+19:33:22 [vite] hmr update /src/views/login/index.vue
+19:56:37 [vite] hmr update /src/views/system/user/index.vue
+19:56:51 [vite] hmr update /src/views/system/user/index.vue
+19:57:04 [vite] hmr update /src/views/system/user/index.vue
+19:57:22 [vite] page reload src/api/index.js
+21:14:35 [vite] hmr update /src/views/system/user/index.vue
+21:39:21 [vite] hmr update /src/views/system/role/index.vue
+21:39:33 [vite] hmr update /src/views/system/role/index.vue
+21:45:04 [vite] page reload src/router/routes/index.js

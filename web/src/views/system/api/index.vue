@@ -240,7 +240,7 @@ const columns = [
       v-model:visible="modalVisible"
       :title="modalTitle"
       :loading="modalLoading"
-      @save="handleSave"
+      @onSave="handleSave"
     >
       <NForm
         ref="modalFormRef"

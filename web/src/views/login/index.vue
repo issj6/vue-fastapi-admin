@@ -57,6 +57,7 @@ import { lStorage, setToken } from '@/utils'
 import bgImg from '@/assets/images/login_bg.webp'
 import api from '@/api'
 import { addDynamicRoutes } from '@/router'
+import { usePermissionStore } from '@/store'
 import { useI18n } from 'vue-i18n'
 
 const router = useRouter()
@@ -98,11 +99,46 @@ async function handleLogin() {
       Reflect.deleteProperty(query, 'redirect')
       router.push({ path, query })
     } else {
-      router.push('/')
+      // 获取用户有权限的第一个菜单路径
+      const permissionStore = usePermissionStore()
+      const firstAccessibleRoute = getFirstAccessibleRoute(permissionStore.menus)
+      if (firstAccessibleRoute) {
+        router.push(firstAccessibleRoute)
+      } else {
+        // 如果没有可访问的菜单，跳转到默认页面
+        router.push('/')
+      }
     }
   } catch (e) {
     console.error('login error', e.error)
   }
   loading.value = false
+}
+
+// 获取用户有权限的第一个可访问路由
+function getFirstAccessibleRoute(menus) {
+  if (!menus || menus.length === 0) {
+    return null
+  }
+
+  // 递归查找第一个有路径的菜单
+  function findFirstRoute(menuList) {
+    for (const menu of menuList) {
+      // 如果菜单有路径且不是外链，返回该路径
+      if (menu.path && !menu.path.startsWith('http') && menu.path !== '/') {
+        return menu.path
+      }
+      // 如果有子菜单，递归查找
+      if (menu.children && menu.children.length > 0) {
+        const childRoute = findFirstRoute(menu.children)
+        if (childRoute) {
+          return childRoute
+        }
+      }
+    }
+    return null
+  }
+
+  return findFirstRoute(menus)
 }
 </script>

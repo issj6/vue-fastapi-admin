@@ -5,6 +5,7 @@ export default {
   getUserInfo: () => request.get('/base/userinfo'),
   getUserMenu: () => request.get('/base/usermenu'),
   getUserApi: () => request.get('/base/userapi'),
+  getPermissionMenuMapping: () => request.get('/base/permission-menu-mapping'),
   // profile
   updatePassword: (data = {}) => request.post('/base/update_password', data),
   // users
@@ -14,6 +15,11 @@ export default {
   updateUser: (data = {}) => request.post('/user/update', data),
   deleteUser: (params = {}) => request.delete(`/user/delete`, { params }),
   resetPassword: (data = {}) => request.post(`/user/reset_password`, data),
+  // 新增用户相关API
+  getInvitationInfo: () => request.get('/user/invitation_info'),
+  getSubordinateUsers: (params = {}) => request.get('/user/subordinates', { params }),
+  addUserPoints: (data = {}) => request.post('/user/add_points', data),
+  deductUserPoints: (data = {}) => request.post('/user/deduct_points', data),
   // role
   getRoleList: (params = {}) => request.get('/role/list', { params }),
   createRole: (data = {}) => request.post('/role/create', data),
@@ -21,6 +27,11 @@ export default {
   deleteRole: (params = {}) => request.delete('/role/delete', { params }),
   updateRoleAuthorized: (data = {}) => request.post('/role/authorized', data),
   getRoleAuthorized: (params = {}) => request.get('/role/authorized', { params }),
+  // 代理权限相关API
+  updateRoleAgentPermissions: (data = {}) => request.post('/role/agent_permissions', data),
+  getAgentPermissionsConfig: () => request.get('/role/agent_permissions'),
+  getAgentRoles: () => request.get('/role/agent_roles'),
+  getCreatableRoles: () => request.get('/role/creatable'),
   // menus
   getMenus: (params = {}) => request.get('/menu/list', { params }),
   createMenu: (data = {}) => request.post('/menu/create', data),
@@ -32,11 +43,6 @@ export default {
   updateApi: (data = {}) => request.post('/api/update', data),
   deleteApi: (params = {}) => request.delete('/api/delete', { params }),
   refreshApi: (data = {}) => request.post('/api/refresh', data),
-  // depts
-  getDepts: (params = {}) => request.get('/dept/list', { params }),
-  createDept: (data = {}) => request.post('/dept/create', data),
-  updateDept: (data = {}) => request.post('/dept/update', data),
-  deleteDept: (params = {}) => request.delete('/dept/delete', { params }),
   // auditlog
   getAuditLogList: (params = {}) => request.get('/auditlog/list', { params }),
 }

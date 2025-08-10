@@ -14,6 +14,12 @@ class BaseUser(BaseModel):
     updated_at: Optional[datetime]
     last_login: Optional[datetime]
     roles: Optional[list] = []
+    # 新增字段
+    parent_user_id: Optional[int] = -1
+    points_balance: Optional[int] = 0
+    invitation_code: Optional[str] = None
+    school: Optional[str] = ""
+    major: Optional[str] = ""
 
 
 class UserCreate(BaseModel):
@@ -23,10 +29,13 @@ class UserCreate(BaseModel):
     is_active: Optional[bool] = True
     is_superuser: Optional[bool] = False
     role_ids: Optional[List[int]] = []
-    dept_id: Optional[int] = Field(0, description="部门ID")
+    # 新增字段
+    invitation_code: Optional[str] = Field(None, description="邀请码")
+    school: Optional[str] = Field("", description="学校")
+    major: Optional[str] = Field("", description="专业")
 
     def create_dict(self):
-        return self.model_dump(exclude_unset=True, exclude={"role_ids"})
+        return self.model_dump(exclude_unset=True, exclude={"role_ids", "invitation_code"})
 
 
 class UserUpdate(BaseModel):
@@ -36,7 +45,11 @@ class UserUpdate(BaseModel):
     is_active: Optional[bool] = True
     is_superuser: Optional[bool] = False
     role_ids: Optional[List[int]] = []
-    dept_id: Optional[int] = 0
+    # 新增字段
+    parent_user_id: Optional[int] = -1
+    points_balance: Optional[int] = 0
+    school: Optional[str] = ""
+    major: Optional[str] = ""
 
 
 class UpdatePassword(BaseModel):
