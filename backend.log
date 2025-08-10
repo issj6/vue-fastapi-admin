@@ -1,18 +1,40 @@
-2025-08-10 16:27:03 - INFO - Will watch for changes in these directories: ['/Users/yang/PycharmProjects/vue-fastapi-admin']
-2025-08-10 16:27:03 - INFO - Uvicorn running on http://0.0.0.0:9999 (Press CTRL+C to quit)
-2025-08-10 16:27:03 - INFO - Started reloader process [17379] using WatchFiles
-2025-08-10 16:27:04 - INFO - Started server process [17383]
-2025-08-10 16:27:04 - INFO - Waiting for application startup.
-2025-08-10 16:27:04 - INFO - Application startup complete.
-2025-08-10 16:27:08 - INFO - 127.0.0.1:53355 - "GET /docs HTTP/1.1" 200 OK
-2025-08-10 16:27:19 - INFO - 127.0.0.1:53405 - "POST /api/v1/base/access_token HTTP/1.1" 200 OK
-2025-08-10 16:27:19 - INFO - 127.0.0.1:53408 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-10 16:27:19 - INFO - 127.0.0.1:53411 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-10 16:27:19 - INFO - 127.0.0.1:53414 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-10 16:27:23 - INFO - 127.0.0.1:53477 - "GET /api/v1/dept/list HTTP/1.1" 200 OK
-2025-08-10 16:27:23 - INFO - 127.0.0.1:53476 - "GET /api/v1/role/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-10 16:27:23 - INFO - 127.0.0.1:53475 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-10 16:27:24 - INFO - 127.0.0.1:53480 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-10 16:27:26 - INFO - 127.0.0.1:53491 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
-2025-08-10 16:27:26 - INFO - 127.0.0.1:53492 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
-2025-08-10 16:27:38 - INFO - 127.0.0.1:53520 - "GET /docs HTTP/1.1" 200 OK
+2025-08-10 16:38:14 - INFO - Will watch for changes in these directories: ['/Users/yang/PycharmProjects/vue-fastapi-admin']
+2025-08-10 16:38:14 - INFO - Uvicorn running on http://0.0.0.0:9999 (Press CTRL+C to quit)
+2025-08-10 16:38:14 - INFO - Started reloader process [24583] using WatchFiles
+2025-08-10 16:38:15 - INFO - Started server process [24587]
+2025-08-10 16:38:15 - INFO - Waiting for application startup.
+2025-08-10 16:38:15 - INFO - Application startup complete.
+2025-08-10 16:38:19 - INFO - 127.0.0.1:54987 - "GET /docs HTTP/1.1" 200 OK
+2025-08-10 16:38:23 - INFO - 127.0.0.1:55008 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-10 16:38:23 - INFO - 127.0.0.1:55009 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-10 16:38:23 - INFO - 127.0.0.1:55010 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-10 16:38:24 - INFO - 127.0.0.1:55017 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
+2025-08-10 16:38:24 - INFO - 127.0.0.1:55029 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
+2025-08-10 16:38:26 - INFO - 127.0.0.1:55037 - "GET /api/v1/dept/list HTTP/1.1" 200 OK
+2025-08-10 16:38:26 - INFO - 127.0.0.1:55036 - "GET /api/v1/role/list?page=1&page_size=9999 HTTP/1.1" 200 OK
+2025-08-10 16:38:26 - INFO - 127.0.0.1:55035 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
+2025-08-10 16:38:37 - INFO - 127.0.0.1:55069 - "POST /api/v1/base/access_token HTTP/1.1" 200 OK
+2025-08-10 16:38:55 - WARNING - WatchFiles detected changes in 'check_db_status.py'. Reloading...
+2025-08-10 16:38:55 - INFO - Shutting down
+2025-08-10 16:38:56 - INFO - Waiting for application shutdown.
+2025-08-10 16:38:56 - INFO - Application shutdown complete.
+2025-08-10 16:38:56 - INFO - Finished server process [24587]
+2025-08-10 16:38:56 - INFO - Started server process [25003]
+2025-08-10 16:38:56 - INFO - Waiting for application startup.
+2025-08-10 16:38:57 - INFO - Application startup complete.
+2025-08-10 16:39:02 - WARNING - WatchFiles detected changes in 'check_db_status.py'. Reloading...
+2025-08-10 16:39:02 - INFO - Shutting down
+2025-08-10 16:39:02 - INFO - Waiting for application shutdown.
+2025-08-10 16:39:02 - INFO - Application shutdown complete.
+2025-08-10 16:39:02 - INFO - Finished server process [25003]
+2025-08-10 16:39:03 - INFO - Started server process [25095]
+2025-08-10 16:39:03 - INFO - Waiting for application startup.
+2025-08-10 16:39:03 - INFO - Application startup complete.
+2025-08-10 16:39:19 - WARNING - WatchFiles detected changes in 'check_db_status.py'. Reloading...
+2025-08-10 16:39:19 - INFO - Shutting down
+2025-08-10 16:39:19 - INFO - Waiting for application shutdown.
+2025-08-10 16:39:19 - INFO - Application shutdown complete.
+2025-08-10 16:39:19 - INFO - Finished server process [25095]
+2025-08-10 16:39:20 - INFO - Started server process [25205]
+2025-08-10 16:39:20 - INFO - Waiting for application startup.
+2025-08-10 16:39:20 - INFO - Application startup complete.

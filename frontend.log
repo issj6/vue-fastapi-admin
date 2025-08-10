@@ -6,7 +6,7 @@
  WARN  [unocss] exclude option is deprecated, use content.pipeline.exclude instead.
 
 
-  VITE v4.5.14  ready in 979 ms
+  VITE v4.5.14  ready in 954 ms
 
   ➜  Local:   http://localhost:3100/
   ➜  Network: http://192.168.31.233:3100/

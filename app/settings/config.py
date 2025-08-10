@@ -25,23 +25,25 @@ class Settings(BaseSettings):
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 day
     TORTOISE_ORM: dict = {
         "connections": {
-            # SQLite configuration
-            "sqlite": {
-                "engine": "tortoise.backends.sqlite",
-                "credentials": {"file_path": f"{BASE_DIR}/db.sqlite3"},  # Path to SQLite database file
-            },
+            # SQLite configuration (备用)
+            # "sqlite": {
+            #     "engine": "tortoise.backends.sqlite",
+            #     "credentials": {"file_path": f"{BASE_DIR}/db.sqlite3"},  # Path to SQLite database file
+            # },
             # MySQL/MariaDB configuration
             # Install with: tortoise-orm[asyncmy]
-            # "mysql": {
-            #     "engine": "tortoise.backends.mysql",
-            #     "credentials": {
-            #         "host": "localhost",  # Database host address
-            #         "port": 3306,  # Database port
-            #         "user": "yourusername",  # Database username
-            #         "password": "yourpassword",  # Database password
-            #         "database": "yourdatabase",  # Database name
-            #     },
-            # },
+            "mysql": {
+                "engine": "tortoise.backends.mysql",
+                "credentials": {
+                    "host": "rm-uf642s70r4qde8iemio.mysql.rds.aliyuncs.com",  # Database host address
+                    "port": 3306,  # Database port
+                    "user": "root",  # Database username
+                    "password": "Yyy443556",  # Database password
+                    "database": "paper",  # Database name
+                    "charset": "utf8mb4",  # 字符集
+                    "echo": False,  # 是否打印SQL语句
+                },
+            },
             # PostgreSQL configuration
             # Install with: tortoise-orm[asyncpg]
             # "postgres": {
@@ -82,7 +84,7 @@ class Settings(BaseSettings):
         "apps": {
             "models": {
                 "models": ["app.models", "aerich.models"],
-                "default_connection": "sqlite",
+                "default_connection": "mysql",
             },
         },
         "use_tz": False,  # Whether to use timezone-aware datetimes
