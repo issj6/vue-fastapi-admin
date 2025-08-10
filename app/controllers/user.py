@@ -58,6 +58,7 @@ class UserController(CRUDBase[User, UserCreate, UserUpdate]):
         await user.save()
 
     async def authenticate(self, credentials: CredentialsSchema) -> Optional["User"]:
+        """前台客户端登录验证（允许所有用户）"""
         user = await self.model.filter(username=credentials.username).first()
         if not user:
             raise HTTPException(status_code=400, detail="无效的用户名")
@@ -66,6 +67,30 @@ class UserController(CRUDBase[User, UserCreate, UserUpdate]):
             raise HTTPException(status_code=400, detail="密码错误!")
         if not user.is_active:
             raise HTTPException(status_code=400, detail="用户已被禁用")
+        return user
+
+    async def authenticate_admin(self, credentials: CredentialsSchema) -> Optional["User"]:
+        """管理平台登录验证（禁止普通用户）"""
+        user = await self.model.filter(username=credentials.username).first()
+        if not user:
+            raise HTTPException(status_code=400, detail="无效的用户名")
+        verified = verify_password(credentials.password, user.password)
+        if not verified:
+            raise HTTPException(status_code=400, detail="密码错误!")
+        if not user.is_active:
+            raise HTTPException(status_code=400, detail="用户已被禁用")
+
+        # 检查用户角色，禁止普通用户登录管理平台
+        if not user.is_superuser:
+            roles = await user.roles.all()
+            if not roles:
+                raise HTTPException(status_code=403, detail="普通用户无法登录管理平台")
+
+            # 检查是否只有普通用户角色
+            role_names = [role.name for role in roles]
+            if "普通用户" in role_names and len(role_names) == 1:
+                raise HTTPException(status_code=403, detail="普通用户无法登录管理平台")
+
         return user
 
     async def update_roles(self, user: User, role_ids: List[int]) -> None:

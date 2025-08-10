@@ -16,9 +16,30 @@ from app.utils.password import get_password_hash, verify_password
 router = APIRouter()
 
 
-@router.post("/access_token", summary="获取token")
+@router.post("/access_token", summary="获取token（前台客户端登录）")
 async def login_access_token(credentials: CredentialsSchema):
     user: User = await user_controller.authenticate(credentials)
+    await user_controller.update_last_login(user.id)
+    access_token_expires = timedelta(minutes=settings.JWT_ACCESS_TOKEN_EXPIRE_MINUTES)
+    expire = datetime.now(timezone.utc) + access_token_expires
+
+    data = JWTOut(
+        access_token=create_access_token(
+            data=JWTPayload(
+                user_id=user.id,
+                username=user.username,
+                is_superuser=user.is_superuser,
+                exp=expire,
+            )
+        ),
+        username=user.username,
+    )
+    return Success(data=data.model_dump())
+
+
+@router.post("/admin_access_token", summary="获取管理平台token（后台管理登录）")
+async def admin_login_access_token(credentials: CredentialsSchema):
+    user: User = await user_controller.authenticate_admin(credentials)
     await user_controller.update_last_login(user.id)
     access_token_expires = timedelta(minutes=settings.JWT_ACCESS_TOKEN_EXPIRE_MINUTES)
     expire = datetime.now(timezone.utc) + access_token_expires

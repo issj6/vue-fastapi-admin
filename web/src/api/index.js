@@ -1,7 +1,8 @@
 import { request } from '@/utils'
 
 export default {
-  login: (data) => request.post('/base/access_token', data, { noNeedToken: true }),
+  login: (data) => request.post('/base/admin_access_token', data, { noNeedToken: true }), // 管理平台登录
+  clientLogin: (data) => request.post('/base/access_token', data, { noNeedToken: true }), // 前台客户端登录
   getUserInfo: () => request.get('/base/userinfo'),
   getUserMenu: () => request.get('/base/usermenu'),
   getUserApi: () => request.get('/base/userapi'),
