@@ -1,0 +1,18 @@
+2025-08-10 16:27:03 - INFO - Will watch for changes in these directories: ['/Users/yang/PycharmProjects/vue-fastapi-admin']
+2025-08-10 16:27:03 - INFO - Uvicorn running on http://0.0.0.0:9999 (Press CTRL+C to quit)
+2025-08-10 16:27:03 - INFO - Started reloader process [17379] using WatchFiles
+2025-08-10 16:27:04 - INFO - Started server process [17383]
+2025-08-10 16:27:04 - INFO - Waiting for application startup.
+2025-08-10 16:27:04 - INFO - Application startup complete.
+2025-08-10 16:27:08 - INFO - 127.0.0.1:53355 - "GET /docs HTTP/1.1" 200 OK
+2025-08-10 16:27:19 - INFO - 127.0.0.1:53405 - "POST /api/v1/base/access_token HTTP/1.1" 200 OK
+2025-08-10 16:27:19 - INFO - 127.0.0.1:53408 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-10 16:27:19 - INFO - 127.0.0.1:53411 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-10 16:27:19 - INFO - 127.0.0.1:53414 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-10 16:27:23 - INFO - 127.0.0.1:53477 - "GET /api/v1/dept/list HTTP/1.1" 200 OK
+2025-08-10 16:27:23 - INFO - 127.0.0.1:53476 - "GET /api/v1/role/list?page=1&page_size=9999 HTTP/1.1" 200 OK
+2025-08-10 16:27:23 - INFO - 127.0.0.1:53475 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
+2025-08-10 16:27:24 - INFO - 127.0.0.1:53480 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
+2025-08-10 16:27:26 - INFO - 127.0.0.1:53491 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
+2025-08-10 16:27:26 - INFO - 127.0.0.1:53492 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
+2025-08-10 16:27:38 - INFO - 127.0.0.1:53520 - "GET /docs HTTP/1.1" 200 OK

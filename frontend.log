@@ -1,0 +1,24 @@
+
+> vue-fastapi-admin-web@0.0.0 dev
+> vite
+
+
+ WARN  [unocss] exclude option is deprecated, use content.pipeline.exclude instead.
+
+
+  VITE v4.5.14  ready in 979 ms
+
+  ➜  Local:   http://localhost:3100/
+  ➜  Network: http://192.168.31.233:3100/
+DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+
+More info: https://sass-lang.com/d/legacy-js-api
+
+DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+
+More info: https://sass-lang.com/d/legacy-js-api
+
+DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+
+More info: https://sass-lang.com/d/legacy-js-api
+
