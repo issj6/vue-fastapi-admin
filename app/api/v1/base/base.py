@@ -60,10 +60,17 @@ async def admin_login_access_token(credentials: CredentialsSchema):
 
 @router.get("/userinfo", summary="查看用户信息", dependencies=[DependAuth])
 async def get_userinfo():
+    from app.core.agent_permissions import AgentPermissionChecker
+
     user_id = CTX_USER_ID.get()
     user_obj = await user_controller.get(id=user_id)
     data = await user_obj.to_dict(exclude_fields=["password"])
     data["avatar"] = "https://avatars.githubusercontent.com/u/54677442?v=4"
+
+    # 添加用户的代理权限信息
+    agent_permissions = await AgentPermissionChecker.get_user_agent_permissions(user_id)
+    data["agent_permissions"] = agent_permissions
+
     return Success(data=data)
 
 

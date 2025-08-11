@@ -147,20 +147,46 @@ class UserController(CRUDBase[User, UserCreate, UserUpdate]):
         return user
 
     async def add_points(self, user_id: int, points: int) -> User:
-        """为用户增加积分"""
+        """为用户增加积分（已废弃，请使用积分划转功能）"""
         user = await self.get(id=user_id)
         user.points_balance += points
         await user.save()
         return user
 
     async def deduct_points(self, user_id: int, points: int) -> User:
-        """扣除用户积分"""
+        """扣除用户积分（已废弃，请使用积分划转功能）"""
         user = await self.get(id=user_id)
         if user.points_balance < points:
             raise HTTPException(status_code=400, detail="积分余额不足")
         user.points_balance -= points
         await user.save()
         return user
+
+    async def transfer_points_to_user(self, from_user_id: int, to_user_id: int, points: int,
+                                    description: str = None, remark: str = None) -> dict:
+        """
+        积分划转功能（推荐使用）
+
+        Args:
+            from_user_id: 划转方用户ID
+            to_user_id: 接收方用户ID
+            points: 划转积分数量
+            description: 划转描述
+            remark: 备注
+
+        Returns:
+            dict: 划转结果信息
+        """
+        # 导入积分划转控制器
+        from app.controllers.points import points_transfer_controller
+
+        return await points_transfer_controller.transfer_points(
+            from_user_id=from_user_id,
+            to_user_id=to_user_id,
+            points=points,
+            description=description,
+            remark=remark
+        )
 
 
 user_controller = UserController()

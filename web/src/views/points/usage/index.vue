@@ -6,7 +6,7 @@
       <div class="header-content">
         <div class="title-section">
           <h2>积分使用记录</h2>
-          <p class="subtitle">查看您的积分消耗历史</p>
+          <p class="subtitle">{{ isAdmin ? '查看全局积分使用记录' : '查看您的积分消耗历史' }}</p>
         </div>
         <div class="stats-section">
           <n-statistic label="累计消耗积分" :value="totalUsedPoints">
@@ -19,6 +19,21 @@
     <!-- 筛选条件 -->
     <n-card :bordered="false" class="filter-card">
       <n-form inline :label-width="80">
+        <!-- 管理员专用：用户筛选 -->
+        <n-form-item v-if="isAdmin" label="用户筛选">
+          <n-input
+            v-model:value="filterUserId"
+            placeholder="输入用户ID"
+            clearable
+            style="width: 150px; margin-right: 8px"
+          />
+          <n-input
+            v-model:value="filterUsername"
+            placeholder="输入用户名"
+            clearable
+            style="width: 150px"
+          />
+        </n-form-item>
         <n-form-item label="使用类型">
           <n-select
             v-model:value="filterType"
@@ -71,16 +86,26 @@
 import { ref, reactive, onMounted, computed, h } from 'vue'
 import { useMessage } from 'naive-ui'
 import { renderIcon } from '@/utils'
+import { useUserStore } from '@/store'
 import api from '@/api'
 import AppPage from '@/components/page/AppPage.vue'
 
 const $message = useMessage()
+const userStore = useUserStore()
 
 // 响应式数据
 const tableData = ref([])
 const loading = ref(false)
 const filterType = ref(null)
 const dateRange = ref(null)
+const filterUserId = ref(null)
+const filterUsername = ref(null)
+
+// 检查是否为管理员（具有查看全局积分使用记录权限）
+const isAdmin = computed(() => {
+  return userStore.userInfo?.is_superuser ||
+         userStore.userInfo?.agent_permissions?.includes('VIEW_GLOBAL_POINTS_USAGE')
+})
 
 // 分页配置
 const pagination = reactive({
@@ -94,9 +119,9 @@ const pagination = reactive({
 
 // 使用类型选项
 const usageTypeOptions = [
-  { label: 'API调用', value: 'api_call' },
-  { label: '服务费用', value: 'service_fee' },
-  { label: '系统扣费', value: 'system_deduction' },
+  { label: '服务消费', value: 'service_consumption' },
+  { label: '给他人划转', value: 'transfer_to_others' },
+  { label: '生成兑换码', value: 'generate_exchange_code' },
   { label: '其他', value: 'other' }
 ]
 
@@ -106,60 +131,78 @@ const totalUsedPoints = computed(() => {
 })
 
 // 表格列配置
-const columns = [
-  {
-    title: '使用时间',
-    key: 'created_at',
-    width: 180,
-    render: (row) => new Date(row.created_at).toLocaleString()
-  },
-  {
-    title: '消耗积分',
-    key: 'points',
-    width: 120,
-    render: (row) => {
-      return h('span', {
-        style: { color: '#f56565', fontWeight: 'bold' }
-      }, `-${row.points}`)
-    }
-  },
-  {
-    title: '使用类型',
-    key: 'usage_type',
-    width: 120,
-    render: (row) => {
-      const typeMap = {
-        'api_call': 'API调用',
-        'service_fee': '服务费用',
-        'system_deduction': '系统扣费',
-        'other': '其他'
-      }
-      return typeMap[row.usage_type] || row.usage_type
-    }
-  },
-  {
-    title: '使用描述',
-    key: 'description',
-    ellipsis: {
-      tooltip: true
-    }
-  },
-  {
-    title: '关联ID',
-    key: 'related_id',
-    width: 100,
-    render: (row) => row.related_id || '-'
-  },
-  {
-    title: '备注',
-    key: 'remark',
-    width: 150,
-    ellipsis: {
-      tooltip: true
+const columns = computed(() => {
+  const baseColumns = [
+    {
+      title: '使用时间',
+      key: 'created_at',
+      width: 180,
+      render: (row) => new Date(row.created_at).toLocaleString()
     },
-    render: (row) => row.remark || '-'
+    {
+      title: '消耗积分',
+      key: 'points',
+      width: 120,
+      render: (row) => {
+        return h('span', {
+          style: { color: '#f56565', fontWeight: 'bold' }
+        }, `-${row.points}`)
+      }
+    },
+    {
+      title: '使用类型',
+      key: 'usage_type',
+      width: 120,
+      render: (row) => {
+        const typeMap = {
+          'service_consumption': '服务消费',
+          'transfer_to_others': '给他人划转',
+          'generate_exchange_code': '生成兑换码',
+          'other': '其他'
+        }
+        return typeMap[row.usage_type] || row.usage_type
+      }
+    },
+    {
+      title: '使用描述',
+      key: 'description',
+      ellipsis: {
+        tooltip: true
+      }
+    },
+    {
+      title: '关联ID',
+      key: 'related_id',
+      width: 100,
+      render: (row) => row.related_id || '-'
+    },
+    {
+      title: '备注',
+      key: 'remark',
+      width: 150,
+      ellipsis: {
+        tooltip: true
+      },
+      render: (row) => row.remark || '-'
+    }
+  ]
+
+  // 如果是管理员，在第二列后插入用户信息列
+  if (isAdmin.value) {
+    baseColumns.splice(2, 0, {
+      title: '用户ID',
+      key: 'user_id',
+      width: 100
+    }, {
+      title: '用户名',
+      key: 'username',
+      width: 120,
+      render: (row) => row.username || '未知用户'
+    })
   }
-]
+
+  return baseColumns
+})
 
 // 方法
 const loadUsageRecords = async () => {
@@ -179,7 +222,21 @@ const loadUsageRecords = async () => {
       params.end_date = new Date(dateRange.value[1]).toISOString().split('T')[0]
     }
 
-    const response = await api.getPointsUsageRecords(params)
+    // 管理员专用筛选条件
+    if (isAdmin.value) {
+      if (filterUserId.value) {
+        params.user_id = parseInt(filterUserId.value)
+      }
+      if (filterUsername.value) {
+        params.username = filterUsername.value
+      }
+    }
+
+    // 根据权限选择不同的API
+    const response = isAdmin.value
+      ? await api.getAdminPointsUsageRecords(params)
+      : await api.getPointsUsageRecords(params)
+
     if (response.code === 200) {
       tableData.value = response.data.records
       pagination.total = response.data.total
@@ -202,6 +259,10 @@ const handleSearch = () => {
 const handleReset = () => {
   filterType.value = null
   dateRange.value = null
+  if (isAdmin.value) {
+    filterUserId.value = null
+    filterUsername.value = null
+  }
   pagination.page = 1
   loadUsageRecords()
 }

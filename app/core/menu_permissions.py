@@ -57,10 +57,15 @@ class MenuPermissionMapping:
             ("GET", "/api/v1/role/list"),  # 修改用户时需要获取角色列表
         ],
 
-        # 积分管理权限 -> 积分相关API
+        # 积分管理权限 -> 积分相关API（管理下级用户积分）
         AgentPermission.MANAGE_POINTS.value: [
             ("POST", "/api/v1/user/add_points"),
             ("POST", "/api/v1/user/deduct_points"),
+        ],
+
+        # 查看全局积分使用记录权限 -> 全局积分使用记录API
+        AgentPermission.VIEW_GLOBAL_POINTS_USAGE.value: [
+            ("GET", "/api/v1/points/usage/admin/records"),  # 管理员全局积分使用记录查看
         ],
 
         # 删除用户权限 -> 用户删除API

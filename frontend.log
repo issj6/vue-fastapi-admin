@@ -6,7 +6,7 @@
  WARN  [unocss] exclude option is deprecated, use content.pipeline.exclude instead.
 
 
-  VITE v4.5.14  ready in 976 ms
+  VITE v4.5.14  ready in 1036 ms
 
   ➜  Local:   http://localhost:3100/
   ➜  Network: http://192.168.31.233:3100/
@@ -22,60 +22,3 @@ DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be
 
 More info: https://sass-lang.com/d/legacy-js-api
 
-13:28:44 [vite] hmr update /src/layout/index.vue
-13:28:56 [vite] hmr update /src/views/points/info/index.vue
-
- ERROR  13:28:56 [vite] Internal server error: Element is missing end tag.
-  Plugin: vite:vue
-  File: /Users/yang/PycharmProjects/vue-fastapi-admin/web/src/views/points/info/index.vue:2:3
-  1  |  <template>
-  2  |    <AppPage>
-     |     ^
-  3  |      <div class="points-info">
-  4  |      <!-- 积分余额卡片 -->
-      at createCompilerError (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1364:17)
-      at emitError (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2956:5)
-      at Object.onclosetag (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2315:13)
-      at Tokenizer.stateInClosingTagName (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:785:16)
-      at Tokenizer.parse (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1143:16)
-      at Object.baseParse (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2995:13)
-      at Object.parse (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.js:907:23)
-      at Object.parse$1 [as parse] (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1801:24)
-      at createDescriptor (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vitejs/plugin-vue/dist/index.cjs:86:43)
-      at handleHotUpdate (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vitejs/plugin-vue/dist/index.cjs:2167:26)
-      at async handleHMRUpdate (file:///Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/vite/dist/node/chunks/dep-827b23df.js:41308:33)
-      at async onHMRUpdate (file:///Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/vite/dist/node/chunks/dep-827b23df.js:65508:17)
-      at async FSWatcher.<anonymous> (file:///Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/vite/dist/node/chunks/dep-827b23df.js:65527:9)
-
-
- ERROR  13:28:56 [vite] Internal server error: Element is missing end tag.
-  Plugin: vite:vue
-  File: /Users/yang/PycharmProjects/vue-fastapi-admin/web/src/views/points/info/index.vue:2:3
-  1  |  <template>
-  2  |    <AppPage>
-     |     ^
-  3  |      <div class="points-info">
-  4  |      <!-- 积分余额卡片 -->
-      at createCompilerError (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1364:17)
-      at emitError (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2956:5)
-      at Object.onclosetag (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2315:13)
-      at Tokenizer.stateInClosingTagName (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:785:16)
-      at Tokenizer.parse (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1143:16)
-      at Object.baseParse (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2995:13)
-      at Object.parse (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.js:907:23)
-      at Object.parse$1 [as parse] (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1801:24)
-      at createDescriptor (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vitejs/plugin-vue/dist/index.cjs:86:43)
-      at handleHotUpdate (/Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/@vitejs/plugin-vue/dist/index.cjs:2167:26)
-      at async handleHMRUpdate (file:///Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/vite/dist/node/chunks/dep-827b23df.js:41308:33)
-      at async onHMRUpdate (file:///Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/vite/dist/node/chunks/dep-827b23df.js:65508:17)
-      at async FSWatcher.<anonymous> (file:///Users/yang/PycharmProjects/vue-fastapi-admin/web/node_modules/vite/dist/node/chunks/dep-827b23df.js:65527:9)
-
-13:29:07 [vite] hmr update /src/views/points/info/index.vue
-13:29:20 [vite] hmr update /src/views/points/info/index.vue
-13:29:32 [vite] hmr update /src/views/points/info/index.vue?vue&type=style&index=0&scoped=73f26039&lang.css
-13:32:29 [vite] page reload src/router/routes/index.js
-13:32:44 [vite] page reload src/views/points/route.js
-13:51:56 [vite] hmr update /src/views/points/info/index.vue
-13:52:04 [vite] hmr update /src/views/points/info/index.vue
-13:53:07 [vite] hmr update /src/views/points/info/index.vue
-13:54:51 [vite] hmr update /src/views/points/info/index.vue?vue&type=style&index=0&scoped=73f26039&lang.css

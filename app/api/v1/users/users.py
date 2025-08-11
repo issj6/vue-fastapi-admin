@@ -1,4 +1,5 @@
 import logging
+from typing import Optional
 
 from fastapi import APIRouter, Body, Query
 from tortoise.expressions import Q
@@ -532,34 +533,14 @@ async def get_subordinate_users(
     return SuccessExtra(data=data, total=total, page=page, page_size=page_size)
 
 
-@router.post("/add_points", summary="增加用户积分", dependencies=[DependAuth])
+@router.post("/add_points", summary="积分划转（给用户增加积分）", dependencies=[DependAuth])
 async def add_user_points(
     user_id: int = Body(..., description="用户ID"),
     points: int = Body(..., description="积分数量"),
+    description: Optional[str] = Body(None, description="划转描述"),
+    remark: Optional[str] = Body(None, description="备注")
 ):
-    """为用户增加积分"""
-    current_user_id = CTX_USER_ID.get()
-
-    # 权限检查：是否有积分管理权限
-    has_permission = await AgentPermissionChecker.can_manage_user(
-        current_user_id, user_id, AgentPermission.MANAGE_POINTS
-    )
-    if not has_permission:
-        return Fail(code=403, msg="没有管理该用户积分的权限")
-
-    if points <= 0:
-        return Fail(code=400, msg="积分数量必须大于0")
-
-    user = await user_controller.add_points(user_id, points)
-    return Success(data={"user_id": user.id, "points_balance": user.points_balance}, msg="积分增加成功")
-
-
-@router.post("/deduct_points", summary="扣除用户积分", dependencies=[DependAuth])
-async def deduct_user_points(
-    user_id: int = Body(..., description="用户ID"),
-    points: int = Body(..., description="积分数量"),
-):
-    """扣除用户积分"""
+    """积分划转功能：从当前用户划转积分给目标用户"""
     current_user_id = CTX_USER_ID.get()
 
     # 权限检查：是否有积分管理权限
@@ -573,8 +554,86 @@ async def deduct_user_points(
         return Fail(code=400, msg="积分数量必须大于0")
 
     try:
-        user = await user_controller.deduct_points(user_id, points)
-        return Success(data={"user_id": user.id, "points_balance": user.points_balance}, msg="积分扣除成功")
+        # 使用积分划转功能
+        transfer_result = await user_controller.transfer_points_to_user(
+            from_user_id=current_user_id,
+            to_user_id=user_id,
+            points=points,
+            description=description,
+            remark=remark
+        )
+
+        return Success(
+            data={
+                "transfer_id": transfer_result["transfer_id"],
+                "from_user_id": transfer_result["from_user_id"],
+                "to_user_id": transfer_result["to_user_id"],
+                "points": transfer_result["points"],
+                "from_user_balance": transfer_result["from_user_balance"],
+                "to_user_balance": transfer_result["to_user_balance"]
+            },
+            msg=f"成功划转 {points} 积分给用户 {transfer_result['to_username']}"
+        )
+    except Exception as e:
+        return Fail(code=400, msg=str(e))
+
+
+@router.post("/deduct_points", summary="扣除用户积分", dependencies=[DependAuth])
+async def deduct_user_points(
+    user_id: int = Body(..., description="用户ID"),
+    points: int = Body(..., description="积分数量"),
+    description: Optional[str] = Body(None, description="扣除原因"),
+    remark: Optional[str] = Body(None, description="备注")
+):
+    """扣除用户积分并创建使用记录"""
+    current_user_id = CTX_USER_ID.get()
+
+    # 权限检查：是否有积分管理权限
+    has_permission = await AgentPermissionChecker.can_manage_user(
+        current_user_id, user_id, AgentPermission.MANAGE_POINTS
+    )
+    if not has_permission:
+        return Fail(code=403, msg="没有管理该用户积分的权限")
+
+    if points <= 0:
+        return Fail(code=400, msg="积分数量必须大于0")
+
+    try:
+        # 导入积分使用控制器
+        from app.controllers.points import points_usage_controller
+
+        # 获取用户信息
+        target_user = await User.filter(id=user_id).first()
+        if not target_user:
+            return Fail(code=404, msg="用户不存在")
+
+        current_user = await User.filter(id=current_user_id).first()
+
+        # 创建积分使用记录并扣除积分
+        usage_description = description or f"管理员{current_user.username}扣除积分"
+        usage_remark = remark or f"由用户ID:{current_user_id}执行的积分扣除操作"
+
+        usage_record = await points_usage_controller.create_usage_record(
+            user_id=user_id,
+            points=points,
+            usage_type="admin_deduction",
+            description=usage_description,
+            related_id=current_user_id,  # 关联执行操作的管理员ID
+            remark=usage_remark
+        )
+
+        # 获取更新后的用户信息
+        updated_user = await User.filter(id=user_id).first()
+
+        return Success(
+            data={
+                "user_id": updated_user.id,
+                "points_balance": updated_user.points_balance,
+                "usage_record_id": usage_record.id,
+                "deducted_points": points
+            },
+            msg=f"成功扣除 {points} 积分"
+        )
     except Exception as e:
         return Fail(code=400, msg=str(e))
 

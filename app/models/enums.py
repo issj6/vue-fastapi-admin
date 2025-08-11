@@ -25,11 +25,12 @@ class PermissionType(StrEnum):
 
 
 class AgentPermission(StrEnum):
-    """代理权限枚举 - 8个核心权限选项"""
+    """代理权限枚举 - 9个核心权限选项"""
     VIEW_SUBORDINATE_USERS = "VIEW_SUBORDINATE_USERS"  # 查看下级用户权限
     CREATE_USER = "CREATE_USER"  # 创建用户权限
     MODIFY_SUBORDINATE_USERS = "MODIFY_SUBORDINATE_USERS"  # 修改下级用户权限
-    MANAGE_POINTS = "MANAGE_POINTS"  # 积分管理权限
+    MANAGE_POINTS = "MANAGE_POINTS"  # 积分管理权限（管理下级用户积分）
+    VIEW_GLOBAL_POINTS_USAGE = "VIEW_GLOBAL_POINTS_USAGE"  # 查看全局积分使用记录权限
     DELETE_USER = "DELETE_USER"  # 删除用户权限
     MANAGE_RECHARGE_CARDS = "MANAGE_RECHARGE_CARDS"  # 充值卡管理权限
     DISABLE_USER = "DISABLE_USER"  # 禁用用户权限
@@ -42,7 +43,8 @@ class AgentPermission(StrEnum):
             cls.VIEW_SUBORDINATE_USERS: "查看下级用户权限",
             cls.CREATE_USER: "创建用户权限",
             cls.MODIFY_SUBORDINATE_USERS: "修改下级用户权限",
-            cls.MANAGE_POINTS: "积分管理权限",
+            cls.MANAGE_POINTS: "积分管理权限（管理下级用户积分）",
+            cls.VIEW_GLOBAL_POINTS_USAGE: "查看全局积分使用记录权限",
             cls.DELETE_USER: "删除用户权限",
             cls.MANAGE_RECHARGE_CARDS: "充值卡管理权限",
             cls.DISABLE_USER: "禁用用户权限",

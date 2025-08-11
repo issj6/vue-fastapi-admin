@@ -29,6 +29,7 @@ export default {
   rechargePoints: (data = {}) => request.post('/points/recharge', data),
   getPointsRechargeRecords: (params = {}) => request.get('/points/recharge/records', { params }),
   getPointsUsageRecords: (params = {}) => request.get('/points/usage/records', { params }),
+  getAdminPointsUsageRecords: (params = {}) => request.get('/points/usage/admin/records', { params }),
   createPointsUsage: (data = {}) => request.post('/points/usage/create', data),
   // role
   getRoleList: (params = {}) => request.get('/role/list', { params }),
