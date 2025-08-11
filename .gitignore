@@ -1,16 +1,31 @@
+# Python
 __pycache__/
-.idea/
-venv/
 .mypy_cache/
-.vscode
-.ruff_cache/
 .pytest_cache/
+venv/
+
+# IDE
+.idea/
+.vscode/
+
+# Build
+.ruff_cache/
 migrations/
 
+# Database
 db.sqlite3
 db.sqlite3-journal
 db.sqlite3-shm
 db.sqlite3-wal
 
+# System
 .DS_Store
 ._.DS_Store
+
+# Logs
+*.log
+backend.log
+
+# Note: tests/ and mds/ folders are tracked
+# tests/ - Contains all test, debug, fix, and migration scripts
+# mds/ - Contains all documentation and markdown files

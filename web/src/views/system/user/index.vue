@@ -44,7 +44,7 @@ const {
   modalFormRef,
   handleEdit,
   handleDelete,
-  handleAdd,
+  handleAdd: originalHandleAdd,
 } = useCRUD({
   name: '用户',
   initForm: {},
@@ -53,6 +53,13 @@ const {
   doDelete: api.deleteUser,
   refresh: () => $table.value?.handleSearch(),
 })
+
+// 重写handleAdd函数，在打开对话框时刷新角色列表
+const handleAdd = async () => {
+  console.log('🆕 打开创建用户对话框，刷新角色列表...')
+  await loadCreatableRoles(true) // 强制刷新角色列表
+  originalHandleAdd() // 调用原始的handleAdd
+}
 
 const roleOption = ref([])
 const userStore = useUserStore()
@@ -73,19 +80,23 @@ const subordinatesData = ref([])
 const subordinatesLoading = ref(false)
 
 // 加载可创建的角色列表
-const loadCreatableRoles = async () => {
+const loadCreatableRoles = async (forceRefresh = false) => {
   try {
+    console.log('🔄 加载可创建角色列表...', { isSuperUser: userStore.isSuperUser, forceRefresh })
+
     // 如果是超级管理员，获取所有角色
     if (userStore.isSuperUser) {
       const res = await api.getRoleList({ page: 1, page_size: 9999 })
       roleOption.value = res.data
+      console.log('👑 超级管理员可创建角色:', res.data.map(r => r.name))
     } else {
       // 普通用户只能获取可创建的角色
       const res = await api.getCreatableRoles()
       roleOption.value = res.data
+      console.log('👤 当前用户可创建角色:', res.data.map(r => r.name))
     }
   } catch (error) {
-    console.error('加载角色列表失败:', error)
+    console.error('❌ 加载角色列表失败:', error)
     roleOption.value = []
   }
 }
@@ -157,35 +168,36 @@ const columns = [
       )
     },
   },
-  {
-    title: '用户角色',
-    key: 'role',
-    width: 60,
-    align: 'center',
-    render(row) {
-      const roles = row.roles ?? []
-      const group = []
-      for (let i = 0; i < roles.length; i++)
-        group.push(
-          h(NTag, { type: 'info', style: { margin: '2px 3px' } }, { default: () => roles[i].name })
-        )
-      return h('span', group)
-    },
-  },
+  // 用户管理页面隐藏角色和超级用户列，因为都是普通用户
+  // {
+  //   title: '用户角色',
+  //   key: 'role',
+  //   width: 60,
+  //   align: 'center',
+  //   render(row) {
+  //     const roles = row.roles ?? []
+  //     const group = []
+  //     for (let i = 0; i < roles.length; i++)
+  //       group.push(
+  //         h(NTag, { type: 'info', style: { margin: '2px 3px' } }, { default: () => roles[i].name })
+  //       )
+  //     return h('span', group)
+  //   },
+  // },
 
-  {
-    title: '超级用户',
-    key: 'is_superuser',
-    align: 'center',
-    width: 40,
-    render(row) {
-      return h(
-        NTag,
-        { type: 'info', style: { margin: '2px 3px' } },
-        { default: () => (row.is_superuser ? '是' : '否') }
-      )
-    },
-  },
+  // {
+  //   title: '超级用户',
+  //   key: 'is_superuser',
+  //   align: 'center',
+  //   width: 40,
+  //   render(row) {
+  //     return h(
+  //       NTag,
+  //       { type: 'info', style: { margin: '2px 3px' } },
+  //       { default: () => (row.is_superuser ? '是' : '否') }
+  //     )
+  //   },
+  // },
   {
     title: '上次登录时间',
     key: 'last_login',
@@ -272,7 +284,9 @@ const columns = [
         switch (key) {
           case 'edit':
             handleEdit(row)
-            modalForm.value.role_ids = row.roles.map((e) => (e = e.id))
+            // 编辑时保存角色信息用于显示，但不设置role_ids（避免编辑时修改角色）
+            modalForm.value.roles = row.roles || []
+            console.log('🔧 编辑用户，当前角色:', modalForm.value.roles.map(r => r.name))
             break
           case 'delete':
             $dialog.warning({
@@ -288,16 +302,49 @@ const columns = [
           case 'reset-password':
             $dialog.warning({
               title: '确认重置密码',
-              content: '确定重置用户密码为123456吗？',
+              content: `确定重置用户 "${row.username}" 的密码吗？将生成新的随机密码`,
               positiveText: '确定',
               negativeText: '取消',
               onPositiveClick: async () => {
                 try {
-                  await api.resetPassword({ user_id: row.id });
-                  $message.success('密码已成功重置为123456');
-                  await $table.value?.handleSearch();
+                  const response = await api.resetPassword({ user_id: row.id })
+                  if (response.code === 200) {
+                    const newPassword = response.data.new_password
+
+                    // 显示新密码的二次确认对话框
+                    $dialog.success({
+                      title: '密码重置成功',
+                      content: () => h('div', { style: 'text-align: center;' }, [
+                        h('p', { style: 'margin-bottom: 16px;' }, `用户 "${row.username}" 的新密码为：`),
+                        h('div', {
+                          style: 'background: #f5f5f5; padding: 12px; border-radius: 6px; margin-bottom: 16px; font-family: monospace; font-size: 16px; font-weight: bold; color: #d03050;'
+                        }, newPassword),
+                        h('p', { style: 'color: #666; font-size: 12px;' }, '请复制并安全保存此密码，关闭后将无法再次查看')
+                      ]),
+                      positiveText: '复制密码',
+                      negativeText: '关闭',
+                      onPositiveClick: () => {
+                        // 复制密码到剪贴板
+                        navigator.clipboard.writeText(newPassword).then(() => {
+                          $message.success('密码已复制到剪贴板')
+                        }).catch(() => {
+                          // 降级方案：创建临时输入框复制
+                          const textArea = document.createElement('textarea')
+                          textArea.value = newPassword
+                          document.body.appendChild(textArea)
+                          textArea.select()
+                          document.execCommand('copy')
+                          document.body.removeChild(textArea)
+                          $message.success('密码已复制到剪贴板')
+                        })
+                      }
+                    })
+                    await $table.value?.handleSearch()
+                  } else {
+                    $message.error(response.msg || '密码重置失败')
+                  }
                 } catch (error) {
-                  $message.error('重置密码失败: ' + error.message);
+                  $message.error('重置密码失败: ' + error.message)
                 }
               }
             })
@@ -419,7 +466,8 @@ const handleViewSubordinates = async (row) => {
   }
 }
 
-const validateAddUser = {
+// 动态验证规则：创建时角色必选，编辑时角色不验证
+const validateAddUser = computed(() => ({
   username: [
     {
       required: true,
@@ -469,15 +517,15 @@ const validateAddUser = {
       },
     },
   ],
-  role_ids: [
+  role_ids: modalAction.value === 'add' ? [
     {
       type: 'array',
       required: true,
       message: '请至少选择一个角色',
       trigger: ['blur', 'change'],
     },
-  ],
-}
+  ] : [],
+}))
 </script>
 
 <template>
@@ -565,7 +613,8 @@ const validateAddUser = {
                 placeholder="请确认密码"
               />
             </NFormItem>
-            <NFormItem label="角色" path="role_ids">
+            <!-- 角色选择：仅在创建时显示 -->
+            <NFormItem v-if="modalAction === 'add'" label="角色" path="role_ids">
               <NCheckboxGroup v-model:value="modalForm.role_ids">
                 <NSpace item-style="display: flex;">
                   <NCheckbox
@@ -576,6 +625,18 @@ const validateAddUser = {
                   />
                 </NSpace>
               </NCheckboxGroup>
+            </NFormItem>
+
+            <!-- 编辑时显示当前角色（只读） -->
+            <NFormItem v-if="modalAction === 'edit'" label="当前角色">
+              <NSpace>
+                <NTag v-for="role in modalForm.roles || []" :key="role.id" type="info">
+                  {{ role.name }}
+                </NTag>
+                <NTag v-if="!modalForm.roles || modalForm.roles.length === 0" type="warning">
+                  无角色
+                </NTag>
+              </NSpace>
             </NFormItem>
             <NFormItem v-if="userStore.isSuperUser" label="超级用户" path="is_superuser">
               <NSwitch

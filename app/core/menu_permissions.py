@@ -9,14 +9,23 @@ from app.models.enums import AgentPermission
 class MenuPermissionMapping:
     """菜单权限映射类"""
 
+    # 所有登录用户都可以访问的基础API（个人中心等）
+    BASIC_USER_APIS: List[tuple] = [
+        ("GET", "/api/v1/base/userinfo"),      # 获取用户信息
+        ("GET", "/api/v1/base/usermenu"),      # 获取用户菜单
+        ("GET", "/api/v1/base/userapi"),       # 获取用户API权限
+        ("POST", "/api/v1/base/update_password"), # 修改密码
+        ("GET", "/api/v1/user/invitation_info"), # 获取邀请信息
+        ("POST", "/api/v1/user/update"),       # 更新个人信息（仅限自己）
+    ]
+
     # 定义代理权限与API的映射关系
     PERMISSION_API_MAP: Dict[str, List[tuple]] = {
         # 查看下级用户权限 -> 用户相关API
         AgentPermission.VIEW_SUBORDINATE_USERS.value: [
             ("GET", "/api/v1/user/list"),
             ("GET", "/api/v1/user/subordinates"),
-            ("GET", "/api/v1/base/usermenu"),  # 用户菜单权限
-            ("GET", "/api/v1/base/userapi"),   # 用户API权限
+            ("GET", "/api/v1/user/agents"),  # 代理用户列表API
         ],
 
         # 创建用户权限 -> 用户创建API
@@ -29,6 +38,7 @@ class MenuPermissionMapping:
         # 修改下级用户权限 -> 用户修改API
         AgentPermission.MODIFY_SUBORDINATE_USERS.value: [
             ("POST", "/api/v1/user/update"),
+            ("POST", "/api/v1/user/reset_password"),  # 重置密码API
             ("GET", "/api/v1/role/list"),  # 修改用户时需要获取角色列表
         ],
 
@@ -63,44 +73,50 @@ class MenuPermissionMapping:
 
     # 定义代理权限与菜单的映射关系
     PERMISSION_MENU_MAP: Dict[str, List[str]] = {
-        # 查看下级用户权限 -> 用户管理菜单
+        # 查看下级用户权限 -> 用户管理和代理管理菜单
         AgentPermission.VIEW_SUBORDINATE_USERS.value: [
-            "用户管理",  # 用户列表页面
+            "用户管理",  # 普通用户列表页面
+            "代理管理",  # 代理用户列表页面
         ],
-        
-        # 创建用户权限 -> 用户管理菜单
+
+        # 创建用户权限 -> 用户管理和代理管理菜单
         AgentPermission.CREATE_USER.value: [
             "用户管理",
+            "代理管理",
         ],
-        
-        # 修改下级用户权限 -> 用户管理菜单
+
+        # 修改下级用户权限 -> 用户管理和代理管理菜单
         AgentPermission.MODIFY_SUBORDINATE_USERS.value: [
             "用户管理",
+            "代理管理",
         ],
-        
-        # 积分管理权限 -> 用户管理菜单
+
+        # 积分管理权限 -> 用户管理和代理管理菜单
         AgentPermission.MANAGE_POINTS.value: [
             "用户管理",
+            "代理管理",
         ],
-        
-        # 删除用户权限 -> 用户管理菜单
+
+        # 删除用户权限 -> 用户管理和代理管理菜单
         AgentPermission.DELETE_USER.value: [
             "用户管理",
+            "代理管理",
         ],
-        
-        # 禁用用户权限 -> 用户管理菜单
+
+        # 禁用用户权限 -> 用户管理和代理管理菜单
         AgentPermission.DISABLE_USER.value: [
             "用户管理",
+            "代理管理",
         ],
-        
+
         # 充值卡管理权限 -> 充值卡管理菜单（如果存在）
         AgentPermission.MANAGE_RECHARGE_CARDS.value: [
             "充值卡管理",
         ],
-        
-        # 创建下级代理权限 -> 用户管理菜单
+
+        # 创建下级代理权限 -> 代理管理菜单
         AgentPermission.CREATE_SUBORDINATE_AGENT.value: [
-            "用户管理",
+            "代理管理",
         ],
     }
     

@@ -35,6 +35,8 @@ class Role(BaseModel, TimestampMixin):
     # 新增代理权限配置字段
     agent_permissions = fields.JSONField(default=list, description="代理权限配置", null=True)
     is_agent_role = fields.BooleanField(default=False, description="是否为代理角色", index=True)
+    # 新增角色层级字段
+    user_level = fields.IntField(default=99, description="角色层级，数字越小权限越高", index=True)
 
     class Meta:
         table = "role"

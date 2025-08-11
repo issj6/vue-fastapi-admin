@@ -166,6 +166,10 @@ async def get_user_api():
     role_objs: list[Role] = await user_obj.roles
     apis = []
 
+    # 首先添加所有用户都可以访问的基础API
+    for method, path in MenuPermissionMapping.BASIC_USER_APIS:
+        apis.append(method.lower() + path)
+
     # 获取直接分配的API权限
     for role_obj in role_objs:
         api_objs: list[Api] = await role_obj.apis

@@ -99,12 +99,23 @@ class UserController(CRUDBase[User, UserCreate, UserUpdate]):
             role_obj = await role_controller.get(id=role_id)
             await user.roles.add(role_obj)
 
-    async def reset_password(self, user_id: int):
+    async def reset_password(self, user_id: int) -> str:
+        """重置用户密码，返回新密码"""
+        import random
+        import string
+
         user_obj = await self.get(id=user_id)
         if user_obj.is_superuser:
             raise HTTPException(status_code=403, detail="不允许重置超级管理员密码")
-        user_obj.password = get_password_hash(password="123456")
+
+        # 生成8位随机密码（包含大小写字母和数字）
+        characters = string.ascii_letters + string.digits
+        new_password = ''.join(random.choice(characters) for _ in range(8))
+
+        user_obj.password = get_password_hash(password=new_password)
         await user_obj.save()
+
+        return new_password
 
     async def get_subordinate_users(self, user_id: int) -> List[User]:
         """获取指定用户的下级用户列表"""

@@ -13,6 +13,7 @@ class BaseRole(BaseModel):
     apis: Optional[list] = []
     agent_permissions: Optional[list] = []
     is_agent_role: bool = False
+    user_level: int = 99
     created_at: Optional[datetime]
     updated_at: Optional[datetime]
 
@@ -22,6 +23,7 @@ class RoleCreate(BaseModel):
     desc: str = Field("", example="管理员角色")
     agent_permissions: Optional[list] = Field(default=[], example=["VIEW_SUBORDINATE_USERS", "CREATE_USER"])
     is_agent_role: bool = Field(default=False, example=True)
+    user_level: int = Field(default=99, example=3, description="角色层级，数字越小权限越高")
 
 
 class RoleUpdate(BaseModel):
@@ -30,6 +32,7 @@ class RoleUpdate(BaseModel):
     desc: str = Field("", example="管理员角色")
     agent_permissions: Optional[list] = Field(default=[], example=["VIEW_SUBORDINATE_USERS", "CREATE_USER"])
     is_agent_role: bool = Field(default=False, example=True)
+    user_level: int = Field(default=99, example=3, description="角色层级，数字越小权限越高")
 
 
 class RoleUpdateMenusApis(BaseModel):

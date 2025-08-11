@@ -38,6 +38,12 @@ class PermissionControl:
             return
         method = request.method
         path = request.url.path
+
+        # 检查基础API权限（所有登录用户都可以访问）
+        from app.core.menu_permissions import MenuPermissionMapping
+        if (method, path) in MenuPermissionMapping.BASIC_USER_APIS:
+            return
+
         roles: list[Role] = await current_user.roles
         if not roles:
             raise HTTPException(status_code=403, detail="用户未分配角色，无法访问系统功能")
@@ -49,9 +55,6 @@ class PermissionControl:
         # 检查传统API权限
         if (method, path) in permission_apis:
             return
-
-        # 检查代理权限映射的API
-        from app.core.menu_permissions import MenuPermissionMapping
 
         # 获取用户的代理权限
         agent_permissions = set()

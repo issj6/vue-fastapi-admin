@@ -12,6 +12,7 @@ from app.schemas.base import Fail, Success, SuccessExtra
 from app.schemas.users import *
 from app.utils.invitation_code import get_subordinate_user_ids
 from app.core.agent_permissions import (
+    AgentPermissionChecker,
     check_view_subordinate_users,
     check_create_user,
     check_modify_subordinate_users,
@@ -52,13 +53,18 @@ async def check_user_list_permission(user_id: int) -> bool:
     return False
 
 
-@router.get("/list", summary="查看用户列表", dependencies=[DependAuth])
+@router.get("/list", summary="查看普通用户列表", dependencies=[DependAuth])
 async def list_user(
     page: int = Query(1, description="页码"),
     page_size: int = Query(10, description="每页数量"),
     username: str = Query("", description="用户名称，用于搜索"),
     email: str = Query("", description="邮箱地址"),
 ):
+    """
+    查看普通用户列表
+    - 只显示 user_level = 99 的普通用户
+    - 管理员特权：可以查看所有普通用户
+    """
     current_user_id = CTX_USER_ID.get()
     current_user = await User.filter(id=current_user_id).first()
 
@@ -68,29 +74,184 @@ async def list_user(
     if email:
         q &= Q(email__contains=email)
 
+    # 过滤普通用户：通过角色的user_level = 99（排除代理用户）
+    # 注意：这里需要通过JOIN查询来过滤，暂时先获取所有用户再过滤
+
     # 权限控制：基于角色的分级代理系统
     if not current_user.is_superuser:
         # 检查用户是否有查看用户列表权限（查看所有用户）
         has_user_list_permission = await check_user_list_permission(current_user_id)
 
         if has_user_list_permission:
-            # 有查看用户列表权限，可以查看所有用户（通常只给管理员）
+            # 有查看用户列表权限，可以查看所有普通用户（通常只给管理员）
             pass  # 不添加额外过滤条件
         else:
             # 检查用户是否有查看下级用户权限
             has_subordinate_permission = await check_subordinate_permission(current_user_id)
 
             if has_subordinate_permission:
-                # 只显示下级用户和自己
+                # 只显示下级普通用户
                 subordinate_ids = await get_subordinate_user_ids(current_user_id)
-                subordinate_ids.append(current_user_id)  # 包含自己
-                q &= Q(id__in=subordinate_ids)
+                if subordinate_ids:
+                    q &= Q(id__in=subordinate_ids)
+                else:
+                    # 没有下级用户，返回空列表
+                    return SuccessExtra(data=[], total=0, page=page, page_size=page_size)
             else:
-                # 没有权限查看其他用户，只能查看自己
-                q &= Q(id=current_user_id)
+                # 没有权限查看其他用户，检查自己是否是普通用户
+                current_user_roles = await current_user.roles.all()
+                current_user_level = 99  # 默认层级
 
-    total, user_objs = await user_controller.list(page=page, page_size=page_size, search=q)
-    data = [await obj.to_dict(m2m=True, exclude_fields=["password"]) for obj in user_objs]
+                for role in current_user_roles:
+                    if role.user_level < current_user_level:
+                        current_user_level = role.user_level
+
+                if current_user_level == 99:
+                    # 自己是普通用户，可以查看自己
+                    q &= Q(id=current_user_id)
+                else:
+                    # 自己是代理用户，不能查看普通用户列表
+                    return SuccessExtra(data=[], total=0, page=page, page_size=page_size)
+
+    # 获取所有符合条件的用户
+    total_users, all_user_objs = await user_controller.list(page=1, page_size=10000, search=q)
+
+    # 过滤普通用户（user_level = 99）
+    filtered_users = []
+    for user in all_user_objs:
+        user_roles = await user.roles.all()
+        min_level = 99  # 默认层级
+        for role in user_roles:
+            if role.user_level < min_level:
+                min_level = role.user_level
+
+        # 只保留普通用户（层级99）
+        if min_level == 99:
+            filtered_users.append(user)
+
+    # 手动分页
+    total = len(filtered_users)
+    start_idx = (page - 1) * page_size
+    end_idx = start_idx + page_size
+    paginated_users = filtered_users[start_idx:end_idx]
+
+    # 为每个用户添加计算出的层级信息
+    data = []
+    for obj in paginated_users:
+        user_dict = await obj.to_dict(m2m=True, exclude_fields=["password"])
+
+        # 计算用户的最小层级（权限最高）
+        user_roles = await obj.roles.all()
+        min_level = 99  # 默认层级
+        for role in user_roles:
+            if role.user_level < min_level:
+                min_level = role.user_level
+
+        user_dict['user_level'] = min_level
+        data.append(user_dict)
+
+    return SuccessExtra(data=data, total=total, page=page, page_size=page_size)
+
+
+@router.get("/agents", summary="查看代理用户列表", dependencies=[DependAuth])
+async def list_agent_users(
+    page: int = Query(1, description="页码"),
+    page_size: int = Query(10, description="每页数量"),
+    username: str = Query("", description="用户名称，用于搜索"),
+    email: str = Query("", description="邮箱地址"),
+):
+    """
+    查看代理用户列表
+    - 显示 user_level < 99 且 user_level > 当前用户层级 的用户
+    - 管理员特权：可以查看所有层级的代理用户
+    """
+    current_user_id = CTX_USER_ID.get()
+    current_user = await User.filter(id=current_user_id).first()
+
+    # 权限检查：是否有查看下级用户权限
+    has_permission = await check_view_subordinate_users(current_user_id)
+    if not has_permission:
+        return Fail(code=403, msg="没有查看代理用户的权限")
+
+    q = Q()
+    if username:
+        q &= Q(username__contains=username)
+    if email:
+        q &= Q(email__contains=email)
+
+    # 过滤代理用户：通过角色的user_level < 99（排除普通用户）
+    # 注意：这里需要通过JOIN查询来过滤，暂时先获取所有用户再过滤
+
+    # 权限控制：基于角色的分级代理系统
+    if not current_user.is_superuser:
+        # 获取当前用户的层级
+        current_user_roles = await current_user.roles.all()
+        current_user_level = 99  # 默认层级
+
+        for role in current_user_roles:
+            if role.user_level < current_user_level:
+                current_user_level = role.user_level
+
+        # 只能查看层级比自己低的代理用户（在后续过滤中处理）
+
+        # 检查用户是否有查看用户列表权限（查看所有用户）
+        has_user_list_permission = await check_user_list_permission(current_user_id)
+
+        if not has_user_list_permission:
+            # 检查用户是否有查看下级用户权限
+            has_subordinate_permission = await check_subordinate_permission(current_user_id)
+
+            if has_subordinate_permission:
+                # 只显示下级用户
+                subordinate_ids = await get_subordinate_user_ids(current_user_id)
+                if subordinate_ids:
+                    q &= Q(id__in=subordinate_ids)
+                else:
+                    # 没有下级用户，返回空列表
+                    return SuccessExtra(data=[], total=0, page=page, page_size=page_size)
+            else:
+                # 没有权限查看其他用户，返回空列表
+                return SuccessExtra(data=[], total=0, page=page, page_size=page_size)
+
+    # 获取所有符合条件的用户
+    total_users, all_user_objs = await user_controller.list(page=1, page_size=10000, search=q)
+
+    # 过滤代理用户（user_level < 99）
+    filtered_users = []
+    for user in all_user_objs:
+        user_roles = await user.roles.all()
+        min_level = 99  # 默认层级
+        for role in user_roles:
+            if role.user_level < min_level:
+                min_level = role.user_level
+
+        # 只保留代理用户（层级 < 99）
+        if min_level < 99:
+            # 如果不是超级管理员，还需要检查层级权限
+            if not current_user.is_superuser and min_level <= current_user_level:
+                continue  # 跳过层级不符合的用户
+            filtered_users.append(user)
+
+    # 手动分页
+    total = len(filtered_users)
+    start_idx = (page - 1) * page_size
+    end_idx = start_idx + page_size
+    paginated_users = filtered_users[start_idx:end_idx]
+
+    # 为每个用户添加计算出的层级信息
+    data = []
+    for obj in paginated_users:
+        user_dict = await obj.to_dict(m2m=True, exclude_fields=["password"])
+
+        # 计算用户的最小层级（权限最高）
+        user_roles = await obj.roles.all()
+        min_level = 99  # 默认层级
+        for role in user_roles:
+            if role.user_level < min_level:
+                min_level = role.user_level
+
+        user_dict['user_level'] = min_level
+        data.append(user_dict)
 
     return SuccessExtra(data=data, total=total, page=page, page_size=page_size)
 
@@ -145,17 +306,26 @@ async def create_user(
                         logger.warning(f"超级管理员尝试创建管理员角色用户")
                         return Fail(code=403, msg="不能创建管理员角色用户")
             else:
-                # 非超级管理员需要检查代理权限
+                # 非超级管理员需要检查层级权限
                 user_roles = await current_user.roles.all()
+
+                # 获取当前用户的最小层级（权限最高）
+                current_user_level = min([role.user_level for role in user_roles], default=99)
 
                 # 获取当前用户的代理权限
                 current_user_permissions = set()
                 can_create_agent = False
+                has_create_user_permission = False
+
                 for role in user_roles:
                     if role.is_agent_role and role.agent_permissions:
                         current_user_permissions.update(role.agent_permissions)
                         if "CREATE_SUBORDINATE_AGENT" in role.agent_permissions:
                             can_create_agent = True
+                        if "CREATE_USER" in role.agent_permissions:
+                            has_create_user_permission = True
+
+                logger.info(f"用户 {current_user.username} 层级: {current_user_level}, 可创建代理: {can_create_agent}, 可创建用户: {has_create_user_permission}")
 
                 # 验证每个要分配的角色
                 for role in target_roles:
@@ -163,21 +333,22 @@ async def create_user(
                         logger.warning(f"用户 {current_user_id} 尝试创建管理员用户")
                         return Fail(code=403, msg="无权创建管理员用户")
                     elif role.name == "普通用户":
-                        # 普通用户角色总是可以创建
-                        continue
+                        # 检查是否有创建普通用户的权限
+                        if not has_create_user_permission:
+                            logger.warning(f"用户 {current_user_id} 无CREATE_USER权限，无法创建普通用户")
+                            return Fail(code=403, msg="无权创建普通用户")
+                        logger.info(f"  ✅ 允许创建普通用户")
                     elif role.is_agent_role:
                         if not can_create_agent:
                             logger.warning(f"用户 {current_user_id} 无权创建代理角色用户: {role.name}")
                             return Fail(code=403, msg=f"无权创建代理角色用户: {role.name}")
 
-                        # 检查是否能创建这个特定的代理角色
-                        target_permissions = set(role.agent_permissions or [])
+                        # 基于层级数字进行权限控制：只能创建层级数字大于自己的角色
+                        if role.user_level <= current_user_level:
+                            logger.warning(f"用户 {current_user_id} 层级权限不足，无法创建角色: {role.name} (层级 {role.user_level} <= {current_user_level})")
+                            return Fail(code=403, msg=f"层级权限不足，无法创建角色: {role.name}")
 
-                        # 只能创建权限严格少于自己的角色，且目标权限必须是自己权限的子集
-                        if not (len(target_permissions) < len(current_user_permissions) and
-                                target_permissions.issubset(current_user_permissions)):
-                            logger.warning(f"用户 {current_user_id} 权限不足，无法创建角色: {role.name}")
-                            return Fail(code=403, msg=f"权限不足，无法创建角色: {role.name}")
+                        logger.info(f"  ✅ 允许创建 {role.name} (层级 {role.user_level} > {current_user_level})")
                     else:
                         logger.warning(f"用户 {current_user_id} 尝试创建未知角色: {role.name}")
                         return Fail(code=403, msg=f"无权创建角色: {role.name}")
@@ -217,6 +388,33 @@ async def update_user(
     original_user = await User.filter(id=user_in.id).first()
     if not original_user:
         return Fail(code=404, msg="用户不存在")
+
+    # 检查是否是用户更新自己的个人信息
+    is_self_update = (current_user_id == user_in.id)
+
+    # 如果是用户更新自己的信息，只允许更新特定字段
+    if is_self_update:
+        # 获取当前用户信息
+        current_user = await User.filter(id=current_user_id).first()
+
+        # 超级管理员可以修改自己的所有信息
+        if not current_user.is_superuser:
+            allowed_self_fields = ['username', 'email', 'school', 'major']
+            # 检查是否只更新了允许的字段
+            for field in ['is_active', 'role_ids', 'parent_user_id', 'points_balance', 'is_superuser']:
+                if hasattr(user_in, field) and getattr(user_in, field) is not None:
+                    old_value = getattr(original_user, field, None)
+                    new_value = getattr(user_in, field)
+                    if field == 'role_ids':
+                        current_role_ids = [role.id for role in await original_user.roles.all()]
+                        if set(new_value or []) != set(current_role_ids):
+                            return Fail(code=403, msg="不能修改自己的角色权限")
+                    elif new_value != old_value:
+                        return Fail(code=403, msg=f"不能修改{field}字段")
+
+        # 允许用户更新自己的基本信息
+        user = await user_controller.update_user_with_validation(user_id=user_in.id, obj_in=user_in)
+        return Success(msg="个人信息更新成功")
 
     # 检查是否是禁用/启用操作（只有is_active字段发生变化）
     is_status_change = (
@@ -269,7 +467,11 @@ async def update_user(
             return Fail(code=403, msg="权限不足，无法修改该用户信息")
 
     user = await user_controller.update_user_with_validation(user_id=user_in.id, obj_in=user_in)
-    await user_controller.update_roles(user, user_in.role_ids)
+
+    # 编辑用户时不允许修改角色，只有创建时才设置角色
+    # 如果需要修改角色，应该通过专门的角色管理功能
+    # await user_controller.update_roles(user, user_in.role_ids)  # 注释掉角色更新
+
     return Success(msg="更新成功")
 
 
@@ -292,8 +494,17 @@ async def delete_user(
 
 @router.post("/reset_password", summary="重置密码")
 async def reset_password(user_id: int = Body(..., description="用户ID", embed=True)):
-    await user_controller.reset_password(user_id)
-    return Success(msg="密码已重置为123456")
+    current_user_id = CTX_USER_ID.get()
+
+    # 权限检查：是否有修改下级用户权限（与修改用户信息共用权限）
+    has_permission = await AgentPermissionChecker.can_manage_user(
+        current_user_id, user_id, AgentPermission.MODIFY_SUBORDINATE_USERS
+    )
+    if not has_permission:
+        return Fail(code=403, msg="权限不足，无法重置该用户密码")
+
+    new_password = await user_controller.reset_password(user_id)
+    return Success(data={"new_password": new_password}, msg="密码重置成功")
 
 
 @router.get("/subordinates", summary="查看下级用户", dependencies=[DependAuth])

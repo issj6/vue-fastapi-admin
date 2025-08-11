@@ -31,6 +31,7 @@ import { useCRUD } from '@/composables'
 import api from '@/api'
 import TheIcon from '@/components/icon/TheIcon.vue'
 import { useUserStore } from '@/store'
+import { useDialog, useMessage } from 'naive-ui'
 
 defineOptions({ name: '角色管理' })
 
@@ -38,6 +39,8 @@ const $table = ref(null)
 const queryItems = ref({})
 const vPermission = resolveDirective('permission')
 const userStore = useUserStore()
+const $dialog = useDialog()
+const $message = useMessage()
 
 const {
   modalVisible,
@@ -45,7 +48,7 @@ const {
   modalTitle,
   modalLoading,
   handleAdd,
-  handleDelete,
+  handleDelete: originalHandleDelete,
   handleEdit,
   handleSave,
   modalForm,
@@ -58,6 +61,67 @@ const {
   doUpdate: api.updateRole,
   refresh: () => $table.value?.handleSearch(),
 })
+
+// 自定义删除处理函数，添加用户数量检查和二次确认
+const handleDelete = async (item, needConfirm = true) => {
+  const roleId = item.role_id || item.id
+
+  try {
+    // 首先检查角色关联的用户数量
+    const checkResult = await api.checkRoleUsers({ role_id: roleId })
+
+    if (checkResult.code === 200) {
+      const { role_name, user_count } = checkResult.data
+
+      if (user_count === 0) {
+        // 没有关联用户，直接删除
+        $dialog.warning({
+          title: '确认删除',
+          content: `确定删除角色 "${role_name}" 吗？`,
+          positiveText: '确定',
+          negativeText: '取消',
+          onPositiveClick: async () => {
+            try {
+              await api.deleteRole({ role_id: roleId })
+              $message.success('角色删除成功')
+              $table.value?.handleSearch()
+            } catch (error) {
+              $message.error('删除失败: ' + error.message)
+            }
+          }
+        })
+      } else {
+        // 有关联用户，显示二次确认对话框
+        $dialog.error({
+          title: '删除确认',
+          content: `角色 "${role_name}" 关联了 ${user_count} 个用户。删除角色将同时删除这些用户，此操作不可恢复！`,
+          positiveText: '确定删除',
+          negativeText: '取消',
+          onPositiveClick: () => {
+            // 第二次确认
+            $dialog.error({
+              title: '最终确认',
+              content: `您确定要删除角色 "${role_name}" 及其关联的 ${user_count} 个用户吗？此操作不可恢复！`,
+              positiveText: '确定删除',
+              negativeText: '取消',
+              onPositiveClick: async () => {
+                try {
+                  await api.deleteRole({ role_id: roleId, force_delete: true })
+                  $message.success(`已删除角色 "${role_name}" 及其关联的 ${user_count} 个用户`)
+                  $table.value?.handleSearch()
+                } catch (error) {
+                  $message.error('删除失败: ' + error.message)
+                }
+              }
+            })
+          }
+        })
+      }
+    }
+  } catch (error) {
+    $message.error('检查角色用户失败: ' + error.message)
+  }
+}
 
 const pattern = ref('')
 const menuOption = ref([]) // 菜单选项
@@ -150,6 +214,29 @@ const columns = [
     key: 'desc',
     width: 80,
     align: 'center',
+  },
+  {
+    title: '角色层级',
+    key: 'user_level',
+    width: 80,
+    align: 'center',
+    render(row) {
+      const level = row.user_level
+      let tagType = 'default'
+
+      // 根据层级数字设置标签颜色
+      if (level === -1) {
+        tagType = 'error'  // 超级管理员用红色
+      } else if (level === 0) {
+        tagType = 'warning' // 超级代理用橙色
+      } else if (level >= 1 && level <= 3) {
+        tagType = 'info'    // 代理角色用蓝色
+      } else if (level === 99) {
+        tagType = 'default' // 普通用户用默认色
+      }
+
+      return h(NTag, { type: tagType, size: 'small' }, { default: () => level?.toString() || '99' })
+    },
   },
   {
     title: '创建日期',
@@ -375,6 +462,30 @@ async function updateAgentPermissions() {
         </NFormItem>
         <NFormItem label="角色描述" path="desc">
           <NInput v-model:value="modalForm.desc" placeholder="请输入角色描述" />
+        </NFormItem>
+        <NFormItem
+          label="角色层级"
+          path="user_level"
+          :rule="{
+            required: true,
+            type: 'number',
+            message: '请输入角色层级',
+            trigger: ['input', 'blur'],
+          }"
+        >
+          <NInputNumber
+            v-model:value="modalForm.user_level"
+            placeholder="请输入角色层级"
+            :min="-1"
+            :max="99"
+            :step="1"
+            style="width: 100%"
+          />
+          <template #feedback>
+            <div class="text-12 op-60 mt-5">
+              层级说明：-1=超级管理员，0-N=代理角色（数字越小权限越高），99=普通用户。只能创建层级数字大于自己的角色。
+            </div>
+          </template>
         </NFormItem>
       </NForm>
     </CrudModal>
