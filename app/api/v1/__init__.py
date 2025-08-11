@@ -9,6 +9,8 @@ from .menus import menus_router
 from .roles import roles_router
 from .users import users_router
 from .points.points import router as points_router
+from .announcement import announcement_router
+from .sys_config.sys_config import router as sys_config_router
 
 v1_router = APIRouter()
 
@@ -19,3 +21,5 @@ v1_router.include_router(menus_router, prefix="/menu", dependencies=[DependPermi
 v1_router.include_router(apis_router, prefix="/api", dependencies=[DependPermission])
 v1_router.include_router(auditlog_router, prefix="/auditlog", dependencies=[DependPermission])
 v1_router.include_router(points_router, prefix="/points")
+v1_router.include_router(announcement_router, prefix="/announcement")
+v1_router.include_router(sys_config_router, prefix="/sys_config")

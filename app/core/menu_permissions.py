@@ -143,9 +143,10 @@ class MenuPermissionMapping:
     # 超级管理员专用菜单（只有超级管理员能看到）
     SUPER_ADMIN_ONLY_MENUS: List[str] = [
         "角色管理",
-        "菜单管理", 
+        "菜单管理",
         "API管理",
-        "系统管理",
+        "信息管理",
+        "系统设置",
     ]
     
     @classmethod

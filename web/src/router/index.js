@@ -38,10 +38,19 @@ export async function addDynamicRoutes() {
   // 有token的情况
   const userStore = useUserStore()
   const permissionStore = usePermissionStore()
-  !userStore.userId && (await userStore.getUserInfo())
+  
   try {
-    const accessRoutes = await permissionStore.generateRoutes()
-    await permissionStore.getAccessApis()
+    // 确保用户信息存在
+    if (!userStore.userId) {
+      await userStore.getUserInfo()
+    }
+    
+    // 并行调用权限相关API，提升性能
+    const [accessRoutes] = await Promise.all([
+      permissionStore.generateRoutes(),
+      permissionStore.getAccessApis()
+    ])
+    
     accessRoutes.forEach((route) => {
       !router.hasRoute(route.name) && router.addRoute(route)
     })

@@ -57,4 +57,18 @@ class AgentPermission(StrEnum):
         return [permission.value for permission in cls]
 
 
+class AnnouncementType(StrEnum):
+    """公告类型枚举"""
+    FRONTEND = "frontend"  # 前台公告（给前台用户端看的）
+    AGENT = "agent"       # 代理公告（显示在工作台公告位置）
+
+    @classmethod
+    def get_type_descriptions(cls):
+        """获取公告类型描述"""
+        return {
+            cls.FRONTEND: "前台公告",
+            cls.AGENT: "代理公告"
+        }
+
+
 

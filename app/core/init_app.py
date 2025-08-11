@@ -161,6 +161,17 @@ async def init_menus():
                 component="/system/auditlog",
                 keepalive=False,
             ),
+            Menu(
+                menu_type=MenuType.MENU,
+                name="公告设置",
+                path="announcement",
+                order=7,
+                parent_id=parent_menu.id,
+                icon="material-symbols:campaign-outline",
+                is_hidden=False,
+                component="/system/announcement",
+                keepalive=False,
+            ),
         ]
         await Menu.bulk_create(children_menu)
         await Menu.create(

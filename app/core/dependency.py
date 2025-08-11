@@ -31,6 +31,15 @@ class AuthControl:
             raise HTTPException(status_code=500, detail=f"{repr(e)}")
 
 
+class SuperUserControl:
+    @classmethod
+    async def is_superuser(cls, current_user: User = Depends(AuthControl.is_authed)) -> User:
+        """检查是否为超级管理员"""
+        if not current_user.is_superuser:
+            raise HTTPException(status_code=403, detail="权限不足，仅超级管理员可访问")
+        return current_user
+
+
 class PermissionControl:
     @classmethod
     async def has_permission(cls, request: Request, current_user: User = Depends(AuthControl.is_authed)) -> None:
@@ -44,13 +53,18 @@ class PermissionControl:
         if (method, path) in MenuPermissionMapping.BASIC_USER_APIS:
             return
 
-        roles: list[Role] = await current_user.roles
+        # 优化：使用prefetch_related获取角色和API权限，避免N+1查询
+        current_user_with_roles = await User.filter(id=current_user.id).prefetch_related('roles', 'roles__apis').first()
+        roles: list[Role] = current_user_with_roles.roles
         if not roles:
             raise HTTPException(status_code=403, detail="用户未分配角色，无法访问系统功能")
 
-        # 获取传统API权限
-        apis = [await role.apis for role in roles]
-        permission_apis = list(set((api.method, api.path) for api in sum(apis, [])))
+        # 优化：获取传统API权限，使用预加载的数据
+        permission_apis = []
+        for role in roles:
+            apis = role.apis
+            permission_apis.extend([(api.method, api.path) for api in apis])
+        permission_apis = list(set(permission_apis))
 
         # 检查传统API权限
         if (method, path) in permission_apis:
@@ -89,3 +103,4 @@ class PermissionControl:
 
 DependAuth = Depends(AuthControl.is_authed)
 DependPermission = Depends(PermissionControl.has_permission)
+DependSuperUser = Depends(SuperUserControl.is_superuser)

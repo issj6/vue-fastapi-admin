@@ -57,4 +57,20 @@ export default {
   refreshApi: (data = {}) => request.post('/api/refresh', data),
   // auditlog
   getAuditLogList: (params = {}) => request.get('/auditlog/list', { params }),
+  // announcement 公告管理
+  getActiveAnnouncements: () => request.get('/announcement/active'), // 获取当前有效公告（智能识别用户类型）
+  getAnnouncementList: (params = {}) => request.get('/announcement/list', { params }), // 获取公告列表（管理员）
+  getAnnouncementById: (params = {}) => request.get('/announcement/get', { params }), // 获取单个公告详情
+  createAnnouncement: (data = {}) => request.post('/announcement/create', data), // 创建公告
+  updateAnnouncement: (data = {}) => request.put('/announcement/update', data), // 更新公告
+  toggleAnnouncementStatus: (data = {}) => request.post('/announcement/toggle_status', data), // 切换公告状态
+  deleteAnnouncement: (params = {}) => request.delete('/announcement/delete', { params }), // 删除公告
+  // sys_config 系统配置管理
+  getSysConfigList: (params = {}) => request.get('/sys_config/list', { params }), // 获取系统配置列表（超级管理员）
+  getSysConfigById: (params = {}) => request.get('/sys_config/get', { params }), // 获取单个系统配置
+  createSysConfig: (data = {}) => request.post('/sys_config/create', data), // 创建系统配置
+  updateSysConfig: (data = {}) => request.post('/sys_config/update', data), // 更新系统配置
+  deleteSysConfig: (params = {}) => request.delete('/sys_config/delete', { params }), // 删除系统配置
+  getFrontendConfig: () => request.get('/sys_config/frontend'), // 获取前台配置（公共接口）
+  updateFrontendConfig: (data = {}) => request.post('/sys_config/frontend/update', data), // 更新前台配置
 }

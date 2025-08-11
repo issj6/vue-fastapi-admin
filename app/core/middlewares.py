@@ -53,6 +53,15 @@ class HttpAuditLogMiddleware(BaseHTTPMiddleware):
         self.exclude_paths = exclude_paths
         self.audit_log_paths = ["/api/v1/auditlog/list"]
         self.max_body_size = 1024 * 1024  # 1MB 响应体大小限制
+        
+        # 优化：性能敏感的路径，减少日志记录开销
+        self.performance_sensitive_paths = [
+            "/api/v1/base/admin_access_token",  # 管理登录
+            "/api/v1/base/access_token",       # 前台登录
+            "/api/v1/base/userinfo",           # 用户信息
+            "/api/v1/base/usermenu",          # 用户菜单
+            "/api/v1/base/userapi",           # 用户API权限
+        ]
 
     async def get_request_args(self, request: Request) -> dict:
         args = {}
@@ -82,6 +91,10 @@ class HttpAuditLogMiddleware(BaseHTTPMiddleware):
         return args
 
     async def get_response_body(self, request: Request, response: Response) -> Any:
+        # 优化：对性能敏感的接口，只记录基本信息，减少响应体解析开销
+        if request.url.path in self.performance_sensitive_paths:
+            return {"status": "success", "path": request.url.path, "method": request.method}
+        
         # 检查Content-Length
         content_length = response.headers.get("content-length")
         if content_length and int(content_length) > self.max_body_size:

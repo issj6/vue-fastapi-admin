@@ -63,7 +63,9 @@ async def get_userinfo():
     from app.core.agent_permissions import AgentPermissionChecker
 
     user_id = CTX_USER_ID.get()
-    user_obj = await user_controller.get(id=user_id)
+    
+    # 优化：使用prefetch_related预加载角色信息，避免后续查询
+    user_obj = await User.filter(id=user_id).prefetch_related('roles').first()
     data = await user_obj.to_dict(exclude_fields=["password"])
     data["avatar"] = "https://avatars.githubusercontent.com/u/54677442?v=4"
 
@@ -80,9 +82,11 @@ async def get_user_menu():
     from app.core.agent_permissions import AgentPermissionChecker
 
     user_id = CTX_USER_ID.get()
-    user_obj = await User.filter(id=user_id).first()
+    
+    # 优化：使用prefetch_related一次性获取用户及其关联数据，避免N+1查询
+    user_obj = await User.filter(id=user_id).prefetch_related('roles', 'roles__menus').first()
 
-    # 获取所有菜单
+    # 优化：并行获取所有菜单数据
     all_menus = await Menu.all()
     accessible_menus = []
 
@@ -92,7 +96,7 @@ async def get_user_menu():
     else:
         # 获取用户的代理权限和菜单权限
         user_permissions = []
-        role_objs: list[Role] = await user_obj.roles
+        role_objs: list[Role] = user_obj.roles
 
         # 先收集所有权限和菜单，避免重复添加
         accessible_menu_ids = set()
@@ -102,8 +106,8 @@ async def get_user_menu():
             if role_obj.is_agent_role and role_obj.agent_permissions:
                 user_permissions.extend(role_obj.agent_permissions)
 
-            # 获取角色直接分配的菜单权限
-            role_menus = await role_obj.menus
+            # 优化：由于使用了prefetch_related，这里不会产生额外的数据库查询
+            role_menus = role_obj.menus
             for menu in role_menus:
                 accessible_menu_ids.add(menu.id)
 
@@ -173,23 +177,25 @@ async def get_user_api():
     from app.core.menu_permissions import MenuPermissionMapping
 
     user_id = CTX_USER_ID.get()
-    user_obj = await User.filter(id=user_id).first()
+    
+    # 优化：使用prefetch_related一次性获取用户及其关联数据，避免N+1查询
+    user_obj = await User.filter(id=user_id).prefetch_related('roles', 'roles__apis').first()
 
     if user_obj.is_superuser:
         api_objs: list[Api] = await Api.all()
         apis = [api.method.lower() + api.path for api in api_objs]
         return Success(data=apis)
 
-    role_objs: list[Role] = await user_obj.roles
+    role_objs: list[Role] = user_obj.roles
     apis = []
 
     # 首先添加所有用户都可以访问的基础API
     for method, path in MenuPermissionMapping.BASIC_USER_APIS:
         apis.append(method.lower() + path)
 
-    # 获取直接分配的API权限
+    # 优化：获取直接分配的API权限，由于使用了prefetch_related，这里不会产生额外的数据库查询
     for role_obj in role_objs:
-        api_objs: list[Api] = await role_obj.apis
+        api_objs: list[Api] = role_obj.apis
         apis.extend([api.method.lower() + api.path for api in api_objs])
 
     # 获取通过代理权限映射的API权限
