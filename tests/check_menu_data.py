@@ -8,7 +8,7 @@ import sys
 import os
 
 # 添加项目根目录到Python路径
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app.models.admin import Menu, User, Role
 from app.core.init_app import init_db

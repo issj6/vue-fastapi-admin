@@ -23,6 +23,13 @@ export default {
   deductUserPoints: (data = {}) => request.post('/user/deduct_points', data),
   // 代理管理API
   getAgentList: (params = {}) => request.get('/user/agents', { params }),
+  // 积分管理API
+  getPointsInfo: () => request.get('/points/info'),
+  exchangePoints: (data = {}) => request.post('/points/exchange', data),
+  rechargePoints: (data = {}) => request.post('/points/recharge', data),
+  getPointsRechargeRecords: (params = {}) => request.get('/points/recharge/records', { params }),
+  getPointsUsageRecords: (params = {}) => request.get('/points/usage/records', { params }),
+  createPointsUsage: (data = {}) => request.post('/points/usage/create', data),
   // role
   getRoleList: (params = {}) => request.get('/role/list', { params }),
   createRole: (data = {}) => request.post('/role/create', data),

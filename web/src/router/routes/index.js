@@ -46,6 +46,7 @@ export const basicRoutes = [
     ],
     meta: { order: 99 },
   },
+
   {
     name: 'ErrorPage',
     path: '/error-page',

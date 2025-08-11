@@ -1,990 +1,246 @@
-2025-08-11 11:10:38 - INFO - Will watch for changes in these directories: ['/Users/yang/PycharmProjects/vue-fastapi-admin']
-2025-08-11 11:10:38 - INFO - Uvicorn running on http://0.0.0.0:9999 (Press CTRL+C to quit)
-2025-08-11 11:10:38 - INFO - Started reloader process [21735] using WatchFiles
-2025-08-11 11:10:39 - INFO - Started server process [21738]
-2025-08-11 11:10:39 - INFO - Waiting for application startup.
-2025-08-11 11:10:39.517 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 11:10:39.517 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 11:10:39 - INFO - Application startup complete.
-2025-08-11 11:10:43 - INFO - 127.0.0.1:61191 - "GET /docs HTTP/1.1" 200 OK
-2025-08-11 11:10:47 - INFO - 127.0.0.1:61212 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:10:47 - INFO - 127.0.0.1:61213 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:10:47 - INFO - 127.0.0.1:61214 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:10:48 - INFO - 127.0.0.1:61225 - "GET /api/v1/role/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:10:49 - INFO - 127.0.0.1:61224 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:10:54 - INFO - 127.0.0.1:61234 - "POST /api/v1/user/update HTTP/1.1" 200 OK
-2025-08-11 11:10:56 - INFO - 127.0.0.1:61237 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:11:00 - INFO - 127.0.0.1:61251 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:11:02 - INFO - 127.0.0.1:61250 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:11:07 - INFO - 127.0.0.1:61261 - "GET /api/v1/role/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:11:09 - INFO - 127.0.0.1:61260 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:11:55 - INFO - 127.0.0.1:61291 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:11:57 - INFO - 127.0.0.1:61290 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:12:24 - INFO - 127.0.0.1:61343 - "GET /api/v1/role/agent_permissions HTTP/1.1" 200 OK
-2025-08-11 11:12:24 - INFO - 127.0.0.1:61342 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:12:24 - INFO - 127.0.0.1:61346 - "GET /api/v1/base/permission-menu-mapping HTTP/1.1" 200 OK
-2025-08-11 11:12:27 - INFO - 127.0.0.1:61355 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:12:27 - INFO - 127.0.0.1:61349 - "GET /api/v1/role/authorized?id=16 HTTP/1.1" 200 OK
-2025-08-11 11:12:27 - INFO - 127.0.0.1:61356 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:12:36 - INFO - 127.0.0.1:61374 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:12:36 - INFO - 127.0.0.1:61376 - "GET /api/v1/role/authorized?id=5 HTTP/1.1" 200 OK
-2025-08-11 11:12:37 - INFO - 127.0.0.1:61372 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:12:51 - INFO - 127.0.0.1:61408 - "GET /api/v1/role/authorized?id=5 HTTP/1.1" 200 OK
-2025-08-11 11:12:51 - INFO - 127.0.0.1:61407 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:12:51 - INFO - 127.0.0.1:61406 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:13:58 - INFO - 127.0.0.1:61605 - "GET /api/v1/role/authorized?id=5 HTTP/1.1" 200 OK
-2025-08-11 11:13:58 - INFO - 127.0.0.1:61604 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:13:58 - INFO - 127.0.0.1:61603 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:14:03 - INFO - 127.0.0.1:61610 - "POST /api/v1/role/authorized HTTP/1.1" 200 OK
-2025-08-11 11:14:03 - INFO - 127.0.0.1:61613 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:14:29 - INFO - 127.0.0.1:61624 - "POST /api/v1/role/update HTTP/1.1" 200 OK
-2025-08-11 11:14:29 - INFO - 127.0.0.1:61627 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:14:36 - INFO - 127.0.0.1:61633 - "POST /api/v1/role/update HTTP/1.1" 200 OK
-2025-08-11 11:14:36 - INFO - 127.0.0.1:61636 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:14:49 - INFO - 127.0.0.1:61647 - "GET /api/v1/role/authorized?id=3 HTTP/1.1" 200 OK
-2025-08-11 11:14:49 - INFO - 127.0.0.1:61646 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:14:49 - INFO - 127.0.0.1:61645 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:14:53 - INFO - 127.0.0.1:61650 - "POST /api/v1/role/authorized HTTP/1.1" 200 OK
-2025-08-11 11:14:54 - INFO - 127.0.0.1:61653 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:14:56 - INFO - 127.0.0.1:61690 - "GET /api/v1/role/authorized?id=4 HTTP/1.1" 200 OK
-2025-08-11 11:14:56 - INFO - 127.0.0.1:61689 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:14:57 - INFO - 127.0.0.1:61688 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:15:07 - INFO - 127.0.0.1:61700 - "POST /api/v1/role/authorized HTTP/1.1" 200 OK
-2025-08-11 11:15:07 - INFO - 127.0.0.1:61703 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:15:11 - INFO - 127.0.0.1:61712 - "GET /api/v1/role/authorized?id=4 HTTP/1.1" 200 OK
-2025-08-11 11:15:11 - INFO - 127.0.0.1:61711 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:15:11 - INFO - 127.0.0.1:61710 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:15:18 - INFO - 127.0.0.1:61719 - "GET /api/v1/role/authorized?id=5 HTTP/1.1" 200 OK
-2025-08-11 11:15:18 - INFO - 127.0.0.1:61718 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:15:19 - INFO - 127.0.0.1:61717 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:15:22 - INFO - 127.0.0.1:61724 - "POST /api/v1/role/authorized HTTP/1.1" 200 OK
-2025-08-11 11:15:22 - INFO - 127.0.0.1:61727 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:15:41 - INFO - 127.0.0.1:61748 - "GET /api/v1/role/check_users?role_id=16 HTTP/1.1" 200 OK
-2025-08-11 11:15:42 - INFO - 127.0.0.1:61753 - "DELETE /api/v1/role/delete?role_id=16 HTTP/1.1" 200 OK
-2025-08-11 11:15:43 - INFO - 127.0.0.1:61756 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:15:45 - INFO - 127.0.0.1:61759 - "GET /api/v1/role/check_users?role_id=15 HTTP/1.1" 200 OK
-2025-08-11 11:15:47 - INFO - 127.0.0.1:61762 - "DELETE /api/v1/role/delete?role_id=15 HTTP/1.1" 200 OK
-2025-08-11 11:15:47 - INFO - 127.0.0.1:61765 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:15:50 - INFO - 127.0.0.1:61769 - "GET /api/v1/role/check_users?role_id=14 HTTP/1.1" 200 OK
-2025-08-11 11:15:51 - INFO - 127.0.0.1:61772 - "DELETE /api/v1/role/delete?role_id=14 HTTP/1.1" 200 OK
-2025-08-11 11:15:52 - INFO - 127.0.0.1:61775 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:15:54 - INFO - 127.0.0.1:61778 - "GET /api/v1/role/check_users?role_id=13 HTTP/1.1" 200 OK
-2025-08-11 11:15:58 - INFO - 127.0.0.1:61781 - "DELETE /api/v1/role/delete?role_id=13&force_delete=true HTTP/1.1" 200 OK
-2025-08-11 11:15:58 - INFO - 127.0.0.1:61784 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:16:44 - INFO - 127.0.0.1:61812 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:16:44 - INFO - 127.0.0.1:61813 - "GET /api/v1/role/authorized?id=2 HTTP/1.1" 200 OK
-2025-08-11 11:16:45 - INFO - 127.0.0.1:61811 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:16:50 - INFO - 127.0.0.1:61822 - "GET /api/v1/role/authorized?id=1 HTTP/1.1" 200 OK
-2025-08-11 11:16:50 - INFO - 127.0.0.1:61821 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:16:51 - INFO - 127.0.0.1:61819 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:16:55 - INFO - 127.0.0.1:61826 - "POST /api/v1/role/authorized HTTP/1.1" 200 OK
-2025-08-11 11:16:55 - INFO - 127.0.0.1:61829 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:17:22 - INFO - 127.0.0.1:61861 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 11:17:22 - INFO - 127.0.0.1:61864 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:17:22 - INFO - 127.0.0.1:61867 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:17:22 - INFO - 127.0.0.1:61870 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:17:26 - INFO - 127.0.0.1:61882 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:17:27 - INFO - 127.0.0.1:61881 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:17:29 - INFO - 127.0.0.1:61888 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:17:30 - INFO - 127.0.0.1:61887 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:17:37 - INFO - 127.0.0.1:61891 - "GET /api/v1/user/subordinates?page=1&page_size=100 HTTP/1.1" 200 OK
-2025-08-11 11:17:50 - INFO - 127.0.0.1:61896 - "GET /api/v1/user/subordinates?page=1&page_size=100 HTTP/1.1" 200 OK
-2025-08-11 11:17:58 - INFO - 127.0.0.1:61903 - "GET /api/v1/user/subordinates?page=1&page_size=100 HTTP/1.1" 200 OK
-2025-08-11 11:18:00 - INFO - 127.0.0.1:61909 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:18:01 - INFO - 127.0.0.1:61908 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:18:02 - INFO - 127.0.0.1:61915 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:18:02 - INFO - 127.0.0.1:61914 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:18:22 - INFO - 127.0.0.1:61928 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:18:23 - INFO - 127.0.0.1:61927 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:18:27 - INFO - 127.0.0.1:61936 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:18:28 - INFO - 127.0.0.1:61935 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:18:30 - INFO - 127.0.0.1:61941 - "GET /api/v1/user/subordinates?page=1&page_size=100 HTTP/1.1" 200 OK
-2025-08-11 11:19:49 - INFO - 127.0.0.1:61987 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:19:50 - INFO - 127.0.0.1:61986 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:19:53 - INFO - 127.0.0.1:61994 - "GET /api/v1/user/subordinates?parent_user_id=31 HTTP/1.1" 200 OK
-2025-08-11 11:20:41 - INFO - 127.0.0.1:62020 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:20:41 - INFO - 127.0.0.1:62019 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:23:05 - INFO - 127.0.0.1:62279 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:23:06 - INFO - 127.0.0.1:62280 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:23:06 - INFO - 127.0.0.1:62281 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:23:06 - INFO - 127.0.0.1:62290 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:23:07 - INFO - 127.0.0.1:62289 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:23:15 - INFO - 127.0.0.1:62296 - "GET /api/v1/user/subordinates?page=1&page_size=100 HTTP/1.1" 200 OK
-2025-08-11 11:24:27 - INFO - 127.0.0.1:62440 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:24:27 - INFO - 127.0.0.1:62439 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:24:39 - INFO - 127.0.0.1:62466 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:24:39 - INFO - 127.0.0.1:62465 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:24:54 - INFO - 127.0.0.1:62507 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:24:54 - INFO - 127.0.0.1:62506 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:25:03 - INFO - 127.0.0.1:62527 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:25:03 - INFO - 127.0.0.1:62526 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:25:12 - INFO - 127.0.0.1:62547 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:25:13 - INFO - 127.0.0.1:62546 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:25:44 - INFO - 127.0.0.1:62595 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:25:44 - INFO - 127.0.0.1:62594 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:26:09 - INFO - 127.0.0.1:62653 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:26:10 - INFO - 127.0.0.1:62654 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:26:10 - INFO - 127.0.0.1:62655 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:26:10 - INFO - 127.0.0.1:62659 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:26:10 - INFO - 127.0.0.1:62658 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:26:32 - INFO - 127.0.0.1:62694 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:26:32 - INFO - 127.0.0.1:62695 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:26:32 - INFO - 127.0.0.1:62696 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:26:33 - INFO - 127.0.0.1:62703 - "GET /api/v1/role/agent_permissions HTTP/1.1" 200 OK
-2025-08-11 11:26:33 - INFO - 127.0.0.1:62702 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:26:33 - INFO - 127.0.0.1:62704 - "GET /api/v1/base/permission-menu-mapping HTTP/1.1" 200 OK
-2025-08-11 11:27:34 - INFO - 127.0.0.1:62757 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:27:34 - INFO - 127.0.0.1:62756 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:27:36 - INFO - 127.0.0.1:62766 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:27:37 - INFO - 127.0.0.1:62765 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:27:57 - WARNING - WatchFiles detected changes in 'app/api/v1/users/users.py'. Reloading...
-2025-08-11 11:27:57 - INFO - Shutting down
-2025-08-11 11:27:57 - INFO - Waiting for application shutdown.
-2025-08-11 11:27:57 - INFO - Application shutdown complete.
-2025-08-11 11:27:57 - INFO - Finished server process [21738]
-2025-08-11 11:27:58 - INFO - Started server process [30643]
-2025-08-11 11:27:58 - INFO - Waiting for application startup.
-2025-08-11 11:27:58.384 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 11:27:58.384 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 11:27:58 - INFO - Application startup complete.
-2025-08-11 11:28:12 - WARNING - WatchFiles detected changes in 'app/api/v1/users/users.py'. Reloading...
-2025-08-11 11:28:12 - INFO - Shutting down
-2025-08-11 11:28:12 - INFO - Waiting for application shutdown.
-2025-08-11 11:28:12 - INFO - Application shutdown complete.
-2025-08-11 11:28:12 - INFO - Finished server process [30643]
-2025-08-11 11:28:12 - INFO - Started server process [30811]
-2025-08-11 11:28:12 - INFO - Waiting for application startup.
-2025-08-11 11:28:12.778 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 11:28:12.779 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 11:28:13 - INFO - Application startup complete.
-2025-08-11 11:28:27 - INFO - 127.0.0.1:62885 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:28:27 - INFO - 127.0.0.1:62886 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:28:27 - INFO - 127.0.0.1:62887 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:28:28 - INFO - 127.0.0.1:62895 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:28:28 - INFO - 127.0.0.1:62894 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:28:38 - INFO - 127.0.0.1:62919 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:28:54 - WARNING - WatchFiles detected changes in 'tests/test_user_level_display.py'. Reloading...
-2025-08-11 11:28:54 - INFO - Shutting down
-2025-08-11 11:28:54 - INFO - Waiting for application shutdown.
-2025-08-11 11:28:54 - INFO - Application shutdown complete.
-2025-08-11 11:28:54 - INFO - Finished server process [30811]
-2025-08-11 11:28:55 - INFO - Started server process [31152]
-2025-08-11 11:28:55 - INFO - Waiting for application startup.
-2025-08-11 11:28:55.320 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 11:28:55.320 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 11:28:55 - INFO - Application startup complete.
-2025-08-11 11:29:00 - INFO - 127.0.0.1:62953 - "POST /api/v1/user/create HTTP/1.1" 200 OK
-2025-08-11 11:29:01 - INFO - 127.0.0.1:62956 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:29:04 - INFO - 127.0.0.1:62969 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 11:29:06 - INFO - 127.0.0.1:62969 - "GET /api/v1/user/agents HTTP/1.1" 200 OK
-2025-08-11 11:29:08 - INFO - 127.0.0.1:62969 - "GET /api/v1/user/list HTTP/1.1" 200 OK
-2025-08-11 11:29:48 - INFO - 127.0.0.1:63058 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:29:49 - INFO - 127.0.0.1:63059 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:29:49 - INFO - 127.0.0.1:63060 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:29:49 - INFO - 127.0.0.1:63072 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:29:50 - INFO - 127.0.0.1:63071 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:29:53 - INFO - 127.0.0.1:63087 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:29:54 - INFO - 127.0.0.1:63086 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:29:56 - INFO - 127.0.0.1:63095 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:29:57 - INFO - 127.0.0.1:63094 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:29:58 - INFO - 127.0.0.1:63100 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:30:01 - INFO - 127.0.0.1:63108 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:30:01 - INFO - 127.0.0.1:63107 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:30:02 - INFO - 127.0.0.1:63111 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:30:06 - INFO - 127.0.0.1:63117 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:30:07 - INFO - 127.0.0.1:63116 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:30:08 - INFO - 127.0.0.1:63120 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:30:19 - INFO - 127.0.0.1:63129 - "POST /api/v1/user/create HTTP/1.1" 200 OK
-2025-08-11 11:30:20 - INFO - 127.0.0.1:63132 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:30:22 - INFO - 127.0.0.1:63138 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:30:23 - INFO - 127.0.0.1:63137 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:30:33 - INFO - 127.0.0.1:63150 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:30:33 - INFO - 127.0.0.1:63151 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:30:33 - INFO - 127.0.0.1:63152 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:30:34 - INFO - 127.0.0.1:63157 - "GET /api/v1/role/agent_permissions HTTP/1.1" 200 OK
-2025-08-11 11:30:34 - INFO - 127.0.0.1:63156 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:30:34 - INFO - 127.0.0.1:63158 - "GET /api/v1/base/permission-menu-mapping HTTP/1.1" 200 OK
-2025-08-11 11:30:38 - INFO - 127.0.0.1:63162 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
-2025-08-11 11:30:54 - INFO - 127.0.0.1:63174 - "POST /api/v1/menu/update HTTP/1.1" 200 OK
-2025-08-11 11:30:55 - INFO - 127.0.0.1:63176 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
-2025-08-11 11:31:05 - INFO - 127.0.0.1:63180 - "POST /api/v1/menu/update HTTP/1.1" 200 OK
-2025-08-11 11:31:05 - INFO - 127.0.0.1:63182 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
-2025-08-11 11:31:10 - INFO - 127.0.0.1:63184 - "POST /api/v1/menu/update HTTP/1.1" 200 OK
-2025-08-11 11:31:10 - INFO - 127.0.0.1:63186 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
-2025-08-11 11:31:33 - INFO - 127.0.0.1:63202 - "POST /api/v1/menu/update HTTP/1.1" 200 OK
-2025-08-11 11:31:34 - INFO - 127.0.0.1:63204 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
-2025-08-11 11:31:40 - INFO - 127.0.0.1:63207 - "POST /api/v1/menu/update HTTP/1.1" 200 OK
-2025-08-11 11:31:40 - INFO - 127.0.0.1:63209 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
-2025-08-11 11:31:46 - INFO - 127.0.0.1:63211 - "POST /api/v1/menu/update HTTP/1.1" 200 OK
-2025-08-11 11:31:47 - INFO - 127.0.0.1:63213 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
-2025-08-11 11:31:52 - INFO - 127.0.0.1:63215 - "POST /api/v1/menu/update HTTP/1.1" 200 OK
-2025-08-11 11:31:52 - INFO - 127.0.0.1:63217 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
-2025-08-11 11:32:11 - INFO - 127.0.0.1:63236 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:32:11 - INFO - 127.0.0.1:63237 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:32:11 - INFO - 127.0.0.1:63238 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:32:12 - INFO - 127.0.0.1:63244 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
-2025-08-11 11:32:13 - INFO - 127.0.0.1:63246 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:32:15 - INFO - 127.0.0.1:63245 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:34:32 - INFO - 127.0.0.1:63356 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:34:34 - INFO - 127.0.0.1:63354 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:34:35 - INFO - 127.0.0.1:63364 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:34:36 - INFO - 127.0.0.1:63363 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:35:05 - INFO - 127.0.0.1:63412 - "GET /api/v1/role/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:35:07 - INFO - 127.0.0.1:63410 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:35:09 - INFO - 127.0.0.1:63416 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:35:11 - INFO - 127.0.0.1:63415 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:35:17 - INFO - 127.0.0.1:63432 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:35:17 - INFO - 127.0.0.1:63431 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:35:18 - INFO - 127.0.0.1:63442 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:35:18 - INFO - 127.0.0.1:63444 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:35:19 - INFO - 127.0.0.1:63443 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:35:20 - INFO - 127.0.0.1:63441 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:35:24 - INFO - 127.0.0.1:63461 - "GET /api/v1/role/agent_permissions HTTP/1.1" 200 OK
-2025-08-11 11:35:24 - INFO - 127.0.0.1:63460 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:35:25 - INFO - 127.0.0.1:63463 - "GET /api/v1/base/permission-menu-mapping HTTP/1.1" 200 OK
-2025-08-11 11:35:26 - INFO - 127.0.0.1:63470 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:35:26 - INFO - 127.0.0.1:63471 - "GET /api/v1/role/authorized?id=1 HTTP/1.1" 200 OK
-2025-08-11 11:35:26 - INFO - 127.0.0.1:63469 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:35:33 - INFO - 127.0.0.1:63510 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:35:33 - INFO - 127.0.0.1:63511 - "GET /api/v1/role/authorized?id=1 HTTP/1.1" 200 OK
-2025-08-11 11:35:33 - INFO - 127.0.0.1:63509 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:35:38 - INFO - 127.0.0.1:63531 - "GET /api/v1/role/authorized?id=5 HTTP/1.1" 200 OK
-2025-08-11 11:35:38 - INFO - 127.0.0.1:63530 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:35:38 - INFO - 127.0.0.1:63529 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:35:41 - INFO - 127.0.0.1:63545 - "GET /api/v1/role/authorized?id=1 HTTP/1.1" 200 OK
-2025-08-11 11:35:41 - INFO - 127.0.0.1:63544 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:35:41 - INFO - 127.0.0.1:63543 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:35:58 - INFO - 127.0.0.1:63552 - "POST /api/v1/role/authorized HTTP/1.1" 200 OK
-2025-08-11 11:35:59 - INFO - 127.0.0.1:63554 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:36:01 - INFO - 127.0.0.1:63560 - "GET /api/v1/role/authorized?id=1 HTTP/1.1" 200 OK
-2025-08-11 11:36:01 - INFO - 127.0.0.1:63559 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:36:02 - INFO - 127.0.0.1:63558 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:36:10 - INFO - 127.0.0.1:63564 - "POST /api/v1/role/agent_permissions HTTP/1.1" 200 OK
-2025-08-11 11:36:10 - INFO - 127.0.0.1:63566 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:36:13 - INFO - 127.0.0.1:63573 - "GET /api/v1/role/authorized?id=1 HTTP/1.1" 200 OK
-2025-08-11 11:36:13 - INFO - 127.0.0.1:63572 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:36:14 - INFO - 127.0.0.1:63571 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:36:17 - INFO - 127.0.0.1:63575 - "POST /api/v1/role/authorized HTTP/1.1" 200 OK
-2025-08-11 11:36:17 - INFO - 127.0.0.1:63577 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:36:20 - INFO - 127.0.0.1:63595 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:36:20 - INFO - 127.0.0.1:63596 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:36:20 - INFO - 127.0.0.1:63597 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:36:20 - INFO - 127.0.0.1:63602 - "GET /api/v1/role/agent_permissions HTTP/1.1" 200 OK
-2025-08-11 11:36:20 - INFO - 127.0.0.1:63601 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:36:21 - INFO - 127.0.0.1:63603 - "GET /api/v1/base/permission-menu-mapping HTTP/1.1" 200 OK
-2025-08-11 11:36:24 - INFO - 127.0.0.1:63609 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:36:26 - INFO - 127.0.0.1:63608 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:36:56 - INFO - 127.0.0.1:63631 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:36:57 - INFO - 127.0.0.1:63630 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:37:29 - INFO - 127.0.0.1:63674 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:37:29 - INFO - 127.0.0.1:63675 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:37:29 - INFO - 127.0.0.1:63678 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:37:30 - INFO - 127.0.0.1:63685 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:37:30 - INFO - 127.0.0.1:63684 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:38:22 - INFO - 127.0.0.1:63723 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:38:23 - INFO - 127.0.0.1:63722 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:38:25 - INFO - 127.0.0.1:63733 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:38:26 - INFO - 127.0.0.1:63732 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:38:29 - INFO - 127.0.0.1:63745 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:38:29 - INFO - 127.0.0.1:63744 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:38:30 - INFO - 127.0.0.1:63758 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:38:32 - INFO - 127.0.0.1:63756 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:38:38 - INFO - 127.0.0.1:63795 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:38:39 - INFO - 127.0.0.1:63794 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:38:41 - INFO - 127.0.0.1:63831 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:38:41 - INFO - 127.0.0.1:63830 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:39:44 - INFO - 127.0.0.1:63923 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:39:45 - INFO - 127.0.0.1:63922 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:40:19 - INFO - 127.0.0.1:63971 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:40:21 - INFO - 127.0.0.1:63970 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:41:25 - INFO - 127.0.0.1:64089 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:41:25 - INFO - 127.0.0.1:64090 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:41:25 - INFO - 127.0.0.1:64091 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:41:25 - INFO - 127.0.0.1:64099 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:41:26 - INFO - 127.0.0.1:64098 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:41:31 - INFO - 127.0.0.1:64115 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:41:32 - INFO - 127.0.0.1:64114 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:41:46 - INFO - 127.0.0.1:64138 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:41:46 - INFO - 127.0.0.1:64137 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:43:13 - INFO - 127.0.0.1:64197 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:43:14 - INFO - 127.0.0.1:64196 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:43:36 - INFO - 127.0.0.1:64246 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:43:37 - INFO - 127.0.0.1:64245 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:43:49 - INFO - 127.0.0.1:64337 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:43:49 - INFO - 127.0.0.1:64338 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:43:49 - INFO - 127.0.0.1:64339 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:43:49 - INFO - 127.0.0.1:64349 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:43:50 - INFO - 127.0.0.1:64348 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:44:27 - INFO - 127.0.0.1:64382 - "POST /api/v1/user/update HTTP/1.1" 422 Unprocessable Entity
-2025-08-11 11:45:32 - INFO - 127.0.0.1:64445 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:45:32 - INFO - 127.0.0.1:64446 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:45:32 - INFO - 127.0.0.1:64444 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:45:33 - INFO - 127.0.0.1:64449 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:45:42 - INFO - 127.0.0.1:64483 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:45:42 - INFO - 127.0.0.1:64484 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:45:42 - INFO - 127.0.0.1:64485 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:45:43 - INFO - 127.0.0.1:64493 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:45:43 - INFO - 127.0.0.1:64492 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-用户 6 没有DISABLE_USER权限
-2025-08-11 11:45:48 - INFO - 127.0.0.1:64496 - "POST /api/v1/user/update HTTP/1.1" 403 Forbidden
-用户 6 没有DISABLE_USER权限
-2025-08-11 11:45:52 - INFO - 127.0.0.1:64503 - "POST /api/v1/user/update HTTP/1.1" 403 Forbidden
-2025-08-11 11:46:13 - INFO - 127.0.0.1:64535 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:46:13 - INFO - 127.0.0.1:64536 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:46:13 - INFO - 127.0.0.1:64537 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:46:14 - INFO - 127.0.0.1:64544 - "GET /api/v1/role/agent_permissions HTTP/1.1" 200 OK
-2025-08-11 11:46:14 - INFO - 127.0.0.1:64543 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:46:14 - INFO - 127.0.0.1:64545 - "GET /api/v1/base/permission-menu-mapping HTTP/1.1" 200 OK
-2025-08-11 11:46:18 - INFO - 127.0.0.1:64554 - "GET /api/v1/role/authorized?id=4 HTTP/1.1" 200 OK
-2025-08-11 11:46:18 - INFO - 127.0.0.1:64553 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:46:18 - INFO - 127.0.0.1:64552 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:46:21 - INFO - 127.0.0.1:64564 - "POST /api/v1/role/agent_permissions HTTP/1.1" 200 OK
-2025-08-11 11:46:21 - INFO - 127.0.0.1:64566 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:46:26 - INFO - 127.0.0.1:64573 - "POST /api/v1/user/update HTTP/1.1" 200 OK
-2025-08-11 11:46:27 - INFO - 127.0.0.1:64578 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:46:28 - INFO - 127.0.0.1:64585 - "POST /api/v1/user/update HTTP/1.1" 200 OK
-2025-08-11 11:46:29 - INFO - 127.0.0.1:64588 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:46:32 - INFO - 127.0.0.1:64604 - "GET /api/v1/role/authorized?id=4 HTTP/1.1" 200 OK
-2025-08-11 11:46:32 - INFO - 127.0.0.1:64603 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:46:32 - INFO - 127.0.0.1:64602 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:46:36 - INFO - 127.0.0.1:64608 - "POST /api/v1/role/agent_permissions HTTP/1.1" 200 OK
-2025-08-11 11:46:36 - INFO - 127.0.0.1:64610 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
-用户 6 没有DISABLE_USER权限
-2025-08-11 11:46:45 - INFO - 127.0.0.1:64625 - "POST /api/v1/user/update HTTP/1.1" 403 Forbidden
-用户 6 没有DISABLE_USER权限
-2025-08-11 11:47:03 - INFO - 127.0.0.1:64676 - "POST /api/v1/user/update HTTP/1.1" 403 Forbidden
-2025-08-11 11:47:04 - INFO - 127.0.0.1:64703 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:47:04 - INFO - 127.0.0.1:64704 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:47:05 - INFO - 127.0.0.1:64705 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-用户 6 没有DISABLE_USER权限
-2025-08-11 11:47:08 - INFO - 127.0.0.1:64720 - "POST /api/v1/user/update HTTP/1.1" 403 Forbidden
-2025-08-11 11:47:21 - INFO - 127.0.0.1:64807 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:47:22 - INFO - 127.0.0.1:64812 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:47:22 - INFO - 127.0.0.1:64813 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:47:22 - INFO - 127.0.0.1:64805 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:47:23 - INFO - 127.0.0.1:64814 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:47:24 - INFO - 127.0.0.1:64823 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:47:47 - INFO - 127.0.0.1:64959 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:47:47 - INFO - 127.0.0.1:64966 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:47:48 - INFO - 127.0.0.1:64967 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:47:48 - INFO - 127.0.0.1:64960 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:47:49 - INFO - 127.0.0.1:64968 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:47:49 - INFO - 127.0.0.1:64977 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:48:00 - INFO - 127.0.0.1:65048 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:48:00 - INFO - 127.0.0.1:65049 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:48:00 - INFO - 127.0.0.1:65050 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:48:07 - INFO - 127.0.0.1:65099 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:48:07 - INFO - 127.0.0.1:65100 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:48:07 - INFO - 127.0.0.1:65105 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:48:08 - INFO - 127.0.0.1:65111 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:48:08 - INFO - 127.0.0.1:65110 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-用户 6 没有DISABLE_USER权限
-2025-08-11 11:48:11 - INFO - 127.0.0.1:65130 - "POST /api/v1/user/update HTTP/1.1" 403 Forbidden
-2025-08-11 11:48:23 - INFO - 127.0.0.1:65211 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:48:23 - INFO - 127.0.0.1:65212 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:48:23 - INFO - 127.0.0.1:65213 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:48:23 - INFO - 127.0.0.1:65223 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:48:24 - INFO - 127.0.0.1:65222 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:48:28 - INFO - 127.0.0.1:65242 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:48:29 - INFO - 127.0.0.1:65243 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:48:29 - INFO - 127.0.0.1:65244 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:48:29 - INFO - 127.0.0.1:65252 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:48:30 - INFO - 127.0.0.1:65251 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:48:30 - INFO - 127.0.0.1:65254 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:48:31 - INFO - 127.0.0.1:65253 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-用户 6 没有DISABLE_USER权限
-2025-08-11 11:48:32 - INFO - 127.0.0.1:65255 - "POST /api/v1/user/update HTTP/1.1" 403 Forbidden
-2025-08-11 11:49:28 - INFO - 127.0.0.1:65363 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:49:29 - INFO - 127.0.0.1:65362 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:50:31 - INFO - 127.0.0.1:65458 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:50:31 - INFO - 127.0.0.1:65457 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:50:42 - INFO - 127.0.0.1:65494 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:50:42 - INFO - 127.0.0.1:65495 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:50:42 - INFO - 127.0.0.1:65496 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:50:42 - INFO - 127.0.0.1:65506 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:50:43 - INFO - 127.0.0.1:65505 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-用户 6 没有DISABLE_USER权限
-2025-08-11 11:50:44 - INFO - 127.0.0.1:65507 - "POST /api/v1/user/update HTTP/1.1" 403 Forbidden
-2025-08-11 11:50:52 - INFO - 127.0.0.1:65527 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:50:53 - INFO - 127.0.0.1:65526 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:50:58 - INFO - 127.0.0.1:65533 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:50:59 - INFO - 127.0.0.1:65532 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:51:01 - INFO - 127.0.0.1:49156 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:51:02 - INFO - 127.0.0.1:49155 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:51:15 - INFO - 127.0.0.1:49185 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:51:15 - INFO - 127.0.0.1:49186 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:51:15 - INFO - 127.0.0.1:49187 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:51:16 - INFO - 127.0.0.1:49195 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:51:16 - INFO - 127.0.0.1:49194 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:52:35 - INFO - 127.0.0.1:49314 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:52:36 - INFO - 127.0.0.1:49317 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:52:36 - INFO - 127.0.0.1:49313 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:52:37 - INFO - 127.0.0.1:49320 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:52:47 - INFO - 127.0.0.1:49353 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:52:47 - INFO - 127.0.0.1:49356 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:52:47 - INFO - 127.0.0.1:49357 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:52:48 - INFO - 127.0.0.1:49365 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:52:48 - INFO - 127.0.0.1:49364 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:52:52 - INFO - 127.0.0.1:49370 - "DELETE /api/v1/user/delete?user_id=28 HTTP/1.1" 200 OK
-2025-08-11 11:52:52 - INFO - 127.0.0.1:49371 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:52:56 - INFO - 127.0.0.1:49380 - "POST /api/v1/user/reset_password HTTP/1.1" 403 Forbidden
-2025-08-11 11:53:01 - INFO - 127.0.0.1:49387 - "POST /api/v1/user/reset_password HTTP/1.1" 403 Forbidden
-2025-08-11 11:53:39 - INFO - 127.0.0.1:49445 - "GET /api/v1/role/authorized?id=4 HTTP/1.1" 200 OK
-2025-08-11 11:53:39 - INFO - 127.0.0.1:49444 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:53:40 - INFO - 127.0.0.1:49443 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:54:19 - INFO - 127.0.0.1:49546 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:54:19 - INFO - 127.0.0.1:49547 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:54:19 - INFO - 127.0.0.1:49545 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:54:19 - INFO - 127.0.0.1:49550 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:54:20 - INFO - 127.0.0.1:49553 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:54:21 - INFO - 127.0.0.1:49560 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:54:33 - INFO - 127.0.0.1:49597 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:54:34 - INFO - 127.0.0.1:49598 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:54:34 - INFO - 127.0.0.1:49594 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:54:34 - INFO - 127.0.0.1:49599 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:54:35 - INFO - 127.0.0.1:49604 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:54:35 - INFO - 127.0.0.1:49605 - "GET /api/v1/role/authorized?id=1 HTTP/1.1" 200 OK
-2025-08-11 11:54:35 - INFO - 127.0.0.1:49600 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:54:35 - INFO - 127.0.0.1:49601 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
-2025-08-11 11:54:36 - INFO - 127.0.0.1:49612 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:55:55 - WARNING - WatchFiles detected changes in 'app/api/v1/users/users.py'. Reloading...
-2025-08-11 11:55:55 - INFO - Shutting down
-2025-08-11 11:55:55 - INFO - Waiting for application shutdown.
-2025-08-11 11:55:55 - INFO - Application shutdown complete.
-2025-08-11 11:55:55 - INFO - Finished server process [31152]
-2025-08-11 11:55:56 - INFO - Started server process [44905]
-2025-08-11 11:55:56 - INFO - Waiting for application startup.
-2025-08-11 11:55:56.631 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 11:55:56.631 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 11:55:56 - INFO - Application startup complete.
-2025-08-11 11:56:56 - INFO - 127.0.0.1:49826 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:56:57 - INFO - 127.0.0.1:49827 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:56:57 - INFO - 127.0.0.1:49828 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:56:57 - INFO - 127.0.0.1:49837 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:56:58 - INFO - 127.0.0.1:49836 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:57:01 - INFO - 127.0.0.1:49844 - "POST /api/v1/user/reset_password HTTP/1.1" 403 Forbidden
-2025-08-11 11:57:05 - INFO - 127.0.0.1:49857 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 11:57:06 - INFO - 127.0.0.1:49858 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 11:57:06 - INFO - 127.0.0.1:49859 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 11:57:06 - INFO - 127.0.0.1:49867 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:57:07 - INFO - 127.0.0.1:49866 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:58:47 - WARNING - WatchFiles detected changes in 'app/api/v1/users/users.py'. Reloading...
-2025-08-11 11:58:47 - INFO - Shutting down
-2025-08-11 11:58:48 - INFO - Waiting for application shutdown.
-2025-08-11 11:58:48 - INFO - Application shutdown complete.
-2025-08-11 11:58:48 - INFO - Finished server process [44905]
-2025-08-11 11:58:48 - INFO - Started server process [46378]
-2025-08-11 11:58:48 - INFO - Waiting for application startup.
-2025-08-11 11:58:48.722 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 11:58:48.722 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 11:58:49 - INFO - Application startup complete.
-2025-08-11 11:59:59 - INFO - 127.0.0.1:50138 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:59:59 - INFO - 127.0.0.1:50140 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 11:59:59 - INFO - 127.0.0.1:50137 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 11:59:59 - INFO - 127.0.0.1:50143 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:00:00 - INFO - 127.0.0.1:50146 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:00:01 - INFO - 127.0.0.1:50149 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:00:23 - INFO - 127.0.0.1:50195 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:00:23 - INFO - 127.0.0.1:50196 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:00:23 - INFO - 127.0.0.1:50192 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:00:23 - INFO - 127.0.0.1:50201 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:00:24 - INFO - 127.0.0.1:50202 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:00:25 - INFO - 127.0.0.1:50205 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:02:33 - INFO - 127.0.0.1:50465 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:02:33 - INFO - 127.0.0.1:50466 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:02:34 - INFO - 127.0.0.1:50464 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:02:34 - INFO - 127.0.0.1:50467 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:02:34 - INFO - 127.0.0.1:50470 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:02:35 - INFO - 127.0.0.1:50473 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:03:38 - INFO - 127.0.0.1:50606 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:03:38 - INFO - 127.0.0.1:50607 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:03:38 - INFO - 127.0.0.1:50608 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:03:38 - INFO - 127.0.0.1:50612 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:03:39 - INFO - 127.0.0.1:50611 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:03:47 - INFO - 127.0.0.1:50641 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 12:03:47 - INFO - 127.0.0.1:50644 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:03:47 - INFO - 127.0.0.1:50647 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:03:48 - INFO - 127.0.0.1:50650 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:03:48 - INFO - 127.0.0.1:50664 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:03:50 - INFO - 127.0.0.1:50663 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:03:51 - INFO - 127.0.0.1:50693 - "POST /api/v1/user/reset_password HTTP/1.1" 403 Forbidden
-2025-08-11 12:03:55 - INFO - 127.0.0.1:50715 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:03:56 - INFO - 127.0.0.1:50716 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:03:56 - INFO - 127.0.0.1:50717 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:03:56 - INFO - 127.0.0.1:50725 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:03:57 - INFO - 127.0.0.1:50724 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:04:03 - INFO - 127.0.0.1:50740 - "POST /api/v1/user/update HTTP/1.1" 200 OK
-2025-08-11 12:04:03 - INFO - 127.0.0.1:50743 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:04:12 - INFO - 127.0.0.1:50756 - "POST /api/v1/user/update HTTP/1.1" 200 OK
-2025-08-11 12:04:13 - INFO - 127.0.0.1:50761 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:04:14 - INFO - 127.0.0.1:50767 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:04:15 - INFO - 127.0.0.1:50766 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:08:48 - INFO - 127.0.0.1:51050 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:08:48 - INFO - 127.0.0.1:51051 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:08:48 - INFO - 127.0.0.1:51056 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:08:48 - INFO - 127.0.0.1:51049 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:08:49 - INFO - 127.0.0.1:51059 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:08:50 - INFO - 127.0.0.1:51048 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:09:13 - WARNING - WatchFiles detected changes in 'app/api/v1/users/users.py'. Reloading...
-2025-08-11 12:09:13 - INFO - Shutting down
-2025-08-11 12:09:13 - INFO - Waiting for application shutdown.
-2025-08-11 12:09:13 - INFO - Application shutdown complete.
-2025-08-11 12:09:13 - INFO - Finished server process [46378]
-2025-08-11 12:09:13 - INFO - Started server process [51764]
-2025-08-11 12:09:13 - INFO - Waiting for application startup.
-2025-08-11 12:09:13.909 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:09:13.909 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:09:14 - INFO - Application startup complete.
-2025-08-11 12:09:50 - INFO - 127.0.0.1:51169 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:09:50 - INFO - 127.0.0.1:51170 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:09:50 - INFO - 127.0.0.1:51171 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:09:51 - INFO - 127.0.0.1:51183 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:09:53 - INFO - 127.0.0.1:51182 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:10:27 - INFO - 127.0.0.1:51253 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:10:27 - INFO - 127.0.0.1:51255 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:10:28 - INFO - 127.0.0.1:51256 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:10:28 - INFO - 127.0.0.1:51266 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:10:29 - INFO - 127.0.0.1:51265 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:10:55 - INFO - 127.0.0.1:51325 - "POST /api/v1/user/reset_password HTTP/1.1" 200 OK
-2025-08-11 12:12:05 - INFO - 127.0.0.1:51430 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:12:06 - INFO - 127.0.0.1:51431 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:12:06 - INFO - 127.0.0.1:51432 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:12:06 - INFO - 127.0.0.1:51440 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:12:07 - INFO - 127.0.0.1:51439 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:12:07 - INFO - 127.0.0.1:51443 - "POST /api/v1/user/update HTTP/1.1" 200 OK
-2025-08-11 12:12:09 - INFO - 127.0.0.1:51448 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:13:54 - INFO - 127.0.0.1:51628 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:13:54 - INFO - 127.0.0.1:51630 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:13:55 - INFO - 127.0.0.1:51635 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:13:55 - INFO - 127.0.0.1:51629 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:13:55 - INFO - 127.0.0.1:51636 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:13:56 - INFO - 127.0.0.1:51627 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:14:46 - INFO - 127.0.0.1:51732 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:14:46 - INFO - 127.0.0.1:51731 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:15:27 - INFO - 127.0.0.1:51815 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:15:28 - INFO - 127.0.0.1:51814 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:15:50 - INFO - 127.0.0.1:51872 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:15:51 - INFO - 127.0.0.1:51871 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:17:49 - INFO - 127.0.0.1:52001 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 500 Internal Server Error
-2025-08-11 12:17:49 - ERROR - Exception in ASGI application
-  + Exception Group Traceback (most recent call last):
-  |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
-  |     yield
-  |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 190, in __call__
-  |     async with anyio.create_task_group() as task_group:
-  |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 767, in __aexit__
-  |     raise BaseExceptionGroup(
-  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
-  +-+---------------- 1 ----------------
-    | Traceback (most recent call last):
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 409, in run_asgi
-    |     result = await app(  # type: ignore[func-returns-value]
-    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
-    |     return await self.app(scope, receive, send)
-    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/fastapi/applications.py", line 1054, in __call__
-    |     await super().__call__(scope, receive, send)
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/applications.py", line 123, in __call__
-    |     await self.middleware_stack(scope, receive, send)
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
-    |     raise exc
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
-    |     await self.app(scope, receive, _send)
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 85, in __call__
-    |     await self.app(scope, receive, send)
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/app/core/middlewares.py", line 31, in __call__
-    |     await response(request.scope, request.receive, send)
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 189, in __call__
-    |     with collapse_excgroups():
-    |   File "/opt/homebrew/Cellar/python@3.11/3.11.13/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
-    |     self.gen.throw(typ, value, traceback)
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
-    |     raise exc
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
-    |     response = await self.dispatch_func(request, call_next)
-    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/app/core/middlewares.py", line 181, in dispatch
-    |     await self.after_request(request, response, process_time)
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/app/core/middlewares.py", line 171, in after_request
-    |     await AuditLog.create(**data)
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/tortoise/models.py", line 1182, in create
-    |     await instance.save(using_db=db, force_create=True)
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/tortoise/models.py", line 973, in save
-    |     await executor.execute_insert(self)
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/tortoise/backends/base/executor.py", line 200, in execute_insert
-    |     insert_result = await self.db.execute_insert(self.insert_query, values)
-    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/tortoise/backends/mysql/client.py", line 57, in translate_exceptions_
-    |     return await func(self, *args)
-    |            ^^^^^^^^^^^^^^^^^^^^^^^
-    |   File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/tortoise/backends/mysql/client.py", line 185, in execute_insert
-    |     await cursor.execute(query, values)
-    |   File "asyncmy/cursors.pyx", line 179, in execute
-    |   File "asyncmy/cursors.pyx", line 364, in _query
-    |   File "asyncmy/connection.pyx", line 493, in query
-    |   File "asyncmy/connection.pyx", line 729, in _execute_command
-    |   File "asyncmy/connection.pyx", line 668, in asyncmy.connection.Connection._write_bytes
-    |   File "/opt/homebrew/Cellar/python@3.11/3.11.13/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/streams.py", line 346, in write
-    |     self._transport.write(data)
-    |   File "uvloop/handles/stream.pyx", line 678, in uvloop.loop.UVStream.write
-    |   File "uvloop/handles/handle.pyx", line 159, in uvloop.loop.UVHandle._ensure_alive
-    | RuntimeError: unable to perform operation on <TCPTransport closed=True reading=False 0x11a4c2d80>; the handler is closed
-    +------------------------------------
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 409, in run_asgi
-    result = await app(  # type: ignore[func-returns-value]
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
-    return await self.app(scope, receive, send)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/fastapi/applications.py", line 1054, in __call__
-    await super().__call__(scope, receive, send)
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/applications.py", line 123, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
-    raise exc
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
-    await self.app(scope, receive, _send)
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 85, in __call__
-    await self.app(scope, receive, send)
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/app/core/middlewares.py", line 31, in __call__
-    await response(request.scope, request.receive, send)
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 189, in __call__
-    with collapse_excgroups():
-  File "/opt/homebrew/Cellar/python@3.11/3.11.13/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
-    self.gen.throw(typ, value, traceback)
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
-    raise exc
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
-    response = await self.dispatch_func(request, call_next)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/app/core/middlewares.py", line 181, in dispatch
-    await self.after_request(request, response, process_time)
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/app/core/middlewares.py", line 171, in after_request
-    await AuditLog.create(**data)
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/tortoise/models.py", line 1182, in create
-    await instance.save(using_db=db, force_create=True)
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/tortoise/models.py", line 973, in save
-    await executor.execute_insert(self)
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/tortoise/backends/base/executor.py", line 200, in execute_insert
-    insert_result = await self.db.execute_insert(self.insert_query, values)
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/tortoise/backends/mysql/client.py", line 57, in translate_exceptions_
-    return await func(self, *args)
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/yang/PycharmProjects/vue-fastapi-admin/venv/lib/python3.11/site-packages/tortoise/backends/mysql/client.py", line 185, in execute_insert
-    await cursor.execute(query, values)
-  File "asyncmy/cursors.pyx", line 179, in execute
-  File "asyncmy/cursors.pyx", line 364, in _query
-  File "asyncmy/connection.pyx", line 493, in query
-  File "asyncmy/connection.pyx", line 729, in _execute_command
-  File "asyncmy/connection.pyx", line 668, in asyncmy.connection.Connection._write_bytes
-  File "/opt/homebrew/Cellar/python@3.11/3.11.13/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/streams.py", line 346, in write
-    self._transport.write(data)
-  File "uvloop/handles/stream.pyx", line 678, in uvloop.loop.UVStream.write
-  File "uvloop/handles/handle.pyx", line 159, in uvloop.loop.UVHandle._ensure_alive
-RuntimeError: unable to perform operation on <TCPTransport closed=True reading=False 0x11a4c2d80>; the handler is closed
-2025-08-11 12:17:49 - INFO - 127.0.0.1:52002 - "GET /api/v1/role/list?page=1&page_size=9999 HTTP/1.1" 500 Internal Server Error
-2025-08-11 12:17:50 - INFO - 127.0.0.1:52062 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:17:50 - INFO - 127.0.0.1:52063 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:17:50 - INFO - 127.0.0.1:52064 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:17:51 - INFO - 127.0.0.1:52073 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:17:52 - INFO - 127.0.0.1:52072 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:18:00 - INFO - 127.0.0.1:52092 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:18:00 - INFO - 127.0.0.1:52091 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:18:03 - INFO - 127.0.0.1:52102 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:18:16 - INFO - 127.0.0.1:52121 - "POST /api/v1/user/create HTTP/1.1" 200 OK
-2025-08-11 12:18:16 - INFO - 127.0.0.1:52124 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:18:26 - INFO - 127.0.0.1:52139 - "POST /api/v1/user/reset_password HTTP/1.1" 403 Forbidden
-2025-08-11 12:18:27 - INFO - 127.0.0.1:52140 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 12:18:28 - INFO - 127.0.0.1:52145 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:18:28 - INFO - 127.0.0.1:52148 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:18:28 - INFO - 127.0.0.1:52151 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:18:28 - INFO - 127.0.0.1:52158 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:18:29 - INFO - 127.0.0.1:52157 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:18:34 - INFO - 127.0.0.1:52191 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:18:34 - INFO - 127.0.0.1:52190 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:18:42 - INFO - 127.0.0.1:52208 - "POST /api/v1/user/reset_password HTTP/1.1" 403 Forbidden
-2025-08-11 12:22:54 - WARNING - WatchFiles detected changes in 'tests/diagnose_ag1_permissions.py'. Reloading...
-2025-08-11 12:22:54 - INFO - Shutting down
-2025-08-11 12:22:54 - INFO - Waiting for application shutdown.
-2025-08-11 12:22:54 - INFO - Application shutdown complete.
-2025-08-11 12:22:54 - INFO - Finished server process [51764]
-2025-08-11 12:22:55 - INFO - Started server process [58805]
-2025-08-11 12:22:55 - INFO - Waiting for application startup.
-2025-08-11 12:22:55.164 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:22:55.164 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:22:55 - INFO - Application startup complete.
-2025-08-11 12:23:40 - WARNING - WatchFiles detected changes in 'tests/diagnose_ag1_permissions.py'. Reloading...
-2025-08-11 12:23:40 - INFO - Shutting down
-2025-08-11 12:23:40 - INFO - Waiting for application shutdown.
-2025-08-11 12:23:40 - INFO - Application shutdown complete.
-2025-08-11 12:23:40 - INFO - Finished server process [58805]
-2025-08-11 12:23:41 - INFO - Started server process [59173]
-2025-08-11 12:23:41 - INFO - Waiting for application startup.
-2025-08-11 12:23:41.036 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:23:41.036 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:23:41 - INFO - Application startup complete.
-2025-08-11 12:24:11 - WARNING - WatchFiles detected changes in 'tests/diagnose_ag1_permissions.py'. Reloading...
-2025-08-11 12:24:11 - INFO - Shutting down
-2025-08-11 12:24:11 - INFO - Waiting for application shutdown.
-2025-08-11 12:24:11 - INFO - Application shutdown complete.
-2025-08-11 12:24:11 - INFO - Finished server process [59173]
-2025-08-11 12:24:11 - INFO - Started server process [59439]
-2025-08-11 12:24:11 - INFO - Waiting for application startup.
-2025-08-11 12:24:11.998 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:24:11.998 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:24:12 - INFO - Application startup complete.
-2025-08-11 12:24:47 - WARNING - WatchFiles detected changes in 'app/core/menu_permissions.py'. Reloading...
-2025-08-11 12:24:47 - INFO - Shutting down
-2025-08-11 12:24:48 - INFO - Waiting for application shutdown.
-2025-08-11 12:24:48 - INFO - Application shutdown complete.
-2025-08-11 12:24:48 - INFO - Finished server process [59439]
-2025-08-11 12:24:48 - INFO - Started server process [59785]
-2025-08-11 12:24:48 - INFO - Waiting for application startup.
-2025-08-11 12:24:48.540 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:24:48.540 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:24:48 - INFO - Application startup complete.
-2025-08-11 12:25:37 - INFO - 127.0.0.1:52828 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:25:37 - INFO - 127.0.0.1:52829 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:25:37 - INFO - 127.0.0.1:52831 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:25:38 - INFO - 127.0.0.1:52843 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:25:38 - INFO - 127.0.0.1:52842 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:26:20 - WARNING - WatchFiles detected changes in 'tests/diagnose_ag1_permissions.py'. Reloading...
-2025-08-11 12:26:20 - INFO - Shutting down
-2025-08-11 12:26:20 - INFO - Waiting for application shutdown.
-2025-08-11 12:26:20 - INFO - Application shutdown complete.
-2025-08-11 12:26:20 - INFO - Finished server process [59785]
-2025-08-11 12:26:21 - INFO - Started server process [60561]
-2025-08-11 12:26:21 - INFO - Waiting for application startup.
-2025-08-11 12:26:21.398 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:26:21.398 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:26:21 - INFO - Application startup complete.
-2025-08-11 12:26:49 - WARNING - WatchFiles detected changes in 'tests/diagnose_ag1_permissions.py'. Reloading...
-2025-08-11 12:26:49 - INFO - Shutting down
-2025-08-11 12:26:49 - INFO - Waiting for application shutdown.
-2025-08-11 12:26:49 - INFO - Application shutdown complete.
-2025-08-11 12:26:49 - INFO - Finished server process [60561]
-2025-08-11 12:26:50 - INFO - Started server process [60828]
-2025-08-11 12:26:50 - INFO - Waiting for application startup.
-2025-08-11 12:26:50.503 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:26:50.503 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:26:50 - INFO - Application startup complete.
-2025-08-11 12:27:31 - WARNING - WatchFiles detected changes in 'tests/test_reset_password_api.py'. Reloading...
-2025-08-11 12:27:31 - INFO - Shutting down
-2025-08-11 12:27:31 - INFO - Waiting for application shutdown.
-2025-08-11 12:27:31 - INFO - Application shutdown complete.
-2025-08-11 12:27:31 - INFO - Finished server process [60828]
-2025-08-11 12:27:32 - INFO - Started server process [61202]
-2025-08-11 12:27:32 - INFO - Waiting for application startup.
-2025-08-11 12:27:32.300 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:27:32.300 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:27:32 - INFO - Application startup complete.
-2025-08-11 12:27:49 - WARNING - WatchFiles detected changes in 'venv/lib/python3.11/site-packages/charset_normalizer/version.py', 'venv/lib/python3.11/site-packages/requests/__init__.py', 'venv/lib/python3.11/site-packages/urllib3/_version.py', 'venv/lib/python3.11/site-packages/urllib3/util/wait.py', 'venv/lib/python3.11/site-packages/urllib3/contrib/socks.py', 'venv/lib/python3.11/site-packages/requests/exceptions.py', 'venv/lib/python3.11/site-packages/urllib3/contrib/emscripten/connection.py', 'venv/lib/python3.11/site-packages/requests/__version__.py', 'venv/lib/python3.11/site-packages/charset_normalizer/cd.py', 'venv/lib/python3.11/site-packages/charset_normalizer/cli/__main__.py', 'venv/lib/python3.11/site-packages/urllib3/contrib/emscripten/__init__.py', 'venv/lib/python3.11/site-packages/requests/cookies.py', 'venv/lib/python3.11/site-packages/urllib3/filepost.py', 'venv/lib/python3.11/site-packages/requests/hooks.py', 'venv/lib/python3.11/site-packages/requests/_internal_utils.py', 'venv/lib/python3.11/site-packages/requests/packages.py', 'venv/lib/python3.11/site-packages/charset_normalizer/models.py', 'venv/lib/python3.11/site-packages/urllib3/http2/probe.py', 'venv/lib/python3.11/site-packages/urllib3/contrib/__init__.py', 'venv/lib/python3.11/site-packages/urllib3/util/request.py', 'venv/lib/python3.11/site-packages/charset_normalizer/__init__.py', 'venv/lib/python3.11/site-packages/urllib3/util/ssl_match_hostname.py', 'venv/lib/python3.11/site-packages/requests/certs.py', 'venv/lib/python3.11/site-packages/urllib3/util/ssltransport.py', 'venv/lib/python3.11/site-packages/requests/utils.py', 'venv/lib/python3.11/site-packages/requests/api.py', 'venv/lib/python3.11/site-packages/urllib3/_collections.py', 'venv/lib/python3.11/site-packages/urllib3/util/timeout.py', 'venv/lib/python3.11/site-packages/urllib3/connectionpool.py', 'venv/lib/python3.11/site-packages/requests/compat.py', 'venv/lib/python3.11/site-packages/urllib3/response.py', 'venv/lib/python3.11/site-packages/requests/adapters.py', 'venv/lib/python3.11/site-packages/urllib3/util/response.py', 'venv/lib/python3.11/site-packages/urllib3/http2/connection.py', 'venv/lib/python3.11/site-packages/charset_normalizer/legacy.py', 'venv/lib/python3.11/site-packages/urllib3/util/url.py', 'venv/lib/python3.11/site-packages/urllib3/contrib/pyopenssl.py', 'venv/lib/python3.11/site-packages/urllib3/http2/__init__.py', 'venv/lib/python3.11/site-packages/urllib3/connection.py', 'venv/lib/python3.11/site-packages/urllib3/util/proxy.py', 'venv/lib/python3.11/site-packages/urllib3/util/retry.py', 'venv/lib/python3.11/site-packages/urllib3/contrib/emscripten/request.py', 'venv/lib/python3.11/site-packages/charset_normalizer/cli/__init__.py', 'venv/lib/python3.11/site-packages/requests/structures.py', 'venv/lib/python3.11/site-packages/urllib3/util/connection.py', 'venv/lib/python3.11/site-packages/urllib3/__init__.py', 'venv/lib/python3.11/site-packages/requests/sessions.py', 'venv/lib/python3.11/site-packages/urllib3/exceptions.py', 'venv/lib/python3.11/site-packages/charset_normalizer/utils.py', 'venv/lib/python3.11/site-packages/charset_normalizer/api.py', 'venv/lib/python3.11/site-packages/urllib3/util/__init__.py', 'venv/lib/python3.11/site-packages/urllib3/_base_connection.py', 'venv/lib/python3.11/site-packages/urllib3/util/ssl_.py', 'venv/lib/python3.11/site-packages/charset_normalizer/__main__.py', 'venv/lib/python3.11/site-packages/requests/help.py', 'venv/lib/python3.11/site-packages/urllib3/contrib/emscripten/fetch.py', 'venv/lib/python3.11/site-packages/requests/status_codes.py', 'venv/lib/python3.11/site-packages/urllib3/contrib/emscripten/response.py', 'venv/lib/python3.11/site-packages/urllib3/_request_methods.py', 'venv/lib/python3.11/site-packages/requests/models.py', 'venv/lib/python3.11/site-packages/urllib3/util/util.py', 'venv/lib/python3.11/site-packages/urllib3/fields.py', 'venv/lib/python3.11/site-packages/charset_normalizer/md.py', 'venv/lib/python3.11/site-packages/charset_normalizer/constant.py', 'venv/lib/python3.11/site-packages/requests/auth.py', 'venv/lib/python3.11/site-packages/urllib3/poolmanager.py'. Reloading...
-2025-08-11 12:27:49 - INFO - Shutting down
-2025-08-11 12:27:49 - INFO - Waiting for application shutdown.
-2025-08-11 12:27:49 - INFO - Application shutdown complete.
-2025-08-11 12:27:49 - INFO - Finished server process [61202]
-2025-08-11 12:27:50 - INFO - Started server process [61398]
-2025-08-11 12:27:50 - INFO - Waiting for application startup.
-2025-08-11 12:27:50.247 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:27:50.247 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:27:50 - INFO - Application startup complete.
-2025-08-11 12:27:59 - INFO - 127.0.0.1:53051 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 12:27:59 - INFO - 127.0.0.1:53053 - "POST /api/v1/user/reset_password HTTP/1.1" 422 Unprocessable Entity
-2025-08-11 12:28:12 - WARNING - WatchFiles detected changes in 'tests/test_reset_password_api.py'. Reloading...
-2025-08-11 12:28:12 - INFO - Shutting down
-2025-08-11 12:28:12 - INFO - Waiting for application shutdown.
-2025-08-11 12:28:12 - INFO - Application shutdown complete.
-2025-08-11 12:28:12 - INFO - Finished server process [61398]
-2025-08-11 12:28:13 - INFO - Started server process [61598]
-2025-08-11 12:28:13 - INFO - Waiting for application startup.
-2025-08-11 12:28:13.524 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:28:13.524 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:28:13 - INFO - Application startup complete.
-2025-08-11 12:28:27 - INFO - 127.0.0.1:53096 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 12:28:28 - INFO - 127.0.0.1:53098 - "POST /api/v1/user/reset_password HTTP/1.1" 200 OK
-2025-08-11 12:29:32 - INFO - 127.0.0.1:53259 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:29:33 - INFO - 127.0.0.1:53262 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:29:33 - INFO - 127.0.0.1:53265 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:29:33 - INFO - 127.0.0.1:53269 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:29:34 - INFO - 127.0.0.1:53268 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:30:28 - INFO - 127.0.0.1:53364 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:30:29 - INFO - 127.0.0.1:53365 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:30:29 - INFO - 127.0.0.1:53366 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:30:29 - INFO - 127.0.0.1:53370 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:30:30 - INFO - 127.0.0.1:53369 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:30:35 - INFO - 127.0.0.1:53390 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:30:36 - INFO - 127.0.0.1:53389 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:30:37 - INFO - 127.0.0.1:53396 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:30:37 - INFO - 127.0.0.1:53395 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:30:50 - INFO - 127.0.0.1:53414 - "POST /api/v1/user/reset_password HTTP/1.1" 200 OK
-2025-08-11 12:30:50 - INFO - 127.0.0.1:53417 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 12:30:50 - INFO - 127.0.0.1:53423 - "POST /api/v1/user/reset_password HTTP/1.1" 200 OK
-2025-08-11 12:30:51 - INFO - 127.0.0.1:53420 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:30:54 - INFO - 127.0.0.1:53437 - "DELETE /api/v1/user/delete?user_id=57 HTTP/1.1" 200 OK
-2025-08-11 12:30:55 - INFO - 127.0.0.1:53440 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:30:57 - INFO - 127.0.0.1:53448 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:30:57 - INFO - 127.0.0.1:53447 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:31:02 - INFO - 127.0.0.1:53461 - "POST /api/v1/user/reset_password HTTP/1.1" 200 OK
-2025-08-11 12:31:21 - INFO - 127.0.0.1:53486 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 12:31:21 - INFO - 127.0.0.1:53489 - "POST /api/v1/user/reset_password HTTP/1.1" 200 OK
-2025-08-11 12:35:14 - WARNING - WatchFiles detected changes in 'app/controllers/user.py'. Reloading...
-2025-08-11 12:35:14 - INFO - Shutting down
-2025-08-11 12:35:14 - INFO - Waiting for application shutdown.
-2025-08-11 12:35:14 - INFO - Application shutdown complete.
-2025-08-11 12:35:14 - INFO - Finished server process [61598]
-2025-08-11 12:35:15 - INFO - Started server process [65119]
-2025-08-11 12:35:15 - INFO - Waiting for application startup.
-2025-08-11 12:35:15.311 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:35:15.311 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:35:15 - INFO - Application startup complete.
-2025-08-11 12:35:28 - WARNING - WatchFiles detected changes in 'app/api/v1/users/users.py'. Reloading...
-2025-08-11 12:35:28 - INFO - Shutting down
-2025-08-11 12:35:28 - INFO - Waiting for application shutdown.
-2025-08-11 12:35:28 - INFO - Application shutdown complete.
-2025-08-11 12:35:28 - INFO - Finished server process [65119]
-2025-08-11 12:35:29 - INFO - Started server process [65322]
-2025-08-11 12:35:29 - INFO - Waiting for application startup.
-2025-08-11 12:35:29.599 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:35:29.599 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:35:29 - INFO - Application startup complete.
-2025-08-11 12:36:30 - INFO - 127.0.0.1:53803 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:36:30 - INFO - 127.0.0.1:53802 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:36:31 - INFO - 127.0.0.1:53807 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:36:31 - INFO - 127.0.0.1:53801 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:36:31 - INFO - 127.0.0.1:53800 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:36:31 - INFO - 127.0.0.1:53808 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:36:32 - INFO - 127.0.0.1:53813 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:36:32 - INFO - 127.0.0.1:53818 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:39:16 - INFO - 127.0.0.1:54006 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 12:39:16 - INFO - 127.0.0.1:54008 - "POST /api/v1/user/reset_password HTTP/1.1" 200 OK
-2025-08-11 12:39:35 - INFO - 127.0.0.1:54039 - "POST /api/v1/user/reset_password HTTP/1.1" 200 OK
-2025-08-11 12:39:54 - INFO - 127.0.0.1:54065 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:39:54 - INFO - 127.0.0.1:54064 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:39:58 - WARNING - WatchFiles detected changes in 'tests/test_reset_password_api.py'. Reloading...
-2025-08-11 12:39:58 - INFO - Shutting down
-2025-08-11 12:39:58 - INFO - Waiting for application shutdown.
-2025-08-11 12:39:58 - INFO - Application shutdown complete.
-2025-08-11 12:39:58 - INFO - Finished server process [65322]
-2025-08-11 12:39:59 - INFO - Started server process [67590]
-2025-08-11 12:39:59 - INFO - Waiting for application startup.
-2025-08-11 12:39:59.653 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:39:59.653 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:39:59 - INFO - Application startup complete.
-2025-08-11 12:40:05 - INFO - 127.0.0.1:54081 - "POST /api/v1/user/reset_password HTTP/1.1" 200 OK
-2025-08-11 12:40:05 - INFO - 127.0.0.1:54086 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:40:16 - WARNING - WatchFiles detected changes in 'tests/test_reset_password_api.py'. Reloading...
-2025-08-11 12:40:16 - INFO - Shutting down
-2025-08-11 12:40:16 - INFO - Waiting for application shutdown.
-2025-08-11 12:40:16 - INFO - Application shutdown complete.
-2025-08-11 12:40:16 - INFO - Finished server process [67590]
-2025-08-11 12:40:17 - INFO - Started server process [67759]
-2025-08-11 12:40:17 - INFO - Waiting for application startup.
-2025-08-11 12:40:17.447 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:40:17.447 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:40:17 - INFO - Application startup complete.
-2025-08-11 12:40:22 - INFO - 127.0.0.1:54116 - "POST /api/v1/base/admin_access_token HTTP/1.1" 400 Bad Request
-2025-08-11 12:40:26 - INFO - 127.0.0.1:54121 - "POST /api/v1/base/admin_access_token HTTP/1.1" 400 Bad Request
-2025-08-11 12:40:29 - INFO - 127.0.0.1:54128 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 12:40:29 - INFO - 127.0.0.1:54130 - "POST /api/v1/user/reset_password HTTP/1.1" 200 OK
-2025-08-11 12:40:33 - INFO - 127.0.0.1:54147 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 12:40:33 - INFO - 127.0.0.1:54151 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:40:34 - INFO - 127.0.0.1:54157 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:40:34 - INFO - 127.0.0.1:54160 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:40:34 - INFO - 127.0.0.1:54167 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:40:35 - INFO - 127.0.0.1:54166 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:40:40 - INFO - 127.0.0.1:54177 - "POST /api/v1/user/reset_password HTTP/1.1" 200 OK
-2025-08-11 12:40:41 - INFO - 127.0.0.1:54180 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:40:52 - INFO - 127.0.0.1:54187 - "POST /api/v1/base/admin_access_token HTTP/1.1" 403 Forbidden
-2025-08-11 12:41:02 - INFO - 127.0.0.1:54190 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 12:41:02 - INFO - 127.0.0.1:54194 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:41:03 - INFO - 127.0.0.1:54197 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:41:03 - INFO - 127.0.0.1:54201 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:41:03 - INFO - 127.0.0.1:54207 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:41:04 - INFO - 127.0.0.1:54206 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:41:07 - INFO - 127.0.0.1:54213 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:41:07 - INFO - 127.0.0.1:54212 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:41:14 - INFO - 127.0.0.1:54220 - "POST /api/v1/user/reset_password HTTP/1.1" 200 OK
-2025-08-11 12:41:22 - INFO - 127.0.0.1:54227 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:41:34 - INFO - 127.0.0.1:54235 - "POST /api/v1/user/create HTTP/1.1" 200 OK
-2025-08-11 12:41:34 - INFO - 127.0.0.1:54239 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:41:36 - INFO - 127.0.0.1:54242 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:41:41 - INFO - 127.0.0.1:54245 - "POST /api/v1/user/reset_password HTTP/1.1" 200 OK
-2025-08-11 12:41:48 - INFO - 127.0.0.1:54253 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 12:41:49 - INFO - 127.0.0.1:54256 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:41:49 - INFO - 127.0.0.1:54259 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:41:49 - INFO - 127.0.0.1:54262 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:41:49 - INFO - 127.0.0.1:54268 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:41:50 - INFO - 127.0.0.1:54267 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:41:52 - INFO - 127.0.0.1:54283 - "GET /api/v1/user/invitation_info HTTP/1.1" 403 Forbidden
-2025-08-11 12:42:00 - INFO - 127.0.0.1:54288 - "POST /api/v1/base/update_password HTTP/1.1" 200 OK
-2025-08-11 12:42:07 - INFO - 127.0.0.1:54293 - "POST /api/v1/base/admin_access_token HTTP/1.1" 400 Bad Request
-2025-08-11 12:42:10 - INFO - 127.0.0.1:54296 - "POST /api/v1/base/admin_access_token HTTP/1.1" 200 OK
-2025-08-11 12:42:10 - INFO - 127.0.0.1:54299 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
-2025-08-11 12:42:10 - INFO - 127.0.0.1:54302 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
-2025-08-11 12:42:11 - INFO - 127.0.0.1:54305 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
-2025-08-11 12:42:11 - INFO - 127.0.0.1:54308 - "GET /api/v1/user/invitation_info HTTP/1.1" 403 Forbidden
-2025-08-11 12:42:16 - INFO - 127.0.0.1:54314 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:42:17 - INFO - 127.0.0.1:54313 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:42:17 - INFO - 127.0.0.1:54320 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:42:17 - INFO - 127.0.0.1:54319 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:42:24 - INFO - 127.0.0.1:54334 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:42:24 - INFO - 127.0.0.1:54333 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:42:27 - INFO - 127.0.0.1:54344 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:42:28 - INFO - 127.0.0.1:54343 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:42:31 - INFO - 127.0.0.1:54350 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:42:31 - INFO - 127.0.0.1:54349 - "GET /api/v1/user/list?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:42:32 - INFO - 127.0.0.1:54356 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
-2025-08-11 12:42:33 - INFO - 127.0.0.1:54355 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
-2025-08-11 12:42:33 - INFO - 127.0.0.1:54359 - "GET /api/v1/user/invitation_info HTTP/1.1" 403 Forbidden
-2025-08-11 12:42:45 - INFO - 127.0.0.1:54368 - "GET /api/v1/user/invitation_info HTTP/1.1" 403 Forbidden
-2025-08-11 12:44:53 - WARNING - WatchFiles detected changes in 'app/core/menu_permissions.py'. Reloading...
-2025-08-11 12:44:53 - INFO - Shutting down
-2025-08-11 12:44:53 - INFO - Waiting for application shutdown.
-2025-08-11 12:44:53 - INFO - Application shutdown complete.
-2025-08-11 12:44:53 - INFO - Finished server process [67759]
-2025-08-11 12:44:53 - INFO - Started server process [70074]
-2025-08-11 12:44:53 - INFO - Waiting for application startup.
-2025-08-11 12:44:53.944 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:44:53.945 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:44:54 - INFO - Application startup complete.
-2025-08-11 12:45:20 - WARNING - WatchFiles detected changes in 'app/api/v1/base/base.py'. Reloading...
-2025-08-11 12:45:20 - INFO - Shutting down
-2025-08-11 12:45:20 - INFO - Waiting for application shutdown.
-2025-08-11 12:45:20 - INFO - Application shutdown complete.
-2025-08-11 12:45:20 - INFO - Finished server process [70074]
-2025-08-11 12:45:20 - INFO - Started server process [70365]
-2025-08-11 12:45:20 - INFO - Waiting for application startup.
-2025-08-11 12:45:20.789 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:45:20.789 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:45:21 - INFO - Application startup complete.
-2025-08-11 12:45:49 - WARNING - WatchFiles detected changes in 'app/core/dependency.py'. Reloading...
-2025-08-11 12:45:49 - INFO - Shutting down
-2025-08-11 12:45:49 - INFO - Waiting for application shutdown.
-2025-08-11 12:45:49 - INFO - Application shutdown complete.
-2025-08-11 12:45:49 - INFO - Finished server process [70365]
-2025-08-11 12:45:50 - INFO - Started server process [70615]
-2025-08-11 12:45:50 - INFO - Waiting for application startup.
-2025-08-11 12:45:50.017 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:45:50.017 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:45:50 - INFO - Application startup complete.
-2025-08-11 12:46:27 - WARNING - WatchFiles detected changes in 'app/api/v1/users/users.py'. Reloading...
-2025-08-11 12:46:27 - INFO - Shutting down
-2025-08-11 12:46:27 - INFO - Waiting for application shutdown.
-2025-08-11 12:46:27 - INFO - Application shutdown complete.
-2025-08-11 12:46:27 - INFO - Finished server process [70615]
-2025-08-11 12:46:28 - INFO - Started server process [70874]
-2025-08-11 12:46:28 - INFO - Waiting for application startup.
-2025-08-11 12:46:28.138 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
-2025-08-11 12:46:28.138 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
-2025-08-11 12:46:28 - INFO - Application startup complete.
-2025-08-11 12:49:24 - INFO - Shutting down
-2025-08-11 12:49:24 - INFO - Waiting for application shutdown.
-2025-08-11 12:49:24 - INFO - Application shutdown complete.
-2025-08-11 12:49:24 - INFO - Finished server process [70874]
-2025-08-11 12:49:24 - INFO - Stopping reloader process [21735]
+2025-08-11 13:26:57 - INFO - Will watch for changes in these directories: ['/Users/yang/PycharmProjects/vue-fastapi-admin']
+2025-08-11 13:26:57 - INFO - Uvicorn running on http://0.0.0.0:9999 (Press CTRL+C to quit)
+2025-08-11 13:26:57 - INFO - Started reloader process [92285] using WatchFiles
+2025-08-11 13:26:57 - INFO - Started server process [92289]
+2025-08-11 13:26:57 - INFO - Waiting for application startup.
+2025-08-11 13:26:57.809 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
+2025-08-11 13:26:57.809 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
+2025-08-11 13:26:58 - INFO - Application startup complete.
+2025-08-11 13:27:02 - INFO - 127.0.0.1:58197 - "GET /docs HTTP/1.1" 200 OK
+2025-08-11 13:27:06 - INFO - 127.0.0.1:58235 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:27:06 - INFO - 127.0.0.1:58236 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:27:06 - INFO - 127.0.0.1:58238 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:27:06 - INFO - 127.0.0.1:58239 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:27:06 - INFO - 127.0.0.1:58241 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:27:06 - INFO - 127.0.0.1:58240 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:27:06 - INFO - 127.0.0.1:58244 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:27:20 - INFO - 127.0.0.1:58295 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:27:20 - INFO - 127.0.0.1:58296 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:27:20 - INFO - 127.0.0.1:58297 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:27:21 - INFO - 127.0.0.1:58310 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
+2025-08-11 13:27:21 - INFO - 127.0.0.1:58309 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
+2025-08-11 13:27:23 - INFO - 127.0.0.1:58326 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:27:23 - INFO - 127.0.0.1:58327 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:27:23 - INFO - 127.0.0.1:58328 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:27:23 - INFO - 127.0.0.1:58336 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
+2025-08-11 13:27:24 - INFO - 127.0.0.1:58335 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
+2025-08-11 13:27:26 - INFO - 127.0.0.1:58341 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:28:01 - INFO - 127.0.0.1:58371 - "POST /api/v1/points/recharge HTTP/1.1" 200 OK
+2025-08-11 13:28:01 - INFO - 127.0.0.1:58375 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:28:03 - INFO - 127.0.0.1:58382 - "POST /api/v1/points/recharge HTTP/1.1" 200 OK
+2025-08-11 13:28:04 - INFO - 127.0.0.1:58385 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:28:11 - INFO - 127.0.0.1:58398 - "POST /api/v1/points/recharge HTTP/1.1" 200 OK
+2025-08-11 13:28:11 - INFO - 127.0.0.1:58401 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:28:13 - INFO - 127.0.0.1:58420 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:28:13 - INFO - 127.0.0.1:58421 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:28:14 - INFO - 127.0.0.1:58422 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:28:14 - INFO - 127.0.0.1:58423 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:29:20 - INFO - 127.0.0.1:58603 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:29:20 - INFO - 127.0.0.1:58602 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:30:54 - INFO - 127.0.0.1:58789 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:30:54 - INFO - 127.0.0.1:58790 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:30:55 - INFO - 127.0.0.1:58791 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:30:55 - INFO - 127.0.0.1:58796 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:30:56 - INFO - 127.0.0.1:58799 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:30:56 - INFO - 127.0.0.1:58800 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:30:56 - INFO - 127.0.0.1:58814 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:30:56 - INFO - 127.0.0.1:58813 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:30:56 - INFO - 127.0.0.1:58815 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:30:57 - INFO - 127.0.0.1:58816 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:30:57 - INFO - 127.0.0.1:58819 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:31:03 - INFO - 127.0.0.1:58851 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:31:04 - INFO - 127.0.0.1:58852 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:31:04 - INFO - 127.0.0.1:58853 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:31:06 - INFO - 127.0.0.1:58870 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:31:06 - INFO - 127.0.0.1:58871 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:31:07 - INFO - 127.0.0.1:58872 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:31:07 - INFO - 127.0.0.1:58873 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:31:18 - INFO - 127.0.0.1:58894 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:31:19 - INFO - 127.0.0.1:58897 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:31:19 - INFO - 127.0.0.1:58898 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:32:30 - INFO - 127.0.0.1:59048 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:32:30 - INFO - 127.0.0.1:59049 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:32:30 - INFO - 127.0.0.1:59050 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:32:31 - INFO - 127.0.0.1:59051 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:32:31 - INFO - 127.0.0.1:59053 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:32:31 - INFO - 127.0.0.1:59055 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:32:31 - INFO - 127.0.0.1:59054 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:32:31 - INFO - 127.0.0.1:59056 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:32:31 - INFO - 127.0.0.1:59059 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:32:45 - INFO - 127.0.0.1:59118 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:32:45 - INFO - 127.0.0.1:59119 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:32:45 - INFO - 127.0.0.1:59120 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:32:45 - INFO - 127.0.0.1:59121 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:32:45 - INFO - 127.0.0.1:59122 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:32:46 - INFO - 127.0.0.1:59123 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:32:46 - INFO - 127.0.0.1:59125 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:32:46 - INFO - 127.0.0.1:59124 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:32:46 - INFO - 127.0.0.1:59128 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:32:58 - INFO - 127.0.0.1:59198 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:32:59 - INFO - 127.0.0.1:59199 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:32:59 - INFO - 127.0.0.1:59200 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:33:01 - INFO - 127.0.0.1:59227 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:33:01 - INFO - 127.0.0.1:59228 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:33:01 - INFO - 127.0.0.1:59229 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:33:02 - INFO - 127.0.0.1:59231 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:33:02 - INFO - 127.0.0.1:59230 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:33:02 - INFO - 127.0.0.1:59240 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:33:25 - INFO - 127.0.0.1:59289 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:33:25 - INFO - 127.0.0.1:59290 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:33:26 - INFO - 127.0.0.1:59291 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:34:23 - WARNING - WatchFiles detected changes in 'tests/check_menu_data.py'. Reloading...
+2025-08-11 13:34:23 - INFO - Shutting down
+2025-08-11 13:34:23 - INFO - Waiting for application shutdown.
+2025-08-11 13:34:23 - INFO - Application shutdown complete.
+2025-08-11 13:34:23 - INFO - Finished server process [92289]
+2025-08-11 13:34:24 - INFO - Started server process [96284]
+2025-08-11 13:34:24 - INFO - Waiting for application startup.
+2025-08-11 13:34:24.377 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
+2025-08-11 13:34:24.377 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
+2025-08-11 13:34:24 - INFO - Application startup complete.
+2025-08-11 13:35:24 - WARNING - WatchFiles detected changes in 'tests/fix_points_menu_permissions.py'. Reloading...
+2025-08-11 13:35:25 - INFO - Shutting down
+2025-08-11 13:35:25 - INFO - Waiting for application shutdown.
+2025-08-11 13:35:25 - INFO - Application shutdown complete.
+2025-08-11 13:35:25 - INFO - Finished server process [96284]
+2025-08-11 13:35:25 - INFO - Started server process [96880]
+2025-08-11 13:35:25 - INFO - Waiting for application startup.
+2025-08-11 13:35:25.821 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
+2025-08-11 13:35:25.821 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
+2025-08-11 13:35:26 - INFO - Application startup complete.
+2025-08-11 13:35:40 - INFO - 127.0.0.1:59536 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:35:41 - INFO - 127.0.0.1:59538 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:35:41 - INFO - 127.0.0.1:59539 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:36:09 - INFO - 127.0.0.1:59591 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:36:10 - INFO - 127.0.0.1:59592 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:36:10 - INFO - 127.0.0.1:59594 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:36:13 - INFO - 127.0.0.1:59610 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:36:13 - INFO - 127.0.0.1:59611 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:36:13 - INFO - 127.0.0.1:59612 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:36:14 - INFO - 127.0.0.1:59619 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
+2025-08-11 13:36:16 - INFO - 127.0.0.1:59618 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
+2025-08-11 13:36:17 - INFO - 127.0.0.1:59624 - "GET /api/v1/role/agent_permissions HTTP/1.1" 200 OK
+2025-08-11 13:36:17 - INFO - 127.0.0.1:59623 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
+2025-08-11 13:36:17 - INFO - 127.0.0.1:59625 - "GET /api/v1/base/permission-menu-mapping HTTP/1.1" 200 OK
+2025-08-11 13:36:21 - INFO - 127.0.0.1:59633 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
+2025-08-11 13:36:21 - INFO - 127.0.0.1:59634 - "GET /api/v1/role/authorized?id=4 HTTP/1.1" 200 OK
+2025-08-11 13:36:22 - INFO - 127.0.0.1:59632 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
+2025-08-11 13:36:32 - WARNING - WatchFiles detected changes in 'tests/fix_points_component_paths.py'. Reloading...
+2025-08-11 13:36:32 - INFO - Shutting down
+2025-08-11 13:36:32 - INFO - Waiting for application shutdown.
+2025-08-11 13:36:32 - INFO - Application shutdown complete.
+2025-08-11 13:36:32 - INFO - Finished server process [96880]
+2025-08-11 13:36:32 - INFO - Started server process [97540]
+2025-08-11 13:36:32 - INFO - Waiting for application startup.
+2025-08-11 13:36:32.933 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
+2025-08-11 13:36:32.933 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
+2025-08-11 13:36:33 - INFO - Application startup complete.
+2025-08-11 13:36:33 - INFO - 127.0.0.1:59662 - "GET /api/v1/api/list?page=1&page_size=9999 HTTP/1.1" 200 OK
+2025-08-11 13:36:33 - INFO - 127.0.0.1:59663 - "GET /api/v1/role/authorized?id=4 HTTP/1.1" 200 OK
+2025-08-11 13:36:34 - INFO - 127.0.0.1:59661 - "GET /api/v1/menu/list?page=1&page_size=9999 HTTP/1.1" 200 OK
+2025-08-11 13:36:37 - INFO - 127.0.0.1:59682 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
+2025-08-11 13:36:39 - INFO - 127.0.0.1:59681 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
+2025-08-11 13:36:46 - INFO - 127.0.0.1:59714 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:36:46 - INFO - 127.0.0.1:59715 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:36:47 - INFO - 127.0.0.1:59718 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:36:55 - INFO - 127.0.0.1:59741 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:36:55 - INFO - 127.0.0.1:59742 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:36:55 - INFO - 127.0.0.1:59745 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:37:22 - INFO - 127.0.0.1:59804 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:37:22 - INFO - 127.0.0.1:59805 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:37:22 - INFO - 127.0.0.1:59806 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:37:22 - INFO - 127.0.0.1:59809 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:38:01 - INFO - 127.0.0.1:59871 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:38:01 - INFO - 127.0.0.1:59874 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:38:01 - INFO - 127.0.0.1:59875 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:38:02 - INFO - 127.0.0.1:59876 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK
+2025-08-11 13:42:14 - INFO - 127.0.0.1:60049 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:42:14 - INFO - 127.0.0.1:60050 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:42:15 - INFO - 127.0.0.1:60051 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:42:27 - INFO - 127.0.0.1:60068 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK
+2025-08-11 13:42:29 - INFO - 127.0.0.1:60073 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK
+2025-08-11 13:43:17 - WARNING - WatchFiles detected changes in 'tests/fix_submenu_paths.py'. Reloading...
+2025-08-11 13:43:17 - INFO - Shutting down
+2025-08-11 13:43:17 - INFO - Waiting for application shutdown.
+2025-08-11 13:43:17 - INFO - Application shutdown complete.
+2025-08-11 13:43:17 - INFO - Finished server process [97540]
+2025-08-11 13:43:17 - INFO - Started server process [1214]
+2025-08-11 13:43:17 - INFO - Waiting for application startup.
+2025-08-11 13:43:17.910 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
+2025-08-11 13:43:17.910 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
+2025-08-11 13:43:18 - INFO - Application startup complete.
+2025-08-11 13:43:22 - INFO - 127.0.0.1:60148 - "GET /api/v1/role/creatable HTTP/1.1" 200 OK
+2025-08-11 13:43:22 - INFO - 127.0.0.1:60147 - "GET /api/v1/user/agents?page=1&page_size=10 HTTP/1.1" 200 OK
+2025-08-11 13:43:25 - INFO - 127.0.0.1:60155 - "GET /api/v1/role/agent_permissions HTTP/1.1" 200 OK
+2025-08-11 13:43:25 - INFO - 127.0.0.1:60154 - "GET /api/v1/role/list?page=1&page_size=10 HTTP/1.1" 200 OK
+2025-08-11 13:43:25 - INFO - 127.0.0.1:60157 - "GET /api/v1/base/permission-menu-mapping HTTP/1.1" 200 OK
+2025-08-11 13:43:27 - INFO - 127.0.0.1:60161 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
+2025-08-11 13:43:33 - INFO - 127.0.0.1:60189 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:43:34 - INFO - 127.0.0.1:60191 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:43:34 - INFO - 127.0.0.1:60192 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:43:36 - INFO - 127.0.0.1:60198 - "POST /api/v1/menu/update HTTP/1.1" 200 OK
+2025-08-11 13:43:37 - INFO - 127.0.0.1:60200 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
+2025-08-11 13:43:45 - INFO - 127.0.0.1:60238 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:43:46 - INFO - 127.0.0.1:60239 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:43:46 - INFO - 127.0.0.1:60242 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:43:47 - INFO - 127.0.0.1:60248 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
+2025-08-11 13:43:59 - INFO - 127.0.0.1:60269 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:44:08 - INFO - 127.0.0.1:60284 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK
+2025-08-11 13:44:16 - INFO - 127.0.0.1:60293 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:44:18 - INFO - 127.0.0.1:60298 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK
+2025-08-11 13:44:19 - INFO - 127.0.0.1:60304 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:44:30 - INFO - 127.0.0.1:60336 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:44:30 - INFO - 127.0.0.1:60337 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:44:30 - INFO - 127.0.0.1:60338 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:44:33 - INFO - 127.0.0.1:60345 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:44:36 - INFO - 127.0.0.1:60346 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK
+2025-08-11 13:45:03 - WARNING - WatchFiles detected changes in 'tests/fix_points_menu_icon.py'. Reloading...
+2025-08-11 13:45:03 - INFO - Shutting down
+2025-08-11 13:45:03 - INFO - Waiting for application shutdown.
+2025-08-11 13:45:03 - INFO - Application shutdown complete.
+2025-08-11 13:45:03 - INFO - Finished server process [1214]
+2025-08-11 13:45:04 - INFO - Started server process [2107]
+2025-08-11 13:45:04 - INFO - Waiting for application startup.
+2025-08-11 13:45:04.184 | INFO     | app.core.init_app:init_db:189 - Tortoise ORM initialized successfully
+2025-08-11 13:45:04.184 | INFO     | app.core.init_app:init_db:192 - Skipping database migration as fields already exist
+2025-08-11 13:45:04 - INFO - Application startup complete.
+2025-08-11 13:45:19 - INFO - 127.0.0.1:60424 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:45:20 - INFO - 127.0.0.1:60430 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:45:20 - INFO - 127.0.0.1:60431 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:45:50 - INFO - 127.0.0.1:60488 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:46:03 - INFO - 127.0.0.1:60506 - "POST /api/v1/menu/update HTTP/1.1" 200 OK
+2025-08-11 13:46:04 - INFO - 127.0.0.1:60508 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
+2025-08-11 13:46:08 - INFO - 127.0.0.1:60525 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:46:08 - INFO - 127.0.0.1:60526 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:46:08 - INFO - 127.0.0.1:60527 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:46:08 - INFO - 127.0.0.1:60528 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK
+2025-08-11 13:47:40 - INFO - 127.0.0.1:60570 - "POST /api/v1/menu/update HTTP/1.1" 200 OK
+2025-08-11 13:47:41 - INFO - 127.0.0.1:60572 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
+2025-08-11 13:48:34 - INFO - 127.0.0.1:60633 - "POST /api/v1/menu/update HTTP/1.1" 200 OK
+2025-08-11 13:48:35 - INFO - 127.0.0.1:60635 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
+2025-08-11 13:48:40 - INFO - 127.0.0.1:60671 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:48:40 - INFO - 127.0.0.1:60672 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:48:40 - INFO - 127.0.0.1:60677 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:48:41 - INFO - 127.0.0.1:60683 - "GET /api/v1/menu/list HTTP/1.1" 200 OK
+2025-08-11 13:48:45 - INFO - 127.0.0.1:60694 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:49:45 - INFO - 127.0.0.1:60761 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:49:47 - INFO - 127.0.0.1:60768 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK
+2025-08-11 13:49:49 - INFO - 127.0.0.1:60773 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:55:24 - INFO - 127.0.0.1:63173 - "GET /api/v1/base/userinfo HTTP/1.1" 200 OK
+2025-08-11 13:55:25 - INFO - 127.0.0.1:63174 - "GET /api/v1/base/usermenu HTTP/1.1" 200 OK
+2025-08-11 13:55:25 - INFO - 127.0.0.1:63183 - "GET /api/v1/base/userapi HTTP/1.1" 200 OK
+2025-08-11 13:55:28 - INFO - 127.0.0.1:63224 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:55:59 - INFO - 127.0.0.1:63460 - "POST /api/v1/points/recharge HTTP/1.1" 200 OK
+2025-08-11 13:55:59 - INFO - 127.0.0.1:63463 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:56:08 - INFO - 127.0.0.1:63504 - "POST /api/v1/points/exchange HTTP/1.1" 404 Not Found
+2025-08-11 13:56:14 - INFO - 127.0.0.1:63533 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK
+2025-08-11 13:56:17 - INFO - 127.0.0.1:63546 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:56:18 - INFO - 127.0.0.1:63553 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK
+2025-08-11 13:56:20 - INFO - 127.0.0.1:63572 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:56:21 - INFO - 127.0.0.1:63581 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK
+2025-08-11 13:56:23 - INFO - 127.0.0.1:63592 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:56:24 - INFO - 127.0.0.1:63603 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK
+2025-08-11 13:56:29 - INFO - 127.0.0.1:63621 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:56:38 - INFO - 127.0.0.1:63667 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK
+2025-08-11 13:56:43 - INFO - 127.0.0.1:63693 - "GET /api/v1/points/info HTTP/1.1" 200 OK
+2025-08-11 13:57:17 - INFO - 127.0.0.1:63835 - "GET /api/v1/points/usage/records?page=1&size=20 HTTP/1.1" 200 OK

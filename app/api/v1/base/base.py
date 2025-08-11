@@ -103,6 +103,16 @@ async def get_user_menu():
         # 去重权限
         user_permissions = list(set(user_permissions))
 
+        # 添加基础菜单（所有登录用户都可以访问）
+        for menu in all_menus:
+            if menu.path in MenuPermissionMapping.BASIC_USER_MENUS:
+                accessible_menu_ids.add(menu.id)
+                # 如果是子菜单，确保其父菜单也被添加
+                if menu.parent_id != 0:
+                    parent_menu = next((m for m in all_menus if m.id == menu.parent_id), None)
+                    if parent_menu:
+                        accessible_menu_ids.add(parent_menu.id)
+
         # 根据代理权限添加额外的菜单
         for menu in all_menus:
             if MenuPermissionMapping.is_menu_accessible(

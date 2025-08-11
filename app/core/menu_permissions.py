@@ -17,6 +17,21 @@ class MenuPermissionMapping:
         ("POST", "/api/v1/base/update_password"), # 修改密码
         ("GET", "/api/v1/user/invitation_info"), # 获取邀请信息
         ("POST", "/api/v1/user/update"),       # 更新个人信息（仅限自己）
+        # 积分管理相关API
+        ("GET", "/api/v1/points/info"),        # 获取积分信息
+        ("POST", "/api/v1/points/exchange"),   # 使用兑换码
+        ("POST", "/api/v1/points/recharge"),   # 积分充值
+        ("GET", "/api/v1/points/recharge/records"), # 获取充值记录
+        ("GET", "/api/v1/points/usage/records"), # 获取使用记录
+        ("POST", "/api/v1/points/usage/create"), # 创建使用记录
+    ]
+
+    # 所有登录用户都可以访问的基础菜单
+    BASIC_USER_MENUS: List[str] = [
+        "/profile",  # 个人中心
+        "/points",   # 积分管理
+        "/points/info",  # 积分信息
+        "/points/usage", # 使用记录
     ]
 
     # 定义代理权限与API的映射关系
